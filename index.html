@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>906 Digital — Websites & AI Phone Answering for UP Businesses</title>
+<meta name="description" content="906 Digital builds websites and AI phone receptionists for Upper Peninsula tree services and small businesses. Stop missing calls. Start owning your customers." />
+<meta name="theme-color" content="#0F2940" />
+
+<!-- Open Graph -->
+<meta property="og:title" content="906 Digital — Local Tech That Earns Its Keep" />
+<meta property="og:description" content="Websites and AI phone answering for UP businesses." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://906digital.com" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<style>
+:root {
+  --superior:    #0F2940;
+  --superior-2:  #1B3A5C;
+  --copper:      #B87333;
+  --copper-dark: #9A5F28;
+  --pine:        #2F5345;
+  --birch:       #F8F5F0;
+  --slate:       #1A1A1A;
+  --stone:       #6B6B6B;
+  --line:        #E6E1D8;
+
+  --container:   1100px;
+  --radius:      14px;
+  --radius-sm:   8px;
+  --shadow-sm:   0 1px 2px rgba(15, 41, 64, .06), 0 1px 3px rgba(15, 41, 64, .08);
+  --shadow-md:   0 8px 24px rgba(15, 41, 64, .08);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--slate);
+  background: var(--birch);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--copper); text-decoration: none; }
+a:hover { color: var(--copper-dark); text-decoration: underline; }
+
+img { max-width: 100%; display: block; }
+
+.container { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+
+/* ---------- Header ---------- */
+.site-header {
+  background: var(--superior);
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+.logo {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+.logo .num { font-size: 24px; }
+.logo .word {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--copper);
+}
+.nav-cta {
+  display: inline-block;
+  padding: 10px 18px;
+  background: var(--copper);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 14px;
+}
+.nav-cta:hover { background: var(--copper-dark); color: #fff; text-decoration: none; }
+
+/* ---------- Hero ---------- */
+.hero {
+  background: var(--superior);
+  color: #fff;
+  padding: 88px 0 96px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0; right: 0;
+  height: 48px;
+  background: var(--birch);
+  clip-path: polygon(0 100%, 100% 100%, 100% 0, 0 60%);
+}
+.hero-eyebrow {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin: 0 0 16px;
+}
+.hero h1 {
+  font-size: clamp(36px, 6vw, 60px);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  font-weight: 800;
+  margin: 0 0 24px;
+  max-width: 22ch;
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--copper);
+}
+.hero p.lead {
+  font-size: clamp(17px, 2.2vw, 20px);
+  line-height: 1.55;
+  max-width: 56ch;
+  color: rgba(255,255,255,.85);
+  margin: 0 0 32px;
+}
+.hero .cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn {
+  display: inline-block;
+  padding: 14px 24px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 16px;
+  border: 0;
+  cursor: pointer;
+  transition: transform .08s ease, background .15s ease;
+}
+.btn:hover { transform: translateY(-1px); text-decoration: none; }
+.btn-primary { background: var(--copper); color: #fff; }
+.btn-primary:hover { background: var(--copper-dark); color: #fff; }
+.btn-ghost {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.3);
+}
+.btn-ghost:hover { background: rgba(255,255,255,.08); color: #fff; }
+
+/* ---------- Sections ---------- */
+section { padding: 88px 0; }
+.section-eyebrow {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin: 0 0 12px;
+}
+h2 {
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+  margin: 0 0 16px;
+  color: var(--superior);
+}
+.section-intro {
+  font-size: 18px;
+  color: var(--stone);
+  max-width: 60ch;
+  margin: 0 0 48px;
+}
+
+/* ---------- Problem cards ---------- */
+.problem { background: var(--birch); }
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+.problem-card {
+  background: #fff;
+  padding: 28px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+}
+.problem-card .num {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--copper);
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+}
+.problem-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--superior);
+  margin: 0 0 10px;
+  line-height: 1.25;
+}
+.problem-card p {
+  margin: 0;
+  color: var(--stone);
+  font-size: 16px;
+}
+
+/* ---------- Offer ---------- */
+.offer {
+  background: #fff;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.offer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 32px;
+}
+.tier {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 32px;
+  background: var(--birch);
+  display: flex;
+  flex-direction: column;
+}
+.tier.featured {
+  background: var(--superior);
+  color: #fff;
+  border-color: var(--superior);
+  position: relative;
+}
+.tier.featured h3 { color: #fff; }
+.tier.featured .price { color: var(--copper); }
+.tier.featured ul li { color: rgba(255,255,255,.85); }
+.tier.featured ul li::before { background: var(--copper); }
+.tier-badge {
+  position: absolute;
+  top: -12px;
+  left: 32px;
+  background: var(--copper);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 5px 12px;
+  border-radius: 100px;
+  text-transform: uppercase;
+}
+.tier h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 8px;
+  color: var(--superior);
+  letter-spacing: -0.01em;
+}
+.tier .price {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--copper);
+  margin: 0 0 4px;
+  letter-spacing: -0.02em;
+}
+.tier .price .small { font-size: 14px; font-weight: 500; color: var(--stone); }
+.tier.featured .price .small { color: rgba(255,255,255,.6); }
+.tier .desc {
+  font-size: 14px;
+  color: var(--stone);
+  margin: 0 0 20px;
+}
+.tier.featured .desc { color: rgba(255,255,255,.7); }
+.tier ul { list-style: none; padding: 0; margin: 0 0 24px; flex: 1; }
+.tier ul li {
+  font-size: 15px;
+  color: var(--slate);
+  padding-left: 24px;
+  position: relative;
+  margin-bottom: 10px;
+}
+.tier ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 14px;
+  height: 2px;
+  background: var(--copper);
+}
+
+/* ---------- About ---------- */
+.about { background: var(--birch); }
+.about-wrap { max-width: 720px; margin: 0 auto; text-align: left; }
+.about p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--slate);
+  margin: 0 0 20px;
+}
+.about p strong { color: var(--superior); }
+
+/* ---------- Final CTA ---------- */
+.final-cta {
+  background: var(--superior);
+  color: #fff;
+  text-align: center;
+  padding: 96px 0;
+}
+.final-cta h2 { color: #fff; max-width: 24ch; margin: 0 auto 20px; }
+.final-cta p {
+  font-size: 18px;
+  color: rgba(255,255,255,.8);
+  max-width: 56ch;
+  margin: 0 auto 32px;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  background: var(--superior);
+  color: rgba(255,255,255,.7);
+  padding: 32px 0;
+  border-top: 1px solid rgba(255,255,255,.08);
+  font-size: 14px;
+}
+.site-footer .container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: space-between;
+  align-items: center;
+}
+.site-footer a { color: var(--copper); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  section { padding: 64px 0; }
+  .hero { padding: 64px 0 80px; }
+  .tier { padding: 24px; }
+  .nav-cta { padding: 8px 14px; font-size: 13px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============== HEADER ============== -->
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo" aria-label="906 Digital home">
+      <span class="num">906</span>
+      <span class="word">Digital</span>
+    </a>
+    <a href="#book" class="nav-cta">Book a call</a>
+  </div>
+</header>
+
+<!-- ============== HERO ============== -->
+<section class="hero">
+  <div class="container">
+    <p class="hero-eyebrow">Local tech for UP businesses</p>
+    <h1>Stop losing tree jobs while you're <em>up in a tree.</em></h1>
+    <p class="lead">
+      906 Digital builds websites and AI phone answering for Upper Peninsula
+      trades and small businesses. Calls answered. Leads delivered. Jobs booked —
+      even when you're 60 feet up.
+    </p>
+    <div class="cta-row">
+      <a href="#book" class="btn btn-primary">Book a free 15-min call</a>
+      <a href="#offer" class="btn btn-ghost">See what we do</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== PROBLEM ============== -->
+<section class="problem">
+  <div class="container">
+    <p class="section-eyebrow">The leaks</p>
+    <h2>Most UP businesses lose customers in the same three places.</h2>
+    <p class="section-intro">
+      None of these are your fault. They're just what happens when you're
+      working the job and there's no one minding the storefront.
+    </p>
+
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="num">01</div>
+        <h3>Calls go to voicemail.</h3>
+        <p>You're on a chainsaw or under a sink. Three voicemails later, the
+        customer called the next guy on Google.</p>
+      </div>
+      <div class="problem-card">
+        <div class="num">02</div>
+        <h3>Your "website" is a Facebook page.</h3>
+        <p>Meta could shut it down tomorrow for any reason or none. Your
+        customers, reviews, and reach — all renting from a landlord.</p>
+      </div>
+      <div class="problem-card">
+        <div class="num">03</div>
+        <h3>Google can't find you.</h3>
+        <p>No real site, no Google Business Profile dialed in, no reviews
+        flowing. The customer who's searching right now picks the next listing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== OFFER ============== -->
+<section class="offer" id="offer">
+  <div class="container">
+    <p class="section-eyebrow">What we build</p>
+    <h2>Three things, stacked. Pick one or pick them all.</h2>
+    <p class="section-intro">
+      Local pricing. Flat fees. Done in days, not months. Cancel any time —
+      we'd rather you stay because the numbers work.
+    </p>
+
+    <div class="offer-grid">
+      <!-- Tier 1 -->
+      <div class="tier">
+        <h3>Foundation Site</h3>
+        <p class="price">$1,500–4,500 <span class="small">one-time</span></p>
+        <p class="desc">A real website you actually own. Built in 7–21 days.</p>
+        <ul>
+          <li>Mobile-first, fast-loading</li>
+          <li>Google Business Profile setup</li>
+          <li>Local SEO basics included</li>
+          <li>Lead capture + photo gallery</li>
+          <li>You own the domain forever</li>
+        </ul>
+      </div>
+
+      <!-- Tier 2 (featured) -->
+      <div class="tier featured">
+        <span class="tier-badge">Most signed</span>
+        <h3>AI Receptionist</h3>
+        <p class="price">$299–799 <span class="small">/month</span></p>
+        <p class="desc">An AI agent that answers every call when you can't.</p>
+        <ul>
+          <li>24/7 call answering</li>
+          <li>Captures address, tree species, urgency</li>
+          <li>Texts the lead to your phone in seconds</li>
+          <li>Books estimates on your calendar</li>
+          <li>Filters spam and junk calls</li>
+        </ul>
+      </div>
+
+      <!-- Tier 3 -->
+      <div class="tier">
+        <h3>Lead Intelligence</h3>
+        <p class="price">$399–1,200 <span class="small">/month</span></p>
+        <p class="desc">Use your call data to find more customers like the ones already paying you.</p>
+        <ul>
+          <li>Monthly call-trend reports</li>
+          <li>Targeted ads built from real callers</li>
+          <li>Storm-event lead alerts</li>
+          <li>Hot zip-code maps</li>
+          <li>Strategy call every month</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== ABOUT ============== -->
+<section class="about">
+  <div class="container">
+    <div class="about-wrap">
+      <p class="section-eyebrow">Who runs this</p>
+      <h2>I'm Joey. I live in the UP. I built this for businesses like yours.</h2>
+      <p>
+        I started <strong>906 Digital</strong> after watching too many local
+        operators lose work to the same three problems: missed calls, stale
+        websites, and renting their entire customer base from Facebook.
+      </p>
+      <p>
+        I'm not an agency. I'm one guy with a small set of tools that punch
+        way above their weight. AI lets me deliver in days what used to take
+        weeks, which means I can charge prices that work for UP businesses
+        and still take care of you when something breaks.
+      </p>
+      <p>
+        If you'd rather work than market yourself, we're going to get along.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FINAL CTA ============== -->
+<section class="final-cta" id="book">
+  <div class="container">
+    <p class="section-eyebrow" style="color: var(--copper);">Let's talk</p>
+    <h2>15 minutes. No pressure. We'll figure out if this fits.</h2>
+    <p>
+      Book a quick call. I'll listen, ask a few questions, and tell you
+      straight whether I can help. If I can't, I'll point you at someone
+      who can.
+    </p>
+    <a href="https://cal.com/906digital/intro" class="btn btn-primary">Book a free 15-min call</a>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer class="site-footer">
+  <div class="container">
+    <div>© <span id="year"></span> 906 Digital · Upper Peninsula, MI</div>
+    <div>
+      <a href="mailto:joey@906digital.com">joey@906digital.com</a>
+      &nbsp;·&nbsp;
+      <a href="tel:+19065550000">906-555-0000</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
