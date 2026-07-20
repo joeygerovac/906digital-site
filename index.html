@@ -53,9 +53,10 @@
 }
 </script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<!-- No web font is loaded. The body font-family below keeps Inter first (it renders
+     if the visitor already has it) and falls through to the platform UI font.
+     Dropping the Google Fonts stylesheet removed the only render-blocking
+     third-party request on the page. Do not re-add one. -->
 
 <style>
 :root {
@@ -66,7 +67,7 @@
   --pine:        #2F5345;
   --birch:       #F8F5F0;
   --slate:       #1A1A1A;
-  --stone:       #6B6B6B;
+  --stone:       #5A5A5A;
   --line:        #E6E1D8;
 
   --container:   1100px;
@@ -104,12 +105,15 @@ img { max-width: 100%; display: block; }
   z-index: 50;
   border-bottom: 1px solid rgba(255,255,255,.08);
 }
+/* One row, ~56px. The demo-line bar that used to sit above this was removed —
+   it advertised a number that answers with an outage message. */
 .site-header .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 16px;
-  padding-bottom: 16px;
+  min-height: 56px;
+  padding-top: 6px;
+  padding-bottom: 6px;
 }
 .logo {
   display: flex;
@@ -127,55 +131,21 @@ img { max-width: 100%; display: block; }
   text-transform: uppercase;
   color: var(--copper);
 }
+/* 44px minimum tap target — this is the only persistent action on the page and
+   it must not shrink below 44px at any breakpoint. */
 .nav-cta {
-  display: inline-block;
-  padding: 10px 18px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 18px;
   background: var(--copper);
   color: #fff;
   border-radius: var(--radius-sm);
   font-weight: 600;
-  font-size: 14px;
+  font-size: 15px;
 }
 .nav-cta:hover { background: var(--copper-dark); color: #fff; text-decoration: none; }
-
-/* ---------- Demo line bar (header row 1) ---------- */
-/* This is the AI receptionist DEMO number, not Joey's phone. The label always
-   travels with the number so nobody dials it expecting a human. */
-.demo-bar {
-  background: rgba(184, 115, 51, .14);
-  border-bottom: 1px solid rgba(255,255,255,.08);
-}
-.demo-bar .container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 4px 10px;
-  padding-top: 0;
-  padding-bottom: 0;
-  min-height: 44px;
-}
-.demo-bar .demo-label {
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: .04em;
-  color: rgba(255,255,255,.75);
-}
-.demo-line {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  min-height: 44px;
-  padding: 0 4px;
-  color: var(--copper);
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: .01em;
-  white-space: nowrap;
-}
-.demo-line:hover { color: #fff; text-decoration: underline; }
-.demo-line:focus-visible { outline: 3px solid var(--copper); outline-offset: 2px; }
-.demo-line svg { flex: none; width: 16px; height: 16px; fill: currentColor; }
+.nav-cta:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
 
 /* ---------- Hero ---------- */
 .hero {
@@ -193,6 +163,29 @@ img { max-width: 100%; display: block; }
   height: 48px;
   background: var(--birch);
   clip-path: polygon(0 100%, 100% 100%, 100% 0, 0 60%);
+}
+/* Two-column identity hero. Column 2 is the photo slot and is EMPTY on purpose —
+   no photo of Joey exists yet, and a placeholder person is a fabricated person.
+   Mobile is one column; the empty media column is display:none so it costs no
+   vertical space. When the photo lands, only the <img> is added — see the
+   PHOTO SLOT comment in the markup. No layout change is required. */
+.hero-grid { display: block; }
+.hero-media { display: none; }
+@media (min-width: 900px) {
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .hero-media { display: block; }
+}
+.hero-media img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius);
 }
 .hero-eyebrow {
   font-size: 13px;
@@ -492,7 +485,7 @@ h2 {
   pointer-events: none;
 }
 
-/* ---------- Demo line callout (final CTA) ---------- */
+/* ---------- Demo line callout (final CTA) — OFFLINE MODE ---------- */
 .demo-callout {
   max-width: 480px;
   margin: 40px auto 0;
@@ -508,11 +501,6 @@ h2 {
   color: #fff;
   margin: 0 0 8px;
   letter-spacing: -.01em;
-}
-.demo-callout .demo-line {
-  font-size: 28px;
-  margin: 6px 0;
-  min-height: 48px;
 }
 .demo-callout p {
   font-size: 15px;
@@ -544,13 +532,11 @@ h2 {
   section { padding: 64px 0; }
   .hero { padding: 64px 0 80px; }
   .tier { padding: 24px; }
-  .nav-cta { padding: 8px 14px; font-size: 13px; }
-  .site-header > .container { padding-top: 12px; padding-bottom: 12px; }
-  .demo-bar .container { padding-left: 16px; padding-right: 16px; }
-  .demo-bar .demo-label { font-size: 12px; }
-  .demo-line { font-size: 17px; }
+  /* .nav-cta keeps its 44px min-height here on purpose. Only the horizontal
+     padding narrows. Do not reintroduce a font-size/padding shrink — that is
+     what made this a ~37px target. */
+  .nav-cta { padding: 0 14px; }
   .demo-callout { padding: 20px; }
-  .demo-callout .demo-line { font-size: 24px; }
   .lead-form { margin-top: 24px; }
   .field { margin-bottom: 16px; }
 }
@@ -560,44 +546,54 @@ h2 {
 
 <!-- ============== HEADER ============== -->
 <header class="site-header">
-
-  <!-- Demo line. NOT a contact number — an AI receptionist answers and says so.
-       The "hear it answer" framing must stay attached to the digits everywhere
-       they appear, so nobody dials expecting to reach Joey. -->
-  <div class="demo-bar">
-    <div class="container">
-      <span class="demo-label">Hear the AI answer a real call:</span>
-      <a class="demo-line" href="tel:+19067676901"
-         aria-label="Call the AI receptionist demo line at 9 0 6, 7 6 7, 6 9 0 1">
-        <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3.7 1a1.3 1.3 0 0 1 1.1.6l1.3 2a1.3 1.3 0 0 1-.2 1.6l-.8.8a9 9 0 0 0 3.9 3.9l.8-.8a1.3 1.3 0 0 1 1.6-.2l2 1.3a1.3 1.3 0 0 1 .4 1.8l-.9 1.3a1.8 1.8 0 0 1-2 .7A14.2 14.2 0 0 1 1.2 4.4a1.8 1.8 0 0 1 .7-2L3.2 1.2A1.3 1.3 0 0 1 3.7 1Z"/></svg>
-        (906) 767-6901
-      </a>
-    </div>
-  </div>
-
+  <!-- One row only. The demo-line bar that used to sit above this was removed:
+       (906) 767-6901 currently answers with a recorded outage message, and a
+       sticky banner promoting it made the most prominent element on the page
+       refute itself. Do not restore a phone number here until the line answers.
+       CTA reads "Get in touch" because there is no calendar behind it — it is a
+       form anchor. -->
   <div class="container">
     <a href="/" class="logo" aria-label="906 Digital home">
       <span class="num">906</span>
       <span class="word">Digital</span>
     </a>
-    <a href="#book" class="nav-cta">Book a call</a>
+    <a href="#book" class="nav-cta">Get in touch</a>
   </div>
 </header>
 
 <!-- ============== HERO ============== -->
 <section class="hero">
-  <div class="container">
-    <p class="hero-eyebrow">Local tech for UP businesses</p>
-    <h1>Stop losing tree jobs while you're <em>up in a tree.</em></h1>
-    <p class="lead">
-      906 Digital builds websites and AI phone answering for Upper Peninsula
-      trades and small businesses. Calls answered. Leads delivered. Jobs booked —
-      even when you're 60 feet up.
-    </p>
-    <div class="cta-row">
-      <a href="#book" class="btn btn-primary">Book a free 15-min call</a>
-      <a href="#offer" class="btn btn-ghost">See what we do</a>
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="hero-eyebrow">Ironwood, Michigan</p>
+      <h1>I'm Joey Gerovac. I build websites and AI phone answering, <em>out of Ironwood.</em></h1>
+      <p class="lead">
+        906 Digital builds websites and AI phone answering for trades and small
+        businesses in the western UP. The idea is simple: your phone gets
+        answered while you're working, and the lead lands on your phone as a
+        text.
+      </p>
+      <div class="cta-row">
+        <a href="#book" class="btn btn-primary">Get in touch</a>
+        <a href="#offer" class="btn btn-ghost">See what we do</a>
+      </div>
     </div>
+
+    <!-- ===================== PHOTO SLOT — INTENTIONALLY EMPTY =====================
+         No photo of Joey exists yet. This column stays empty until a real one does.
+         Do NOT fill it with an illustration, monogram, avatar, silhouette, stock
+         photo, or AI-generated image. A placeholder person is a fabricated person.
+
+         WHEN THE PHOTO EXISTS, add exactly one <img> inside .hero-media below:
+           <img src="joey.webp" width="800" height="600"
+                alt="Joey Gerovac in Ironwood, Michigan"
+                loading="eager" decoding="async">
+         The grid expects 4:3 (object-fit: cover handles minor variance). Explicit
+         width/height are required to prevent layout shift. Nothing else changes:
+         the two-column grid, the mobile collapse, and the CSS are already in place.
+         Consider reusing the same image as og:image at that time.
+         =========================================================================== -->
+    <div class="hero-media"></div>
   </div>
 </section>
 
@@ -605,10 +601,14 @@ h2 {
 <section class="problem">
   <div class="container">
     <p class="section-eyebrow">The leaks</p>
-    <h2>Most UP businesses lose customers in the same three places.</h2>
+    <!-- This headline moved down from the H1 verbatim. Do not water it down and
+         do not genericise it — the rescue line below covers the other trades. -->
+    <h2>Stop losing tree jobs while you're up in a tree.</h2>
     <p class="section-intro">
-      None of these are your fault. They're just what happens when you're
-      working the job and there's no one minding the storefront.
+      Not a tree guy? Same problem, same fix — plumbing, HVAC, roofing, septic,
+      excavation. Two places a small outfit loses work without ever seeing it
+      happen. This is just what happens when you're the one doing the work and
+      there's nobody minding the storefront.
     </p>
 
     <div class="problem-grid">
@@ -624,12 +624,10 @@ h2 {
         <p>Meta could shut it down tomorrow for any reason or none. Your
         customers, reviews, and reach — all renting from a landlord.</p>
       </div>
-      <div class="problem-card">
-        <div class="num">03</div>
-        <h3>Google can't find you.</h3>
-        <p>No real site, no Google Business Profile dialed in, no reviews
-        flowing. The customer who's searching right now picks the next listing.</p>
-      </div>
+      <!-- Card 03 ("Google can't find you") was cut: it argued for a channel this
+           project's own SEO research found has effectively zero demand here.
+           The section intro reads "Two places" to match. If a third card is ever
+           restored, update the intro count with it. -->
     </div>
   </div>
 </section>
@@ -649,13 +647,18 @@ h2 {
       <div class="tier">
         <h3>Foundation Site</h3>
         <p class="price">$1,900–4,500 <span class="small">one-time</span></p>
-        <p class="desc">A real website you actually own. Built in 7–21 days.</p>
+        <!-- Turnaround and feature lines must match packages-and-pricing.md:77-95.
+             The photo gallery starts at Standard ($2,900) — it is not in the
+             $1,900 Starter, and listing it at the floor price oversells the floor. -->
+        <p class="desc">A real website you actually own. Built in 10 days to 4 weeks, depending on size.</p>
         <ul>
           <li>Mobile-first, fast-loading</li>
           <li>Google Business Profile setup</li>
           <li>Local SEO basics included</li>
-          <li>Lead capture + photo gallery</li>
+          <li>Lead capture form on every build</li>
+          <li>Photo gallery and service-area map from $2,900 up</li>
           <li>You own the domain forever</li>
+          <li>Loads in well under a second on truck-stop LTE — you're looking at the demo</li>
         </ul>
       </div>
 
@@ -674,20 +677,20 @@ h2 {
         </ul>
       </div>
 
-      <!-- Tier 3 -->
-      <div class="tier">
-        <h3>Managed Ads</h3>
-        <p class="price">$500 <span class="small">/month + ad spend</span></p>
-        <p class="desc">Once the phone's covered, use your own call data to find more customers like the ones already paying you.</p>
-        <ul>
-          <li>Monthly call-trend reports</li>
-          <li>Targeted ads built from real callers</li>
-          <li>Hot zip-code maps</li>
-          <li>Strategy call every month</li>
-          <li>Added after 90 days, not on day one</li>
-        </ul>
-      </div>
+      <!-- Tier 3 (Managed Ads) was cut from the grid. packages-and-pricing.md:246
+           says "Sell only after 90 days of receptionist data. Don't pitch this on
+           day one." Nobody has ninety days of data, so it was a product nobody
+           could buy, displayed at the point where a stranger decides whether this
+           is a local operator or an agency with an upsell. It survives as the
+           deferred line below. -->
     </div>
+
+    <p class="section-intro" style="margin: 0; max-width: 60ch;">
+      Once your phone's covered and there's real call data coming in, there's
+      more that can be done with it — ads built from who's actually calling you.
+      That's a 90-day-later conversation, not a today conversation. Ask me about
+      it then.
+    </p>
   </div>
 </section>
 
@@ -782,18 +785,34 @@ h2 {
       Rather just email? <a href="mailto:joey@906digital.com?subject=906%20Digital%20-%2015%20min%20call">joey@906digital.com</a>
     </p>
 
-    <!-- Demo line, framed as proof of product rather than as a way to reach Joey. -->
+    <!-- ============ DEMO LINE — OFFLINE MODE (currently active) ============
+         The demo line (906) 767-6901 is down and answers with a recorded outage
+         message. There is deliberately NO tel: link and NO phone number printed
+         anywhere on this page. Of every failure mode here, a published number
+         that rings nowhere is the one that most efficiently confirms a suspicious
+         visitor's original hypothesis.
+
+         TO RESTORE WHEN THE LINE ANSWERS AGAIN — and only after someone dials it
+         from a phone that has never called it and hears the AI pick up:
+           1. Replace the <p> below with the live copy:
+              "Call it and hear it answer. This is a demonstration line — an AI
+               receptionist picks up and tells you straight off that it's AI.
+               It's not my desk phone. To reach me, use the form above."
+           2. Add the number back as a link directly under the <h3>:
+              <a class="demo-line" href="tel:+19067676901"
+                 aria-label="Call the AI receptionist demo line at 9 0 6, 7 6 7, 6 9 0 1">(906) 767-6901</a>
+           3. Restore the .demo-line CSS rule (deleted in this pass) plus
+              .demo-callout .demo-line { font-size: 28px; margin: 6px 0; min-height: 48px; }
+           4. Change the <h3> back to "Want to hear it before you decide?"
+         The AI-disclosure sentence is ethically load-bearing. It must travel with
+         the digits every single time they appear. Do not ship one without it.
+         ====================================================================== -->
     <div class="demo-callout">
-      <h3>Want to hear it before you decide?</h3>
-      <a class="demo-line" href="tel:+19067676901"
-         aria-label="Call the AI receptionist demo line at 9 0 6, 7 6 7, 6 9 0 1">
-        <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3.7 1a1.3 1.3 0 0 1 1.1.6l1.3 2a1.3 1.3 0 0 1-.2 1.6l-.8.8a9 9 0 0 0 3.9 3.9l.8-.8a1.3 1.3 0 0 1 1.6-.2l2 1.3a1.3 1.3 0 0 1 .4 1.8l-.9 1.3a1.8 1.8 0 0 1-2 .7A14.2 14.2 0 0 1 1.2 4.4a1.8 1.8 0 0 1 .7-2L3.2 1.2A1.3 1.3 0 0 1 3.7 1Z"/></svg>
-        (906) 767-6901
-      </a>
+      <h3>The demo line is down right now</h3>
       <p>
-        Call it and hear it answer. This is a demonstration line — an AI
-        receptionist picks up and tells you straight off that it's AI. It's not
-        my desk phone. To reach me, use the form above.
+        The demo line is down while I sort out some plumbing on it. Ask me and I'll call you from it so you can hear it work. Use the
+        form above, or email
+        <a href="mailto:joey@906digital.com?subject=906%20Digital%20-%20hear%20the%20demo%20line">joey@906digital.com</a>.
       </p>
     </div>
   </div>
@@ -801,10 +820,16 @@ h2 {
 
 <!-- ============== FOOTER ============== -->
 <footer class="site-footer">
+  <!-- Four verified lines. No registry link: the Michigan COFS URL is dead (SSL
+       handshake failure, service retired June 2025) and no replacement has been
+       verified. A dead "look it up" link here inverts the whole point of printing
+       the entity ID. No address, no hours, no phone — none of those are settled. -->
   <div class="container">
-    <div>© <span id="year"></span> 906 Digital · Upper Peninsula, MI</div>
     <div>
-      <a href="mailto:joey@906digital.com">joey@906digital.com</a>
+      906 Digital LLC · Ironwood, Michigan<br>
+      Michigan Entity ID 900169562<br>
+      <a href="mailto:joey@906digital.com">joey@906digital.com</a><br>
+      © <span id="year"></span>
     </div>
   </div>
 </footer>
