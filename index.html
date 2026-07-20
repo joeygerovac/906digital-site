@@ -6,12 +6,52 @@
 <title>906 Digital — Websites & AI Phone Answering for UP Businesses</title>
 <meta name="description" content="906 Digital builds websites and AI phone receptionists for Upper Peninsula tree services and small businesses. Stop missing calls. Start owning your customers." />
 <meta name="theme-color" content="#0F2940" />
+<link rel="canonical" href="https://906digital.com/" />
 
 <!-- Open Graph -->
 <meta property="og:title" content="906 Digital — Local Tech That Earns Its Keep" />
 <meta property="og:description" content="Websites and AI phone answering for UP businesses." />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://906digital.com" />
+<meta property="og:url" content="https://906digital.com/" />
+<meta property="og:site_name" content="906 Digital" />
+<meta property="og:locale" content="en_US" />
+<!-- og:image intentionally omitted: no share image asset exists yet. Referencing a
+     nonexistent file is worse than having none. When a 1200x630 image is created,
+     add it here plus twitter:card="summary_large_image". -->
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="906 Digital — Local Tech That Earns Its Keep" />
+<meta name="twitter:description" content="Websites and AI phone answering for UP businesses." />
+
+<!-- Structured data. Only verified facts. No address, hours, ratings, reviews, price
+     range, or offers — none of those exist yet, and a false property teaches AI
+     engines this markup is unreliable. No telephone: the only number on this page is
+     a product demo line, not the business line. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "906 Digital LLC",
+  "alternateName": "906 Digital",
+  "url": "https://906digital.com/",
+  "description": "906 Digital builds websites and AI phone receptionists for Upper Peninsula trades and small businesses.",
+  "email": "joey.gerovac@gmail.com",
+  "identifier": {
+    "@type": "PropertyValue",
+    "name": "Michigan Entity ID",
+    "value": "900169562"
+  },
+  "founder": { "@type": "Person", "name": "Joey Gerovac" },
+  "areaServed": [
+    { "@type": "AdministrativeArea", "name": "Gogebic County, Michigan" },
+    { "@type": "AdministrativeArea", "name": "Iron County, Michigan" },
+    { "@type": "AdministrativeArea", "name": "Ontonagon County, Michigan" },
+    { "@type": "AdministrativeArea", "name": "Houghton County, Michigan" },
+    { "@type": "AdministrativeArea", "name": "Baraga County, Michigan" }
+  ]
+}
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -97,6 +137,45 @@ img { max-width: 100%; display: block; }
   font-size: 14px;
 }
 .nav-cta:hover { background: var(--copper-dark); color: #fff; text-decoration: none; }
+
+/* ---------- Demo line bar (header row 1) ---------- */
+/* This is the AI receptionist DEMO number, not Joey's phone. The label always
+   travels with the number so nobody dials it expecting a human. */
+.demo-bar {
+  background: rgba(184, 115, 51, .14);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.demo-bar .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  padding-top: 0;
+  padding-bottom: 0;
+  min-height: 44px;
+}
+.demo-bar .demo-label {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  color: rgba(255,255,255,.75);
+}
+.demo-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 44px;
+  padding: 0 4px;
+  color: var(--copper);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: .01em;
+  white-space: nowrap;
+}
+.demo-line:hover { color: #fff; text-decoration: underline; }
+.demo-line:focus-visible { outline: 3px solid var(--copper); outline-offset: 2px; }
+.demo-line svg { flex: none; width: 16px; height: 16px; fill: currentColor; }
 
 /* ---------- Hero ---------- */
 .hero {
@@ -331,6 +410,118 @@ h2 {
   margin: 0 auto 32px;
 }
 
+/* ---------- Lead form ---------- */
+.lead-form {
+  max-width: 480px;
+  margin: 32px auto 0;
+  text-align: left;
+}
+.field { margin-bottom: 20px; }
+
+.lead-form label {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.lead-form .optional { font-weight: 400; color: rgba(255,255,255,.6); }
+
+.lead-form input[type="text"],
+.lead-form input[type="tel"],
+.lead-form textarea {
+  width: 100%;
+  font-family: inherit;
+  font-size: 16px;          /* 16px minimum — prevents iOS auto-zoom on focus */
+  line-height: 1.5;
+  padding: 13px 14px;       /* ~48px tall, above the 44px target minimum */
+  min-height: 48px;
+  color: var(--slate);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  -webkit-appearance: none;
+  appearance: none;
+}
+.lead-form textarea { min-height: 88px; resize: vertical; }
+
+.lead-form input:focus-visible,
+.lead-form textarea:focus-visible,
+.lead-form button:focus-visible {
+  outline: 3px solid var(--copper);
+  outline-offset: 2px;
+}
+.lead-form input:focus,
+.lead-form textarea:focus { border-color: var(--copper); }
+
+.lead-form .lead-submit {
+  width: 100%;
+  min-height: 52px;
+  font-size: 17px;
+  margin-top: 4px;
+}
+.lead-form input[aria-invalid="true"],
+.lead-form textarea[aria-invalid="true"] { border-color: #C0392B; border-width: 2px; }
+
+.form-status {
+  margin: 14px 0 0;
+  font-size: 15px;
+  min-height: 22px;
+  color: #fff;
+}
+.form-status.is-error { color: #FFB4A8; }
+.form-status.is-success { color: #9FE8C0; font-weight: 600; }
+
+.form-fineprint {
+  margin: 12px 0 0;
+  font-size: 13px;
+  color: rgba(255,255,255,.55);
+}
+.alt-contact {
+  margin-top: 24px;
+  font-size: 15px;
+  color: rgba(255,255,255,.7);
+}
+
+/* Honeypot — hidden from humans, from keyboards, and from screen readers */
+.hp-field {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px; height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---------- Demo line callout (final CTA) ---------- */
+.demo-callout {
+  max-width: 480px;
+  margin: 40px auto 0;
+  padding: 24px;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: var(--radius);
+  background: rgba(255,255,255,.04);
+  text-align: center;
+}
+.demo-callout h3 {
+  font-size: 19px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 8px;
+  letter-spacing: -.01em;
+}
+.demo-callout .demo-line {
+  font-size: 28px;
+  margin: 6px 0;
+  min-height: 48px;
+}
+.demo-callout p {
+  font-size: 15px;
+  line-height: 1.55;
+  color: rgba(255,255,255,.7);
+  margin: 8px auto 0;
+  max-width: 40ch;
+}
+
 /* ---------- Footer ---------- */
 .site-footer {
   background: var(--superior);
@@ -354,6 +545,14 @@ h2 {
   .hero { padding: 64px 0 80px; }
   .tier { padding: 24px; }
   .nav-cta { padding: 8px 14px; font-size: 13px; }
+  .site-header > .container { padding-top: 12px; padding-bottom: 12px; }
+  .demo-bar .container { padding-left: 16px; padding-right: 16px; }
+  .demo-bar .demo-label { font-size: 12px; }
+  .demo-line { font-size: 17px; }
+  .demo-callout { padding: 20px; }
+  .demo-callout .demo-line { font-size: 24px; }
+  .lead-form { margin-top: 24px; }
+  .field { margin-bottom: 16px; }
 }
 </style>
 </head>
@@ -361,6 +560,21 @@ h2 {
 
 <!-- ============== HEADER ============== -->
 <header class="site-header">
+
+  <!-- Demo line. NOT a contact number — an AI receptionist answers and says so.
+       The "hear it answer" framing must stay attached to the digits everywhere
+       they appear, so nobody dials expecting to reach Joey. -->
+  <div class="demo-bar">
+    <div class="container">
+      <span class="demo-label">Hear the AI answer a real call:</span>
+      <a class="demo-line" href="tel:+19067676901"
+         aria-label="Call the AI receptionist demo line at 9 0 6, 7 6 7, 6 9 0 1">
+        <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3.7 1a1.3 1.3 0 0 1 1.1.6l1.3 2a1.3 1.3 0 0 1-.2 1.6l-.8.8a9 9 0 0 0 3.9 3.9l.8-.8a1.3 1.3 0 0 1 1.6-.2l2 1.3a1.3 1.3 0 0 1 .4 1.8l-.9 1.3a1.8 1.8 0 0 1-2 .7A14.2 14.2 0 0 1 1.2 4.4a1.8 1.8 0 0 1 .7-2L3.2 1.2A1.3 1.3 0 0 1 3.7 1Z"/></svg>
+        (906) 767-6901
+      </a>
+    </div>
+  </div>
+
   <div class="container">
     <a href="/" class="logo" aria-label="906 Digital home">
       <span class="num">906</span>
@@ -507,11 +721,80 @@ h2 {
     <p class="section-eyebrow" style="color: var(--copper);">Let's talk</p>
     <h2>15 minutes. No pressure. We'll figure out if this fits.</h2>
     <p>
-      Book a quick call. I'll listen, ask a few questions, and tell you
-      straight whether I can help. If I can't, I'll point you at someone
-      who can.
+      Leave your name and number. I'll text you back within one business day —
+      usually a lot sooner.
     </p>
-    <a href="mailto:joey.gerovac@gmail.com?subject=906%20Digital%20-%2015%20min%20call" class="btn btn-primary">Email Joey to set up a call</a>
+
+    <form id="lead-form" class="lead-form"
+          action="https://api.web3forms.com/submit" method="POST" novalidate>
+
+      <!-- Web3Forms config. access_key MUST be replaced with a real key before deploy;
+           until then every submission fails. The key is a public identifier, not a secret. -->
+      <input type="hidden" name="access_key" value="REPLACE_WITH_WEB3FORMS_ACCESS_KEY">
+      <input type="hidden" name="subject" value="906 Digital — New Lead">
+      <input type="hidden" name="from_name" value="906digital.com">
+
+      <!-- Reply script rides along with the lead so there's no template to go find -->
+      <input type="hidden" name="_next_action"
+             value="TEXT THEM WITHIN 24H: 'Hi [name], it's Joey from 906 Digital. Got your note off the site. Got 15 min this week to talk through it?'">
+
+      <!-- Attribution, populated by JS. Cloudflare Web Analytics has no custom events,
+           so the lead email itself carries the source data. -->
+      <input type="hidden" name="source"          id="f-source">
+      <input type="hidden" name="device"          id="f-device">
+      <input type="hidden" name="page"            id="f-page">
+      <input type="hidden" name="seconds_on_page" id="f-elapsed">
+      <input type="hidden" name="js_token"        id="f-token">
+
+      <!-- Honeypot: CSS-hidden (not type=hidden), keyboard-skipped, screen-reader-hidden.
+           Web3Forms enforces "botcheck" server-side. -->
+      <input type="checkbox" name="botcheck" class="hp-field"
+             tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <div class="field">
+        <label for="lead-name">Your name</label>
+        <input type="text" id="lead-name" name="name"
+               autocomplete="name" enterkeyhint="next" required>
+      </div>
+
+      <div class="field">
+        <label for="lead-phone">Phone number</label>
+        <input type="tel" id="lead-phone" name="phone"
+               inputmode="tel" autocomplete="tel" enterkeyhint="next"
+               placeholder="906-555-0199" required>
+      </div>
+
+      <div class="field">
+        <label for="lead-note">What do you need help with? <span class="optional">(optional)</span></label>
+        <textarea id="lead-note" name="message" rows="3"
+                  enterkeyhint="send"
+                  placeholder="Missing calls, no website, whatever it is."></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary lead-submit">Send it</button>
+
+      <p class="form-status" id="lead-status" role="status" aria-live="polite"></p>
+      <p class="form-fineprint">No spam, no newsletter. I'll text you back, that's it.</p>
+    </form>
+
+    <p class="alt-contact">
+      Rather just email? <a href="mailto:joey.gerovac@gmail.com?subject=906%20Digital%20-%2015%20min%20call">joey.gerovac@gmail.com</a>
+    </p>
+
+    <!-- Demo line, framed as proof of product rather than as a way to reach Joey. -->
+    <div class="demo-callout">
+      <h3>Want to hear it before you decide?</h3>
+      <a class="demo-line" href="tel:+19067676901"
+         aria-label="Call the AI receptionist demo line at 9 0 6, 7 6 7, 6 9 0 1">
+        <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3.7 1a1.3 1.3 0 0 1 1.1.6l1.3 2a1.3 1.3 0 0 1-.2 1.6l-.8.8a9 9 0 0 0 3.9 3.9l.8-.8a1.3 1.3 0 0 1 1.6-.2l2 1.3a1.3 1.3 0 0 1 .4 1.8l-.9 1.3a1.8 1.8 0 0 1-2 .7A14.2 14.2 0 0 1 1.2 4.4a1.8 1.8 0 0 1 .7-2L3.2 1.2A1.3 1.3 0 0 1 3.7 1Z"/></svg>
+        (906) 767-6901
+      </a>
+      <p>
+        Call it and hear it answer. This is a demonstration line — an AI
+        receptionist picks up and tells you straight off that it's AI. It's not
+        my desk phone. To reach me, use the form above.
+      </p>
+    </div>
   </div>
 </section>
 
@@ -528,6 +811,123 @@ h2 {
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
+
+<script>
+/* Lead form. Progressive enhancement: if this script fails the form still natively
+   POSTs to Web3Forms and still works — it just redirects to their confirmation page
+   instead of showing inline success. */
+(function () {
+  var form = document.getElementById('lead-form');
+  if (!form) return;
+
+  /* NOTE: do NOT use form.name — HTMLFormElement.name is a reflected attribute and
+     shadows the named input lookup, so form.name is a string, not the field. */
+  var nameEl  = document.getElementById('lead-name');
+  var phoneEl = document.getElementById('lead-phone');
+  var statusEl = document.getElementById('lead-status');
+  var btn = form.querySelector('button[type="submit"]');
+
+  var loadedAt = Date.now();
+  var MIN_SECONDS = 3;   // humans take 8-25s, bots take <1s
+
+  // --- Attribution + anti-bot fields ---
+  var params = new URLSearchParams(location.search);
+  var utm = params.get('utm_source');
+  var ref = document.referrer;
+  var source = utm ? ('utm:' + utm)
+             : (ref ? ('ref:' + ref)
+             : 'direct / typed / QR / business card');
+
+  document.getElementById('f-source').value = source;
+  document.getElementById('f-page').value   = location.pathname + location.search;
+  document.getElementById('f-device').value =
+    (window.matchMedia('(max-width: 640px)').matches ? 'mobile' : 'desktop')
+    + ' · ' + window.innerWidth + 'px';
+  document.getElementById('f-token').value = 'js-ok-' + loadedAt;
+
+  function fail(msg) {
+    statusEl.textContent = msg;
+    statusEl.className = 'form-status is-error';
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var elapsed = Math.round((Date.now() - loadedAt) / 1000);
+    document.getElementById('f-elapsed').value = elapsed;
+
+    if (elapsed < MIN_SECONDS) { fail('Hang on one second and try again.'); return; }
+    if (!document.getElementById('f-token').value) { return; }
+
+    var name  = nameEl.value.trim();
+    var phone = phoneEl.value.trim();
+    var digits = phone.replace(/\D/g, '');
+
+    nameEl.setAttribute('aria-invalid', name ? 'false' : 'true');
+    if (!name) { fail('Just need a name to know who I\'m talking to.'); nameEl.focus(); return; }
+
+    var phoneOk = digits.length >= 10;
+    phoneEl.setAttribute('aria-invalid', phoneOk ? 'false' : 'true');
+    if (!phoneOk) { fail('That number looks short — 10 digits, any format is fine.'); phoneEl.focus(); return; }
+
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    statusEl.textContent = '';
+    statusEl.className = 'form-status';
+
+    /* Fallback while the Web3Forms access key is still a placeholder.
+       Without a real key every POST fails and the lead is silently lost —
+       worse than having no form. Until the key is filled in, hand the
+       submission off to the visitor's mail client with the fields already
+       populated. Delete this block once the key is real; the fetch below
+       then handles everything. */
+    var keyEl = form.querySelector('input[name="access_key"]');
+    if (!keyEl || keyEl.value.indexOf('REPLACE_WITH') === 0) {
+      var noteEl = document.getElementById('lead-note');
+      var body = 'Name: ' + name + '\nPhone: ' + phone +
+                 (noteEl && noteEl.value.trim() ? '\nNote: ' + noteEl.value.trim() : '') +
+                 '\n\n(sent from 906digital.com)';
+      window.location.href = 'mailto:joey.gerovac@gmail.com' +
+        '?subject=' + encodeURIComponent('906 Digital — ' + name) +
+        '&body=' + encodeURIComponent(body);
+      btn.disabled = false;
+      btn.textContent = 'Send it';
+      statusEl.textContent = 'Opening your email to finish sending.';
+      statusEl.className = 'form-status';
+      return;
+    }
+
+    fetch(form.action, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(form)
+    })
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      if (data && data.success) {
+        form.innerHTML =
+          '<p class="form-status is-success" role="status">Got it, ' +
+          name.split(' ')[0].replace(/[<>&]/g, '') +
+          '. I\'ll text you at ' + phone.replace(/[<>&]/g, '') +
+          ' within one business day.</p>';
+      } else {
+        btn.disabled = false; btn.textContent = 'Send it';
+        fail('Something went wrong. Text or email me directly: joey.gerovac@gmail.com');
+      }
+    })
+    .catch(function () {
+      btn.disabled = false; btn.textContent = 'Send it';
+      fail('Connection problem. Email me directly: joey.gerovac@gmail.com');
+    });
+  });
+})();
+</script>
+
+<!-- Cloudflare Web Analytics. No cookies, no consent banner required.
+     The token is a public identifier, not a secret — but it MUST be filled in. -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon='{"token": "REPLACE_WITH_CLOUDFLARE_ANALYTICS_TOKEN"}'></script>
+<!-- End Cloudflare Web Analytics -->
 
 </body>
 </html>
