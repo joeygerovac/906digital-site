@@ -36,7 +36,7 @@
   "alternateName": "906 Digital",
   "url": "https://906digital.com/",
   "description": "906 Digital builds websites and AI phone receptionists for Upper Peninsula trades and small businesses.",
-  "email": "joey.gerovac@gmail.com",
+  "email": "joey@906digital.com",
   "identifier": {
     "@type": "PropertyValue",
     "name": "Michigan Entity ID",
@@ -728,9 +728,10 @@ h2 {
     <form id="lead-form" class="lead-form"
           action="https://api.web3forms.com/submit" method="POST" novalidate>
 
-      <!-- Web3Forms config. access_key MUST be replaced with a real key before deploy;
-           until then every submission fails. The key is a public identifier, not a secret. -->
-      <input type="hidden" name="access_key" value="REPLACE_WITH_WEB3FORMS_ACCESS_KEY">
+      <!-- Web3Forms config. The access key is a public identifier, not a secret —
+           it belongs in the markup. Submissions are delivered to the email on the
+           Web3Forms account, which is joey@906digital.com. -->
+      <input type="hidden" name="access_key" value="32bc791d-f015-4ddc-968b-f324e9af14b2">
       <input type="hidden" name="subject" value="906 Digital — New Lead">
       <input type="hidden" name="from_name" value="906digital.com">
 
@@ -778,7 +779,7 @@ h2 {
     </form>
 
     <p class="alt-contact">
-      Rather just email? <a href="mailto:joey.gerovac@gmail.com?subject=906%20Digital%20-%2015%20min%20call">joey.gerovac@gmail.com</a>
+      Rather just email? <a href="mailto:joey@906digital.com?subject=906%20Digital%20-%2015%20min%20call">joey@906digital.com</a>
     </p>
 
     <!-- Demo line, framed as proof of product rather than as a way to reach Joey. -->
@@ -803,7 +804,7 @@ h2 {
   <div class="container">
     <div>© <span id="year"></span> 906 Digital · Upper Peninsula, MI</div>
     <div>
-      <a href="mailto:joey.gerovac@gmail.com">joey.gerovac@gmail.com</a>
+      <a href="mailto:joey@906digital.com">joey@906digital.com</a>
     </div>
   </div>
 </footer>
@@ -875,28 +876,6 @@ h2 {
     statusEl.textContent = '';
     statusEl.className = 'form-status';
 
-    /* Fallback while the Web3Forms access key is still a placeholder.
-       Without a real key every POST fails and the lead is silently lost —
-       worse than having no form. Until the key is filled in, hand the
-       submission off to the visitor's mail client with the fields already
-       populated. Delete this block once the key is real; the fetch below
-       then handles everything. */
-    var keyEl = form.querySelector('input[name="access_key"]');
-    if (!keyEl || keyEl.value.indexOf('REPLACE_WITH') === 0) {
-      var noteEl = document.getElementById('lead-note');
-      var body = 'Name: ' + name + '\nPhone: ' + phone +
-                 (noteEl && noteEl.value.trim() ? '\nNote: ' + noteEl.value.trim() : '') +
-                 '\n\n(sent from 906digital.com)';
-      window.location.href = 'mailto:joey.gerovac@gmail.com' +
-        '?subject=' + encodeURIComponent('906 Digital — ' + name) +
-        '&body=' + encodeURIComponent(body);
-      btn.disabled = false;
-      btn.textContent = 'Send it';
-      statusEl.textContent = 'Opening your email to finish sending.';
-      statusEl.className = 'form-status';
-      return;
-    }
-
     fetch(form.action, {
       method: 'POST',
       headers: { 'Accept': 'application/json' },
@@ -912,12 +891,12 @@ h2 {
           ' within one business day.</p>';
       } else {
         btn.disabled = false; btn.textContent = 'Send it';
-        fail('Something went wrong. Text or email me directly: joey.gerovac@gmail.com');
+        fail('Something went wrong. Text or email me directly: joey@906digital.com');
       }
     })
     .catch(function () {
       btn.disabled = false; btn.textContent = 'Send it';
-      fail('Connection problem. Email me directly: joey.gerovac@gmail.com');
+      fail('Connection problem. Email me directly: joey@906digital.com');
     });
   });
 })();
