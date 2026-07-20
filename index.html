@@ -215,6 +215,16 @@ img { max-width: 100%; display: block; }
   margin: 0 0 32px;
 }
 .hero .cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+/* The reply prompt. Traffic arrives from outreach holding a mail thread, so the
+   cheapest action available is reply — not the form. Kept quiet so it reads as
+   a note rather than a third CTA competing with the two above it. */
+.hero-reply {
+  margin: 24px 0 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: rgba(255,255,255,.72);
+  max-width: 46ch;
+}
 .btn {
   display: inline-block;
   padding: 14px 24px;
@@ -273,6 +283,11 @@ h2 {
   border-radius: var(--radius);
   border: 1px solid var(--line);
   box-shadow: var(--shadow-sm);
+}
+.problem-outro {
+  margin: 32px 0 0;
+  font-size: 17px;
+  color: var(--stone);
 }
 .problem-card .num {
   font-size: 14px;
@@ -575,8 +590,17 @@ h2 {
       </p>
       <div class="cta-row">
         <a href="#book" class="btn btn-primary">Get in touch</a>
-        <a href="#offer" class="btn btn-ghost">See what we do</a>
+        <a href="#offer" class="btn btn-ghost">See what I build</a>
       </div>
+      <!-- Every visitor to this page arrives holding an email thread — all traffic
+           comes from Joey's own outreach, and there is no other channel. The page
+           previously offered a form to people who already had a reply button, which
+           is a harder action than the one they came with. This line is the prompt
+           for the action that actually matters. Keep it above the fold. -->
+      <p class="hero-reply">
+        If you got an email or a text from me — that was me. Hitting reply is
+        the easiest way to reach me.
+      </p>
     </div>
 
     <!-- ===================== PHOTO SLOT — INTENTIONALLY EMPTY =====================
@@ -605,10 +629,9 @@ h2 {
          do not genericise it — the rescue line below covers the other trades. -->
     <h2>Stop losing tree jobs while you're up in a tree.</h2>
     <p class="section-intro">
-      Not a tree guy? Same problem, same fix — plumbing, HVAC, roofing, septic,
-      excavation. Two places a small outfit loses work without ever seeing it
-      happen. This is just what happens when you're the one doing the work and
-      there's nobody minding the storefront.
+      Two places a small outfit loses work without ever seeing it happen. This is
+      just what happens when you're the one doing the work and there's nobody
+      minding the storefront.
     </p>
 
     <div class="problem-grid">
@@ -629,17 +652,26 @@ h2 {
            The section intro reads "Two places" to match. If a third card is ever
            restored, update the intro count with it. -->
     </div>
+
+    <!-- This line used to sit directly under the H2, where it exposed the template
+         seam ten words after the tree-specific line landed — to a visitor who came
+         specifically to test whether that specificity was real. Below the cards it
+         does the same reassuring work without undercutting the headline. -->
+    <p class="problem-outro">
+      Not a tree guy? Same problem, same fix — plumbing, HVAC, roofing, septic,
+      excavation.
+    </p>
   </div>
 </section>
 
 <!-- ============== OFFER ============== -->
 <section class="offer" id="offer">
   <div class="container">
-    <p class="section-eyebrow">What we build</p>
+    <p class="section-eyebrow">What I build</p>
     <h2>Three things, stacked. Pick one or pick them all.</h2>
     <p class="section-intro">
       Local pricing. Flat fees. Done in days, not months. Cancel any time —
-      we'd rather you stay because the numbers work.
+      I'd rather you stay because the numbers work.
     </p>
 
     <div class="offer-grid">
@@ -712,7 +744,7 @@ h2 {
         and still take care of you when something breaks.
       </p>
       <p>
-        If you'd rather work than market yourself, we're going to get along.
+        If you'd rather work than market yourself, we'll get along.
       </p>
     </div>
   </div>
