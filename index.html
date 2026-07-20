@@ -26,8 +26,9 @@
 
 <!-- Structured data. Only verified facts. No address, hours, ratings, reviews, price
      range, or offers — none of those exist yet, and a false property teaches AI
-     engines this markup is unreliable. No telephone: the only number on this page is
-     a product demo line, not the business line. -->
+     engines this markup is unreliable. No telephone property: the demo line is a
+     product demo, not a business line, and while it is offline no number appears
+     in the rendered page at all. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -510,6 +511,13 @@ h2 {
 .form-status.is-error { color: #FFB4A8; }
 .form-status.is-success { color: #9FE8C0; font-weight: 600; }
 
+.price-note {
+  font-size: 13px;
+  color: var(--stone);
+  margin: -2px 0 10px;
+}
+.tier-qual { font-size: 13px; color: var(--stone); }
+.tier.featured .tier-qual { color: rgba(255,255,255,.7); }
 .form-fineprint {
   margin: 12px 0 0;
   font-size: 13px;
@@ -703,8 +711,8 @@ h2 {
     <p class="section-eyebrow">What I build</p>
     <h2>Two things, stacked. Take one or take both.</h2>
     <p class="section-intro">
-      Local pricing. Flat fees. Done in days, not months. Cancel any time —
-      I'd rather you stay because the numbers work.
+      Local pricing. Flat fees. Built in weeks, not months. No long contract on the
+      monthly — I'd rather you stay because the numbers work.
     </p>
 
     <div class="offer-grid">
@@ -723,7 +731,7 @@ h2 {
           <li>Lead capture form on every build</li>
           <li>Photo gallery and service-area map from $2,900 up</li>
           <li>You own the domain forever</li>
-          <li>Loads in well under a second on truck-stop LTE — you're looking at the demo</li>
+          <li>Hand-written, no page-builder bloat — you're looking at the demo</li>
         </ul>
       </div>
 
@@ -732,12 +740,13 @@ h2 {
         <span class="tier-badge">Start here</span>
         <h3>AI Receptionist</h3>
         <p class="price">$249–699 <span class="small">/month</span></p>
+        <p class="price-note">Plus a one-time $500 setup — I build and tune the agent for your trade.</p>
         <p class="desc">An AI agent that answers every call when you can't.</p>
         <ul>
           <li>24/7 call answering</li>
           <li>Captures address, tree species, urgency</li>
           <li>Texts the lead to your phone in seconds</li>
-          <li>Books estimates on your calendar</li>
+          <li>Books estimates on your calendar <span class="tier-qual">(Pro Agent and up)</span></li>
           <li>Filters spam and junk calls</li>
         </ul>
       </div>
@@ -767,7 +776,7 @@ h2 {
       <h2>I'm Joey. I live in the UP. I built this for businesses like yours.</h2>
       <p>
         I started <strong>906 Digital</strong> after watching too many local
-        operators lose work to the same three problems: missed calls, stale
+        operators lose work to the same two problems: missed calls, stale
         websites, and renting their entire customer base from Facebook.
       </p>
       <p>
@@ -875,7 +884,7 @@ h2 {
     <div class="demo-callout">
       <h3>The demo line is down right now</h3>
       <p>
-        The demo line is down while I sort out some plumbing on it. Ask me and I'll call you from it so you can hear it work. Use the
+        The demo line is down while I sort out some plumbing on it. Email me and I'll let you know the moment it's back up. Use the
         form above, or email
         <a href="mailto:joey@906digital.com?subject=906%20Digital%20-%20hear%20the%20demo%20line">joey@906digital.com</a>.
       </p>
@@ -996,7 +1005,7 @@ h2 {
            fields, write into the EXISTING live region, and move focus to it. */
         var first = name.split(' ')[0].replace(/[<>&]/g, '');
         var shown = phone.replace(/[<>&]/g, '');
-        var fields = form.querySelectorAll('.field, .lead-form button, .hp-field');
+        var fields = form.querySelectorAll('.field, .lead-submit, .hp-field, .form-fineprint');
         for (var i = 0; i < fields.length; i++) { fields[i].style.display = 'none'; }
         statusEl.className = 'form-status is-success';
         statusEl.textContent =
