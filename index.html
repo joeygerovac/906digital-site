@@ -62,8 +62,13 @@
 :root {
   --superior:    #0F2940;
   --superior-2:  #1B3A5C;
+  /* --copper is a NON-TEXT colour only: fills, rules, bullets, focus rings.
+     White on it is 3.79:1 and it fails as text on every background here.
+     Two text-safe variants below. Verified ratios in the comments. */
   --copper:      #B87333;
-  --copper-dark: #9A5F28;
+  --copper-dark: #9A5F28;   /* text on LIGHT: 4.78:1 birch, 5.20:1 white.
+                               Also the button fill — white on it is 5.20:1. */
+  --copper-lite: #C98A4B;   /* text on DARK: 5.12:1 on --superior. */
   --pine:        #2F5345;
   --birch:       #F8F5F0;
   --slate:       #1A1A1A;
@@ -86,15 +91,40 @@ body {
   line-height: 1.6;
   color: var(--slate);
   background: var(--birch);
-  -webkit-font-smoothing: antialiased;
 }
 
-a { color: var(--copper); text-decoration: none; }
+a { color: var(--copper-dark); text-decoration: none; }
 a:hover { color: var(--copper-dark); text-decoration: underline; }
 
 img { max-width: 100%; display: block; }
 
 .container { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+
+/* Skip link — visible only on keyboard focus. There was no jump-to-content
+   target before this. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--superior);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 0 0 var(--radius-sm) 0;
+  font-weight: 600;
+}
+.skip-link:focus {
+  left: 0;
+  outline: 3px solid var(--copper-lite);
+  outline-offset: -3px;
+  text-decoration: none;
+  color: #fff;
+}
+/* tabindex="-1" targets are focused programmatically by anchor jumps; a visible
+   ring there would confuse a mouse user who never pressed Tab. */
+#main:focus:not(:focus-visible),
+#offer:focus:not(:focus-visible),
+#book:focus:not(:focus-visible) { outline: none; }
 
 /* ---------- Header ---------- */
 .site-header {
@@ -129,7 +159,7 @@ img { max-width: 100%; display: block; }
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--copper);
+  color: var(--copper-lite);
 }
 /* 44px minimum tap target — this is the only persistent action on the page and
    it must not shrink below 44px at any breakpoint. */
@@ -138,13 +168,13 @@ img { max-width: 100%; display: block; }
   align-items: center;
   min-height: 44px;
   padding: 0 18px;
-  background: var(--copper);
+  background: var(--copper-dark);
   color: #fff;
   border-radius: var(--radius-sm);
   font-weight: 600;
   font-size: 15px;
 }
-.nav-cta:hover { background: var(--copper-dark); color: #fff; text-decoration: none; }
+.nav-cta:hover { background: #83501F; color: #fff; text-decoration: none; }
 .nav-cta:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
 
 /* ---------- Hero ---------- */
@@ -192,7 +222,7 @@ img { max-width: 100%; display: block; }
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--copper);
+  color: var(--copper-lite);
   margin: 0 0 16px;
 }
 .hero h1 {
@@ -205,7 +235,7 @@ img { max-width: 100%; display: block; }
 }
 .hero h1 em {
   font-style: normal;
-  color: var(--copper);
+  color: var(--copper-lite);
 }
 .hero p.lead {
   font-size: clamp(17px, 2.2vw, 20px);
@@ -236,8 +266,8 @@ img { max-width: 100%; display: block; }
   transition: transform .08s ease, background .15s ease;
 }
 .btn:hover { transform: translateY(-1px); text-decoration: none; }
-.btn-primary { background: var(--copper); color: #fff; }
-.btn-primary:hover { background: var(--copper-dark); color: #fff; }
+.btn-primary { background: var(--copper-dark); color: #fff; }
+.btn-primary:hover { background: #83501F; color: #fff; }
 .btn-ghost {
   background: transparent;
   color: #fff;
@@ -252,7 +282,7 @@ section { padding: 88px 0; }
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--copper);
+  color: var(--copper-dark);
   margin: 0 0 12px;
 }
 h2 {
@@ -292,7 +322,7 @@ h2 {
 .problem-card .num {
   font-size: 14px;
   font-weight: 700;
-  color: var(--copper);
+  color: var(--copper-dark);
   letter-spacing: 0.1em;
   margin-bottom: 12px;
 }
@@ -336,14 +366,14 @@ h2 {
   position: relative;
 }
 .tier.featured h3 { color: #fff; }
-.tier.featured .price { color: var(--copper); }
+.tier.featured .price { color: var(--copper-lite); }
 .tier.featured ul li { color: rgba(255,255,255,.85); }
 .tier.featured ul li::before { background: var(--copper); }
 .tier-badge {
   position: absolute;
   top: -12px;
   left: 32px;
-  background: var(--copper);
+  background: var(--copper-dark);
   color: #fff;
   font-size: 11px;
   font-weight: 700;
@@ -540,7 +570,7 @@ h2 {
   justify-content: space-between;
   align-items: center;
 }
-.site-footer a { color: var(--copper); }
+.site-footer a { color: var(--copper-dark); }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 640px) {
@@ -558,6 +588,7 @@ h2 {
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <!-- ============== HEADER ============== -->
 <header class="site-header">
@@ -575,6 +606,8 @@ h2 {
     <a href="#book" class="nav-cta">Get in touch</a>
   </div>
 </header>
+
+<main id="main" tabindex="-1">
 
 <!-- ============== HERO ============== -->
 <section class="hero">
@@ -665,10 +698,10 @@ h2 {
 </section>
 
 <!-- ============== OFFER ============== -->
-<section class="offer" id="offer">
+<section class="offer" id="offer" tabindex="-1">
   <div class="container">
     <p class="section-eyebrow">What I build</p>
-    <h2>Three things, stacked. Pick one or pick them all.</h2>
+    <h2>Two things, stacked. Take one or take both.</h2>
     <p class="section-intro">
       Local pricing. Flat fees. Done in days, not months. Cancel any time —
       I'd rather you stay because the numbers work.
@@ -751,9 +784,9 @@ h2 {
 </section>
 
 <!-- ============== FINAL CTA ============== -->
-<section class="final-cta" id="book">
+<section class="final-cta" id="book" tabindex="-1">
   <div class="container">
-    <p class="section-eyebrow" style="color: var(--copper);">Let's talk</p>
+    <p class="section-eyebrow" style="color: var(--copper-dark);">Let's talk</p>
     <h2>15 minutes. No pressure. We'll figure out if this fits.</h2>
     <p>
       Leave your name and number. I'll text you back within one business day —
@@ -803,7 +836,7 @@ h2 {
       <div class="field">
         <label for="lead-note">What do you need help with? <span class="optional">(optional)</span></label>
         <textarea id="lead-note" name="message" rows="3"
-                  enterkeyhint="send"
+                 
                   placeholder="Missing calls, no website, whatever it is."></textarea>
       </div>
 
@@ -851,6 +884,8 @@ h2 {
 </section>
 
 <!-- ============== FOOTER ============== -->
+</main>
+
 <footer class="site-footer">
   <!-- Four verified lines. No registry link: the Michigan COFS URL is dead (SSL
        handshake failure, service retired June 2025) and no replacement has been
@@ -922,11 +957,23 @@ h2 {
     var digits = phone.replace(/\D/g, '');
 
     nameEl.setAttribute('aria-invalid', name ? 'false' : 'true');
-    if (!name) { fail('Just need a name to know who I\'m talking to.'); nameEl.focus(); return; }
+    if (!name) {
+      /* Focus first, then write. The reverse order drops the pending polite
+         announcement — the message gets written but never heard. */
+      nameEl.setAttribute('aria-describedby', 'lead-status');
+      nameEl.focus();
+      fail('Just need a name to know who I\'m talking to.');
+      return;
+    }
 
     var phoneOk = digits.length >= 10;
     phoneEl.setAttribute('aria-invalid', phoneOk ? 'false' : 'true');
-    if (!phoneOk) { fail('That number looks short — 10 digits, any format is fine.'); phoneEl.focus(); return; }
+    if (!phoneOk) {
+      phoneEl.setAttribute('aria-describedby', 'lead-status');
+      phoneEl.focus();
+      fail('That number looks short — 10 digits, any format is fine.');
+      return;
+    }
 
     btn.disabled = true;
     btn.textContent = 'Sending…';
@@ -941,11 +988,22 @@ h2 {
     .then(function (r) { return r.json(); })
     .then(function (data) {
       if (data && data.success) {
-        form.innerHTML =
-          '<p class="form-status is-success" role="status">Got it, ' +
-          name.split(' ')[0].replace(/[<>&]/g, '') +
-          '. I\'ll text you at ' + phone.replace(/[<>&]/g, '') +
-          ' within one business day.</p>';
+        /* Do NOT replace form.innerHTML here. Doing so destroys the focused
+           submit button (dumping keyboard focus to <body>) and destroys
+           #lead-status, the already-configured live region — then injects a
+           new role="status" that already contains its text, which announces
+           unreliably in all three major screen readers. Instead: hide the
+           fields, write into the EXISTING live region, and move focus to it. */
+        var first = name.split(' ')[0].replace(/[<>&]/g, '');
+        var shown = phone.replace(/[<>&]/g, '');
+        var fields = form.querySelectorAll('.field, .lead-form button, .hp-field');
+        for (var i = 0; i < fields.length; i++) { fields[i].style.display = 'none'; }
+        statusEl.className = 'form-status is-success';
+        statusEl.textContent =
+          'Got it, ' + first + '. I\'ll text you at ' + shown +
+          ' within one business day.';
+        statusEl.setAttribute('tabindex', '-1');
+        statusEl.focus();
       } else {
         btn.disabled = false; btn.textContent = 'Send it';
         fail('Something went wrong. Text or email me directly: joey@906digital.com');
