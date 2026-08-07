@@ -6,17 +6,41 @@ no dependencies. Deploys anywhere that serves static HTML.
 ## What's in here
 
 - `index.html` — the entire site. Edit this one file to update content.
+- `scripts/check-content.mjs` — content checks (see "Checks" below).
+- `.circleci/config.yml`, `.htmlvalidate.json` — CI configuration.
 
-## Before you deploy: replace these placeholders
+## Placeholders
 
-| Find this | Replace with |
+The launch placeholders are resolved. Kept here as a record:
+
+| Was | Now |
 |---|---|
-| `joey@906digital.com` | Your real email (after Google Workspace is set up) |
-| `906-555-0000` | Your real business phone number |
-| `https://cal.com/906digital/intro` | Your actual Cal.com booking link |
+| `906-555-0000` | `+1 906 767 6901` — real, live in the hero and demo line |
+| `https://cal.com/906digital/intro` | Retired. Booking is a Web3Forms form plus `mailto:` links |
+| `joey@906digital.com` | In use across the form, CTAs, and footer |
 
-Search for those exact strings in `index.html`. They appear in the hero CTA,
-the final CTA, and the footer.
+`joey@906digital.com` is the intended permanent address, so it is **not**
+guarded against in CI. Confirm it actually receives mail before a real send —
+it depends on Google Workspace being live.
+
+Note: `906-555-0199` appears in `index.html` as the `placeholder=` attribute on
+the phone input. That is real UI, not a leftover. Do not "fix" it.
+
+## Checks
+
+CircleCI runs two checks on every push. Both run locally too:
+
+```bash
+npx html-validate@8.29.0 index.html   # markup validity
+node scripts/check-content.mjs        # anchors resolve, placeholders stay retired
+```
+
+`.htmlvalidate.json` disables purely stylistic rules (lowercase doctype,
+self-closing `<meta/>`, inline styles) — all valid HTML5. Substantive rules stay
+on. The validator version is pinned so a new rule in a future release cannot
+turn the build red on its own; bump it deliberately.
+
+There is no build and no deploy step in CI. Deployment stays manual, below.
 
 ## How to deploy (pick one)
 
