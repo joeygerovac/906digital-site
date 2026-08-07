@@ -578,7 +578,10 @@ h2 {
   justify-content: space-between;
   align-items: center;
 }
-.site-footer a { color: var(--copper-dark); }
+/* --copper-lite, not --copper-dark. The footer background is --superior, and
+   copper-dark on it is 2.86:1 — it fails AA. copper-lite is 5.12:1, the value
+   documented on the token above. */
+.site-footer a { color: var(--copper-lite); }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 640px) {
@@ -795,7 +798,11 @@ h2 {
 <!-- ============== FINAL CTA ============== -->
 <section class="final-cta" id="book" tabindex="-1">
   <div class="container">
-    <p class="section-eyebrow" style="color: var(--copper-dark);">Let's talk</p>
+    <!-- copper-lite, not copper-dark: this eyebrow sits on --superior. The
+         inline override used to restate copper-dark, which is what the class
+         already sets and is 2.86:1 here — it failed AA on the primary
+         conversion section. copper-lite is 5.12:1. -->
+    <p class="section-eyebrow" style="color: var(--copper-lite);">Let's talk</p>
     <h2>15 minutes. No pressure. We'll figure out if this fits.</h2>
     <p>
       Leave your name and number. I'll text you back within one business day —
@@ -906,6 +913,13 @@ h2 {
       Michigan Entity ID 900169562<br>
       <a href="mailto:joey@906digital.com">joey@906digital.com</a><br>
       © <span id="year"></span>
+    </div>
+    <!-- Link to the B2B advisory page lives in the footer, deliberately. It sits
+         after the conversion point so it cannot pull a trades visitor out of the
+         funnel, and it gives Joey a path to send B2B prospects who land here
+         first. Do not promote it into the header or the offer grid. -->
+    <div>
+      <a href="/advisory">Technical advisory for B2B teams →</a>
     </div>
   </div>
 </footer>

@@ -19,7 +19,7 @@ jobs:
       # Stylistic rules are switched off in .htmlvalidate.json.
       - run:
           name: Validate HTML
-          command: npx --yes html-validate@8.29.0 index.html
+          command: npx --yes html-validate@8.29.0 index.html advisory.html
 
       # Anchor targets resolve; retired launch placeholders stay retired.
       - run:
