@@ -1141,5 +1141,13 @@ h2 {
 })();
 </script>
 
+<!-- Cloudflare Web Analytics — same site token as index.html, because Web
+     Analytics is configured per hostname and both pages are 906digital.com.
+     See the longer note in index.html for why this is installed by hand rather
+     than injected at the edge. -->
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon='{"token": "fd53d6ee80434bc98e90fe388b74e958"}'></script>
+<!-- End Cloudflare Web Analytics -->
+
 </body>
 </html>
