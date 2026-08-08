@@ -377,6 +377,89 @@ h2 {
   color: var(--stone);
 }
 
+/* Terms line inside a tier — the risk-removal promise. Sits below the <ul>,
+   separated by a rule so it reads as a commitment rather than another feature. */
+.tier-terms {
+  margin: 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--stone);
+}
+.tier-terms strong { color: var(--superior); font-weight: 650; }
+.tier.featured .tier-terms {
+  border-top-color: rgba(255,255,255,.18);
+  color: rgba(255,255,255,.75);
+}
+.tier.featured .tier-terms strong { color: #fff; }
+
+/* ---------- Process steps ---------- */
+.steps {
+  list-style: none;
+  padding: 0;
+  margin: 40px 0 32px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 24px;
+  counter-reset: step;
+}
+.steps li {
+  counter-increment: step;
+  border-top: 2px solid var(--copper);
+  padding-top: 14px;
+}
+.steps li::before {
+  content: "Step " counter(step);
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--copper-dark);
+  margin-bottom: 6px;
+}
+.steps h3 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--superior);
+  margin: 0 0 6px;
+  line-height: 1.3;
+}
+.steps p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--stone);
+}
+
+/* ---------- Disclosed limits ---------- */
+/* The honest version of a testimonials block. There are no client testimonials
+   yet, and an empty or invented proof section is worse than naming the gap. */
+.limits {
+  margin: 40px 0 0;
+  padding: 24px 26px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--copper);
+  border-radius: var(--radius-sm);
+  max-width: 66ch;
+}
+.limits h3 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--superior);
+  margin: 0 0 10px;
+}
+.limits p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--stone);
+  margin: 0 0 12px;
+}
+.limits p:last-child { margin-bottom: 0; }
+.limits strong { color: var(--superior); font-weight: 650; }
+
 /* ---------- Background ---------- */
 .background { background: var(--birch); }
 .background-wrap { max-width: 760px; }
@@ -666,6 +749,9 @@ h2 {
     <p class="section-intro">
       I'd rather understand the problem before quoting it. The first conversation
       is free and often ends with me telling you it's smaller than you thought.
+      <strong>You're talking to the person who'd do the work</strong> — there's
+      nobody else here, so nothing gets promised on my behalf and then handed to
+      someone junior.
     </p>
 
     <!-- NO PRICES HERE, ON PURPOSE.
@@ -690,18 +776,28 @@ h2 {
       </div>
 
       <div class="tier featured">
-        <span class="tier-badge">Most common</span>
+        <span class="tier-badge">Start here</span>
         <h3>Scoped audit</h3>
         <p class="desc">
           A fixed-scope look at one system — the stack, the data, or the process —
           ending in a document you can hand to whoever does the work.
         </p>
         <ul>
+          <li>Fixed scope and fixed price, both agreed before I start</li>
+          <li>One week from kickoff to document</li>
           <li>Root-cause analysis, not a symptom list</li>
           <li>Findings ranked by what actually costs you money</li>
           <li>Concrete remediation steps, sized</li>
           <li>Yours to execute, with or without me</li>
         </ul>
+        <!-- Payment-on-delivery is a real commercial commitment, not a marketing
+             line. It exists because there is no consulting track record to point
+             at yet, and it is the cheapest way to answer the objection that
+             creates. Revisit it once there are references. -->
+        <p class="tier-terms">
+          <strong>You pay when the audit lands.</strong> Not up front, not on
+          kickoff. If what I hand you isn't worth it, say so and we're done.
+        </p>
       </div>
 
       <div class="tier">
@@ -719,6 +815,36 @@ h2 {
       </div>
 
     </div>
+
+    <ol class="steps">
+      <li>
+        <h3>Tell me what's wrong</h3>
+        <p>
+          A few sentences by email is enough. No form with eleven fields, no
+          qualification call before the qualification call.
+        </p>
+      </li>
+      <li>
+        <h3>Fixed price within one business day</h3>
+        <p>
+          If the audit is the right first step, you get a scope and a number.
+          If it isn't, I'll tell you that instead — it's the more common answer.
+        </p>
+      </li>
+      <li>
+        <h3>One week of work</h3>
+        <p>
+          I go through the system, find the root cause, and write it up so it's
+          useful to whoever ends up doing the fixing.
+        </p>
+      </li>
+      <li>
+        <h3>You read it, then you pay</h3>
+        <p>
+          The document arrives before the invoice does. That order is deliberate.
+        </p>
+      </li>
+    </ol>
 
     <p class="engage-note">
       Ongoing advisory — a standing slot where you have a technical person to ask —
@@ -782,6 +908,26 @@ h2 {
           <span class="where">SmarterHQ · Implementation → Support Engineer · 2017–2021</span>
         </li>
       </ul>
+
+      <!-- This replaces the testimonials block a page like this would normally
+           carry. There are no advisory clients yet, so there are no testimonials,
+           and the two dishonest options — leaving an empty slot or inventing
+           quotes — are both worse than saying it. Delete this section when there
+           is a real reference to put here instead. -->
+      <div class="limits">
+        <h3>What I can't show you yet</h3>
+        <p>
+          No client testimonials, because there are no advisory clients yet.
+          <strong>906 Digital is new and this is the first engagement I'm selling
+          under it.</strong> Everything above is employment history — real, dated,
+          and checkable, but it's a record of jobs rather than of engagements.
+        </p>
+        <p>
+          That's the honest position, and it's why the audit is priced fixed and
+          paid on delivery. You shouldn't have to take a track record on faith
+          when I can just let you read the work first.
+        </p>
+      </div>
     </div>
   </div>
 </section>
