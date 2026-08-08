@@ -124,7 +124,7 @@ All resolved. Kept as a record:
 
 | Was | Now |
 |---|---|
-| `906-555-0000` | `+1 906 767 6901` — real, in the hero and demo line |
+| `906-555-0000` | Retired. `(906) 767-6901` is the real number, but **it is not printed anywhere on either page** — see "Demo line: offline mode". It appears only inside the restore comments. |
 | `https://cal.com/906digital/intro` | Retired. Booking is a Web3Forms form plus `mailto:` links |
 | `REPLACE_WITH_CLOUDFLARE_ANALYTICS_TOKEN` | Filled 2026-08-07 — see "Analytics" |
 
