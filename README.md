@@ -14,24 +14,39 @@ dependencies, no package manager.
 
 | File | |
 |---|---|
-| `index.html` | The trades site — 1,061 lines, 37 KB. Markup, CSS, and JS in one file. |
+| `index.html` | The small-business site — 1127 lines, 40 KB. Markup, CSS, and JS in one file. |
 | `advisory.html` | The B2B technical advisory page — 1,153 lines, 37 KB. Same deal. |
 | `scripts/check-content.mjs` | Content checks. See "Checks" below. |
 | `.circleci/config.yml` | CI pipeline. |
 | `.htmlvalidate.json` | Validator config. |
 
-### Two pages, two audiences — keep them apart
+### Two pages, two readers — keep them apart
 
-`index.html` sells websites and AI phone answering to UP trades. It works because
-it is narrow: local pricing, tree species, service-area maps.
+*Rewritten 2026-08-11. The old rule said to keep the pages apart because they sold
+different services. After the home page widened from trades to UP small business,
+that is no longer true — both now sell AI work. The separation still holds, but
+for a different and more durable reason, so the reasoning is restated rather than
+left standing on a premise that expired.*
 
-`advisory.html` sells technical advisory to B2B teams. Different reader entirely.
+`index.html` sells to an **owner-operator**: one person who does the work, answers
+the phone, and is deciding whether a stranger who emailed them is a real person in
+Ironwood. Five services, two with published prices.
 
-**Do not merge them.** The offer grid on the home page already cut a product
-(Managed Ads) specifically because showing it made the operator read as "an agency
-with an upsell" — a B2B advisory block there re-creates that exact problem. All
-traffic arrives from Joey's own outreach, so he controls which link each prospect
-gets. The only cross-link is in each footer, after the conversion point.
+`advisory.html` sells to a **team** that already has systems and knows they don't
+work — marketing stacks, untrustworthy data, ops tooling. That reader has budget
+authority, technical vocabulary, and no scam question to clear.
+
+**Do not merge them.** The overlap is in the services, not the readers, and the
+reader is what the page is written for. An owner-operator who lands on advisory
+copy sees a consultant and leaves; a B2B buyer who lands on "I answer my own
+phone" sees someone too small to bet on. All traffic arrives from Joey's own
+outreach, so he controls which link each prospect gets. The only cross-link is in
+each footer, after the conversion point.
+
+**The home page is where the scam question gets cleared.** Keep it a person, not a
+firm. It says "one person, in Ironwood, who answers his own phone" and not "I'm
+not an agency" — the denial was retired when the offering widened, the substance
+was not. Never introduce "we" or "our team" on `index.html`. There is one person.
 
 ## Structure of the HTML files
 
