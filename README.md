@@ -14,7 +14,7 @@ dependencies, no package manager.
 
 | File | |
 |---|---|
-| `index.html` | The small-business site — 1274 lines, 60 KB. Markup, CSS, and JS in one file. The weight is authored SVG instruments, not libraries: still zero dependencies and zero new network requests. |
+| `index.html` | The small-business site — 1153 lines, 52 KB. Markup, CSS, and JS in one file. Still zero dependencies and zero new network requests; the only asset is the hero photograph. |
 | `advisory.html` | The B2B technical advisory page — 1,153 lines, 37 KB. Same deal. |
 | `scripts/check-content.mjs` | Content checks. See "Checks" below. |
 | `.circleci/config.yml` | CI pipeline. |
@@ -54,7 +54,7 @@ Every section is marked with a banner comment (`<!-- ====== HERO ====== -->`).
 Search for those rather than line numbers, which drift as you edit.
 
 In `index.html`, in order: JSON-LD → all CSS inline → direction contract comment →
-skip link → header → hero (headline + the six-pack) → the leaks → what I build →
+skip link → header → hero (headline + photograph + data plate) → the leaks → what I build →
 who runs this → final CTA with the demo-line caution panel **above** the lead form
 → footer → needle settle + form handling → analytics beacon.
 

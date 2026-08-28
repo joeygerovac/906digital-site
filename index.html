@@ -78,7 +78,6 @@
      its computed contrast against the surface it is used on. ------------- */
   --panel:       #14181B;   /* matte panel ground */
   --face:        #0B0E10;   /* instrument face, deeper than the panel */
-  --face-2:      #191F23;   /* raised placard body */
   --lume:        #ECEFF1;   /* luminous markings. 15.9:1 on panel — primary ink */
   --lume-dim:    #9BA5AB;   /* secondary markings. 7.0:1 on panel */
   --radium:      #7FD4A2;   /* NEEDLES, live lamps, and links on panel. 10.5:1 */
@@ -93,7 +92,7 @@
   --shadow-panel: 0 1px 0 rgba(255,255,255,.04), 0 18px 40px rgba(0,0,0,.55);
   --shadow-plate: 0 1px 0 rgba(255,255,255,.14), 0 10px 22px rgba(0,0,0,.45);
 
-  --ease-damp:   cubic-bezier(.16, 1, .3, 1);   /* needle settle, exponential out */
+  --ease-damp:   cubic-bezier(.16, 1, .3, 1);   /* exponential ease-out, hover and focus only */
 }
 
 * { box-sizing: border-box; }
@@ -197,7 +196,7 @@ p { margin: 0; }
 .nav-cta:hover { background: var(--radium); color: var(--face); text-decoration: none; }
 
 /* ================= HERO — master placard + the six-pack ================= */
-.hero { padding: 92px 0 84px; position: relative; }
+.hero { padding: 70px 0 76px; position: relative; }
 .hero::before {
   /* panel seam, not decoration: the rail the instruments are mounted on */
   content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
@@ -211,11 +210,12 @@ p { margin: 0; }
    The order below keeps the button in the first screen and lets the panel's
    first row of instruments sit directly beneath it, still above the fold. */
 .hero-grid { display: flex; flex-direction: column; gap: 0; }
-.hero-grid > h1          { order: 1; }
-.hero-grid > .lead       { order: 2; }
-.hero-grid > .cta-row    { order: 3; }
-.hero-grid > .hero-media { order: 4; margin-top: 34px; }
-.hero-grid > .hero-reply { order: 5; }
+.hero-copy { display: contents; }
+.hero-grid h1          { order: 1; }
+.hero-grid .lead       { order: 2; }
+.hero-grid .cta-row    { order: 3; }
+.hero-grid .hero-media { order: 4; margin-top: 34px; }
+.hero-grid .hero-reply { order: 5; }
 h1 {
   font-size: clamp(38px, 5.4vw, 68px);
   line-height: 1.03;
@@ -277,20 +277,19 @@ h1 em {
   box-shadow: var(--shadow-panel);
 }
 
-.sixpack {
+/* ---- The data plate ----------------------------------------------------
+   An equipment nameplate, mounted on the panel in the same frame language as
+   the photograph above it. It replaced a six-gauge instrument cluster: the
+   dials read as clocks, and a needle pointing at "1" on a 0–4 arc is precision
+   about nothing. Same facts, read instead of decoded. */
+.dataplate {
   background: var(--face);
   border: 1px solid var(--hair);
   border-radius: var(--radius);
   box-shadow: var(--shadow-panel);
-  padding: 26px 22px 22px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 26px 18px;
+  padding: 4px 26px 8px;
   position: relative;
-}
-/* Panel fasteners: four screws at the corners, where a real instrument panel
-   carries them. Drawn as corner gradients so they cost no extra elements. */
-.sixpack {
+  /* Four fasteners, where a real panel carries them. */
   background-image:
     radial-gradient(circle at 11px 11px, var(--hair-2) 0 2.2px, #05080a 2.2px 3.1px, transparent 3.2px),
     radial-gradient(circle at calc(100% - 11px) 11px, var(--hair-2) 0 2.2px, #05080a 2.2px 3.1px, transparent 3.2px),
@@ -298,80 +297,35 @@ h1 em {
     radial-gradient(circle at calc(100% - 11px) calc(100% - 11px), var(--hair-2) 0 2.2px, #05080a 2.2px 3.1px, transparent 3.2px);
   background-repeat: no-repeat;
 }
-
-.gauge { text-align: center; }
-.gauge svg { width: 100%; height: auto; max-width: 118px; margin: 0 auto; display: block; }
-/* The reading lives on the placard, not on the face. A real altimeter carries
-   numerals on its rim and nothing in the middle; a text block behind a sweeping
-   needle is the thing that made the first build unreadable. */
-.gauge-readout {
-  margin-top: 11px;
-  font-size: 19px; font-weight: 800; letter-spacing: -.02em; line-height: 1.1;
-  color: var(--lume);
+.specs { margin: 0; padding: 0; }
+.spec-row {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) auto;
+  gap: 16px;
+  align-items: baseline;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--hair);
 }
-.gauge-readout .unit {
-  display: block; margin-top: 3px;
-  font-size: 9.5px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
+.spec-row:last-child { border-bottom: 0; }
+.spec-row dt {
+  font-size: 11px; font-weight: 700; letter-spacing: .17em; text-transform: uppercase;
   color: var(--lume-dim);
+  display: flex; align-items: center; gap: 9px;
 }
-.gauge-readout.is-long { font-size: 15px; letter-spacing: -.01em; }
-.gauge-label {
-  margin-top: 8px; padding-top: 7px;
-  font-size: 9.5px; font-weight: 700; letter-spacing: .17em; text-transform: uppercase;
-  color: var(--lume-dim);
-  border-top: 1px solid var(--hair);
+.spec-row dd {
+  margin: 0; text-align: right;
+  font-size: 17px; font-weight: 600; color: var(--lume);
+  font-variant-numeric: tabular-nums;
 }
-.dial-face { fill: var(--face); stroke: var(--hair-2); stroke-width: 1.5; }
-.dial-bezel { fill: none; stroke: var(--hair-2); stroke-width: 3; }
-/* Tick rings drawn as dashed circles — real marking, not an image. */
-.tick-minor { fill: none; stroke: var(--lume-dim); stroke-width: 5; stroke-dasharray: 1.4 6.28; opacity: .55; }
-.dial-num {
-  fill: var(--lume-dim); font-size: 9.5px; font-weight: 700;
-  text-anchor: middle; dominant-baseline: middle; font-variant-numeric: tabular-nums;
+/* The one fact a scam cannot produce gets the size. */
+.spec-row.is-entity dd { font-size: 25px; font-weight: 800; letter-spacing: .005em; }
+.spec-row.is-caution dd { color: var(--caution); }
+.row-lamp {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--caution);
+  box-shadow: 0 0 10px rgba(224,162,26,.5);
+  flex: none;
 }
-.tick-sep { stroke: var(--hair); stroke-width: 1; }
-.dial-card { fill: var(--lume); font-size: 10.5px; font-weight: 800; text-anchor: middle; dominant-baseline: middle; }
-/* The arc a real gauge is read against: the marked range that says which part of
-   the scale is the good part. */
-.arc-range { fill: none; stroke: var(--radium); stroke-width: 4; stroke-linecap: butt; }
-.arc-range.is-caution { stroke: var(--caution); }
-/* Square bezel at the dials' own diameter. Without it the drum and the
-   annunciator — both short elements — floated with ~50px of empty face above
-   them while the neighbouring dials filled their cells, and the rank stopped
-   scanning as a rank. Panels carry round and square instruments side by side;
-   what they do not carry is one instrument hanging in its cutout. */
-.instr-frame { fill: var(--face); stroke: var(--hair-2); stroke-width: 3; }
-/* A drum counter — a different instrument silhouette entirely, for a value that
-   is a registration number and not a quantity on any scale. */
-.drum-window { fill: #05080A; stroke: var(--hair-2); stroke-width: 1; }
-.drum-digit {
-  fill: var(--lume); font-size: 13px; font-weight: 800;
-  text-anchor: middle; dominant-baseline: middle; font-variant-numeric: tabular-nums;
-}
-/* An annunciator plate. Rectangular on purpose: the demo line is a lit/unlit
-   state, not a reading on a scale, and it should not look like one. */
-.annun-plate { fill: var(--face); stroke: var(--caution); stroke-width: 1.5; }
-.annun-text {
-  fill: var(--caution); font-size: 21px; font-weight: 800; letter-spacing: .09em;
-  text-anchor: middle; dominant-baseline: middle;
-}
-.needle {
-  stroke: var(--radium); stroke-width: 2.5; stroke-linecap: round;
-  transform-box: fill-box; transform-origin: 50% 100%;
-  transform: rotate(var(--sweep-from, -118deg));
-  transition: transform 1600ms var(--ease-damp);
-}
-/* The settle: needles rest off-reading until this class lands, one frame after
-   paint. The selector was accidentally split by a bad edit, which left a bare
-   .needle winning at equal specificity and killed the sweep entirely. */
-.is-settled .needle { transform: rotate(var(--sweep, 0deg)); }
-.needle-hub { fill: var(--radium); }
-
-/* The demo line is an instrument state, not a defect notice. */
-.gauge.is-caution .needle, .gauge.is-caution .needle-hub { stroke: var(--caution); fill: var(--caution); }
-.gauge.is-caution .gauge-readout { color: var(--caution); }
-.gauge.is-caution .gauge-lamp { fill: var(--caution); }
-.gauge-lamp { fill: var(--radium); }
 
 /* ================= LEAKS — annunciator panel =========================== */
 .leaks { padding: 88px 0; border-bottom: 1px solid var(--hair); }
@@ -546,21 +500,20 @@ h2 {
 /* ================= RESPONSIVE ========================================== */
 @media (min-width: 720px) {
   .annunciator { grid-template-columns: 1fr 1fr; }
-  .sixpack { grid-template-columns: repeat(3, 1fr); }
 }
 @media (min-width: 980px) {
   .hero-grid {
     display: grid;
-    grid-template-columns: 1.05fr .95fr;
-    grid-template-areas: "h media" "lead media" "cta media" "reply media";
-    column-gap: 54px; row-gap: 0;
-    align-content: center;
+    grid-template-columns: 1.14fr .86fr;
+    column-gap: 54px;
+    align-items: center;
   }
-  .hero-grid > h1 { grid-area: h; }
-  .hero-grid > .lead { grid-area: lead; }
-  .hero-grid > .cta-row { grid-area: cta; }
-  .hero-grid > .hero-reply { grid-area: reply; }
-  .hero-grid > .hero-media { grid-area: media; align-self: center; margin-top: 0; }
+  /* The wrapper becomes a real box again at desktop, so the text is ONE cell
+     beside the media column. While it was dissolved, the media spanned four
+     rows and its height was shared out between the paragraphs, opening a dead
+     gap after every one of them. */
+  .hero-copy { display: block; }
+  .hero-grid .hero-media { margin-top: 0; }
   .plates { gap: 16px; }
 }
 @media (max-width: 719px) {
@@ -570,10 +523,11 @@ h2 {
   .leaks, .offer, .about, .final-cta { padding: 62px 0; }
 }
 
-/* Motion is one authored moment — the needles settling — and it is optional. */
+/* The page now carries no authored motion at all — the needle settle went out
+   with the instrument cluster it belonged to. What remains is hover and focus
+   transitions, and those still yield to the setting. */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .needle { transition: none; transform: rotate(var(--sweep, 0deg)); }
   *, *::before, *::after { transition-duration: .01ms !important; }
 }
 </style>
@@ -628,167 +582,78 @@ h2 {
 <!-- ============== HERO — master placard + the six-pack ============== -->
 <section class="hero">
   <div class="container hero-grid">
-    <h1>I'm Joey Gerovac. I put AI to work in small businesses, <em>out of Ironwood.</em></h1>
+    <div class="hero-copy">
+      <h1>I'm Joey Gerovac. I put AI to work in small businesses, <em>out of Ironwood.</em></h1>
 
-    <!-- ===================== THE SIX-PACK =====================================
-         Six instruments, each owning exactly one truth a visitor can check
-         independently, and each one a DIFFERENT instrument: a compass card, two
-         graduated arc gauges with a marked good range, a drum counter, and an
-         annunciator plate. The first build shipped six identical faces separated
-         only by needle angle, with nothing to read the needle against — six
-         clocks pointing at nothing, with every fact carried by the text below.
-         A six-pack is six different faces; that difference is the whole reason
-         it is called one.
+      <p class="lead">
+        906 Digital builds the websites, phone answering, and automation that
+        small businesses across the Upper Peninsula actually need. The idea is
+        simple: the office work that eats your evenings gets handled, and you
+        get on with the job.
+      </p>
+      <div class="cta-row">
+        <a href="#book" class="btn btn-primary">Get in touch</a>
+        <a href="#offer" class="btn btn-link">See what I build</a>
+      </div>
+      <!-- Every visitor arrives holding an email thread — all traffic comes from
+           Joey's own outreach. PRODUCT.md ranks reply ABOVE the form. It used to be
+           the quietest element on the page, which inverted that ranking. -->
+      <p class="hero-reply">
+        If you got an email or a text from me — that was me. Hitting reply is
+        the easiest way to reach me.
+      </p>
+    </div>
 
-         Every value is permanently true and none of them drift, which is
-         deliberate: this repo's recurring failure is facts going stale on a page
-         nobody re-reads.
-
-         THE PHOTO NOW EXISTS (2026-08-28) and sits above the panel, which is
-         what the slot always specified. It is a real photograph of Joey, graded
-         and cropped — not generated, not stock, not a stand-in. The rule that
-         governed the empty slot still governs any replacement: no illustration,
-         monogram, avatar, silhouette, stock photo, or AI-generated image may
-         ever occupy this space. A placeholder person is a fabricated person.
-
-         Source: joey-headshot-2025-09-30.jpg (800x980). The grade lifted the
-         subject ~7L while holding the background, using a focus-derived subject
-         mask — the shot was backlit, with the background nearly twice as bright
-         as the face. width/height are explicit to prevent layout shift.
-         ====================================================================== -->
     <div class="hero-media">
-      <img class="hero-photo" src="joey.webp" width="780" height="624"
+      <img class="hero-photo" src="joey.webp" width="800" height="980"
            alt="Joey Gerovac, who runs 906 Digital, outdoors in Ironwood, Michigan"
            loading="eager" decoding="async">
-      <div class="sixpack" id="sixpack" role="group" aria-label="Six verifiable facts about this business">
+      <!-- ===================== THE DATA PLATE ===================================
+           This replaced a six-gauge instrument panel on 2026-08-28, after Joey
+           said the dials read as clocks and were confusing. He was right, and so
+           was the finish reviewer, which flagged the same thing on its first pass.
+           My earlier fix — differentiating the instruments and adding graduated
+           scales — treated the symptom.
 
-        <div class="gauge" style="--sweep: 0deg;">
-          <svg viewBox="0 0 120 120" aria-hidden="true" focusable="false">
-            <circle class="dial-face" cx="60" cy="60" r="52"/>
-            <circle class="dial-bezel" cx="60" cy="60" r="55"/>
-            <circle class="tick-minor" cx="60" cy="60" r="44"/>
-            <text class="dial-card" x="60" y="30">N</text>
-            <text class="dial-card" x="90" y="60">E</text>
-            <text class="dial-card" x="60" y="90">S</text>
-            <text class="dial-card" x="30" y="60">W</text>
-            <line class="needle" x1="60" y1="60" x2="60" y2="28"/>
-            <circle class="needle-hub" cx="60" cy="60" r="3.5"/>
-          </svg>
-          <p class="gauge-readout is-long">Ironwood<span class="unit">Michigan</span></p>
-          <p class="gauge-label">Where I am</p>
-        </div>
+           The real fault: a needle pointing at "1" on a 0–4 arc is precision
+           about nothing. There is no scale. Nobody measures a crew of one against
+           a maximum of four. It was decoration wearing the costume of data, and
+           it made a visitor decode a fact they should simply be able to read.
 
-        <div class="gauge" style="--sweep: -60deg;">
-          <svg viewBox="0 0 120 120" aria-hidden="true" focusable="false">
-            <circle class="dial-face" cx="60" cy="60" r="52"/>
-            <circle class="dial-bezel" cx="60" cy="60" r="55"/>
-            <circle class="tick-minor" cx="60" cy="60" r="44"/>
-            <text class="dial-num" x="34.0" y="75.0">0</text>
-            <text class="dial-num" x="34.0" y="45.0">1</text>
-            <text class="dial-num" x="60.0" y="30.0">2</text>
-            <text class="dial-num" x="86.0" y="45.0">3</text>
-            <text class="dial-num" x="86.0" y="75.0">4</text>
-            <line class="needle" x1="60" y1="60" x2="60" y2="28"/>
-            <circle class="needle-hub" cx="60" cy="60" r="3.5"/>
-          </svg>
-          <p class="gauge-readout">1<span class="unit">Person</span></p>
-          <p class="gauge-label">The crew</p>
-        </div>
-
-        <div class="gauge" style="--sweep: -85.7deg;">
-          <svg viewBox="0 0 120 120" aria-hidden="true" focusable="false">
-            <circle class="dial-face" cx="60" cy="60" r="52"/>
-            <circle class="dial-bezel" cx="60" cy="60" r="55"/>
-            <circle class="tick-minor" cx="60" cy="60" r="44"/>
-            <path class="arc-range" d="M 23.63 81.00 A 42 42 0 0 1 18.11 56.86"/>
-            <text class="dial-num" x="34.0" y="75.0">0</text>
-            <text class="dial-num" x="30.1" y="57.8">1</text>
-            <text class="dial-num" x="51.2" y="31.3">3</text>
-            <text class="dial-num" x="83.5" y="41.3">5</text>
-            <text class="dial-num" x="86.0" y="75.0">7</text>
-            <line class="needle" x1="60" y1="60" x2="60" y2="28"/>
-            <circle class="needle-hub" cx="60" cy="60" r="3.5"/>
-          </svg>
-          <p class="gauge-readout">1<span class="unit">Business day</span></p>
-          <p class="gauge-label">Reply within</p>
-        </div>
-
-        <div class="gauge">
-          <svg viewBox="0 0 120 120" aria-hidden="true" focusable="false">
-            <rect class="instr-frame" x="7" y="7" width="106" height="106" rx="3"/>
-            <rect class="drum-window" x="14" y="46" width="92" height="28" rx="2"/>
-            <line class="tick-sep" x1="24.2" y1="46" x2="24.2" y2="74"/>
-            <line class="tick-sep" x1="34.4" y1="46" x2="34.4" y2="74"/>
-            <line class="tick-sep" x1="44.7" y1="46" x2="44.7" y2="74"/>
-            <line class="tick-sep" x1="54.9" y1="46" x2="54.9" y2="74"/>
-            <line class="tick-sep" x1="65.1" y1="46" x2="65.1" y2="74"/>
-            <line class="tick-sep" x1="75.3" y1="46" x2="75.3" y2="74"/>
-            <line class="tick-sep" x1="85.6" y1="46" x2="85.6" y2="74"/>
-            <line class="tick-sep" x1="95.8" y1="46" x2="95.8" y2="74"/>
-            <text class="drum-digit" x="19.1" y="61">9</text>
-            <text class="drum-digit" x="29.3" y="61">0</text>
-            <text class="drum-digit" x="39.6" y="61">0</text>
-            <text class="drum-digit" x="49.8" y="61">1</text>
-            <text class="drum-digit" x="60.0" y="61">6</text>
-            <text class="drum-digit" x="70.2" y="61">9</text>
-            <text class="drum-digit" x="80.4" y="61">5</text>
-            <text class="drum-digit" x="90.7" y="61">6</text>
-            <text class="drum-digit" x="100.9" y="61">2</text>
-          </svg>
-          <p class="gauge-readout is-long">Michigan LLC<span class="unit">Registered entity</span></p>
-          <p class="gauge-label">Entity ID</p>
-        </div>
-
-        <div class="gauge" style="--sweep: -120deg;">
-          <svg viewBox="0 0 120 120" aria-hidden="true" focusable="false">
-            <circle class="dial-face" cx="60" cy="60" r="52"/>
-            <circle class="dial-bezel" cx="60" cy="60" r="55"/>
-            <circle class="tick-minor" cx="60" cy="60" r="44"/>
-            <path class="arc-range" d="M 23.63 81.00 A 42 42 0 0 1 18.23 64.39"/>
-            <text class="dial-num" x="34.0" y="75.0">0</text>
-            <text class="dial-num" x="60.0" y="30.0">5</text>
-            <text class="dial-num" x="86.0" y="75.0">10</text>
-            <line class="needle" x1="60" y1="60" x2="60" y2="28"/>
-            <circle class="needle-hub" cx="60" cy="60" r="3.5"/>
-          </svg>
-          <p class="gauge-readout">0<span class="unit">Downloaded</span></p>
-          <p class="gauge-label">Web fonts</p>
-        </div>
-
-        <!-- The demo line is a lit/unlit state, not a reading on a scale, so it
-             gets an annunciator plate rather than a dial. Amber appears here and
-             in the caution panel below, and nowhere else on the page. -->
-        <div class="gauge is-caution">
-          <svg viewBox="0 0 120 120" aria-hidden="true" focusable="false">
-            <rect class="instr-frame" x="7" y="7" width="106" height="106" rx="3"/>
-            <rect class="annun-plate" x="14" y="42" width="92" height="36" rx="2"/>
-            <circle class="gauge-lamp" cx="31" cy="60" r="5"/>
-            <text class="annun-text" x="70" y="61">OFF</text>
-          </svg>
-          <p class="gauge-readout is-long">No number<span class="unit">Anywhere on this page</span></p>
-          <p class="gauge-label">Demo line</p>
-        </div>
-
+           Same six facts, same panel world — an equipment data plate instead of
+           an instrument cluster. Every value here is permanently true and none of
+           them drift, which is deliberate: this repo's recurring failure is facts
+           going stale on a page nobody re-reads.
+           ==================================================================== -->
+      <div class="dataplate" role="group" aria-label="Six things you can check about this business">
+        <dl class="specs">
+          <div class="spec-row">
+            <dt>Where I am</dt>
+            <dd>Ironwood, Michigan</dd>
+          </div>
+          <div class="spec-row">
+            <dt>Who does the work</dt>
+            <dd>One person. Me.</dd>
+          </div>
+          <div class="spec-row">
+            <dt>Reply within</dt>
+            <dd>One business day</dd>
+          </div>
+          <div class="spec-row is-entity">
+            <dt>Michigan LLC</dt>
+            <dd>900169562</dd>
+          </div>
+          <div class="spec-row">
+            <dt>Web fonts loaded</dt>
+            <dd>None</dd>
+          </div>
+          <div class="spec-row is-caution">
+            <dt><span class="row-lamp" aria-hidden="true"></span>Demo line</dt>
+            <dd>Off right now</dd>
+          </div>
+        </dl>
       </div>
     </div>
-
-    <p class="lead">
-      906 Digital builds the websites, phone answering, and automation that
-      small businesses across the Upper Peninsula actually need. The idea is
-      simple: the office work that eats your evenings gets handled, and you
-      get on with the job.
-    </p>
-    <div class="cta-row">
-      <a href="#book" class="btn btn-primary">Get in touch</a>
-      <a href="#offer" class="btn btn-link">See what I build</a>
-    </div>
-    <!-- Every visitor arrives holding an email thread — all traffic comes from
-         Joey's own outreach. PRODUCT.md ranks reply ABOVE the form. It used to be
-         the quietest element on the page, which inverted that ranking. -->
-    <p class="hero-reply">
-      If you got an email or a text from me — that was me. Hitting reply is
-      the easiest way to reach me.
-    </p>
   </div>
 </section>
 
@@ -1139,17 +1004,6 @@ h2 {
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  /* The panel's one authored moment: the needles sweep from their rest stop to
-     their reading, damped, once, on load. Everything is already legible before
-     it runs — the settle is confirmation, not a reveal. Honours reduced-motion
-     through the stylesheet, which pins the needles at their final angle. */
-  (function () {
-    var panel = document.getElementById('sixpack');
-    if (!panel) return;
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () { panel.classList.add('is-settled'); });
-    });
-  })();
 </script>
 
 <script>
