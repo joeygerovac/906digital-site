@@ -14,7 +14,7 @@ dependencies, no package manager.
 
 | File | |
 |---|---|
-| `index.html` | The small-business site — 1153 lines, 52 KB. Markup, CSS, and JS in one file. Still zero dependencies and zero new network requests; the only asset is the hero photograph. |
+| `index.html` | The small-business site — 734 lines, 38 KB. Markup, CSS, and JS in one file. Still zero dependencies and zero new network requests; the only asset is the hero photograph. |
 | `advisory.html` | The B2B technical advisory page — 1,153 lines, 37 KB. Same deal. |
 | `scripts/check-content.mjs` | Content checks. See "Checks" below. |
 | `.circleci/config.yml` | CI pipeline. |
@@ -44,7 +44,7 @@ outreach, so he controls which link each prospect gets. The only cross-link is i
 each footer, after the conversion point.
 
 **The home page is where the scam question gets cleared.** Keep it a person, not a
-firm. It says "one person, in Ironwood, who answers his own phone" and not "I'm
+firm. It says "one person, in Ironwood, who answers his own email" and not "I'm
 not an agency" — the denial was retired when the offering widened, the substance
 was not. Never introduce "we" or "our team" on `index.html`. There is one person.
 
@@ -54,36 +54,38 @@ Every section is marked with a banner comment (`<!-- ====== HERO ====== -->`).
 Search for those rather than line numbers, which drift as you edit.
 
 In `index.html`, in order: JSON-LD → all CSS inline → direction contract comment →
-skip link → header → hero (headline + photograph + data plate) → the leaks → what I build →
+skip link → header → hero (headline + photograph) → facts strip → the leaks → what I build →
 who runs this → final CTA with the demo-line caution panel **above** the lead form
 → footer → needle settle + form handling → analytics beacon.
 
-### The visual world was replaced on 2026-08-28
+### The visual world — settled 2026-08-28
 
-The cream-and-copper page is gone. `index.html` is now a **night instrument
-panel**; `DESIGN.md` is the authority on it and this section is only the map.
-The old `--copper` / `--copper-dark` / `--copper-lite` split no longer exists —
-do not go looking for it.
+Three worlds were tried in one day and two were rejected: a dark "night
+instrument panel" (read as cold and coded to tech — the exact thing the reader
+fears) and a hometown-newspaper treatment (read as cheap). Joey then pinned the
+direction in his own words — *modern, authentic, very trustable, built around the
+photograph* — and chose the light version of a prototype.
 
-Three rules from that system survive because they were never really about copper:
+**What the page is now:** no metaphor. An off-white ground, warm ink, one sage
+accent sampled from the work shirt in the photograph, hairlines for dividers
+only, soft radii, no shadows, no motion, the platform's own sans. `DESIGN.md` is
+the authority; this is only the map.
 
-1. **Check contrast by computing it, not by eye.** Four regressions have now been
-   caused by ignoring this. The current build is at zero WCAG AA failures,
-   measured across every text node against its effective background.
-2. **A colour with a reserved job keeps it.** `--radium` is needles, lamps, and
-   links. `--caution` amber means exactly one thing — a system of Joey's that is
-   currently off — and appears only on the demo-line annunciator and the caution
-   panel. The "leaks" lamps are deliberately unlit rather than amber, because
-   those are the visitor's problems, not Joey's outage.
-3. **No web fonts, ever.** The display voice is built from weight, tracking,
-   tabular numerals, and a ground-dependent engraved shadow instead of a sourced
-   face. This knowingly overrides the usual "source a display face" advice; the
-   deviation is recorded in a comment in `<head>`.
+Rules that outlived all three worlds, because they were never about a palette:
 
-The hero photo slot is **still empty and still governed by the old rule**: no
-illustration, monogram, avatar, silhouette, stock photo, or AI-generated image.
-A placeholder person is a fabricated person. When a real photo exists it goes
-*above* the six-pack, not instead of it.
+1. **Check contrast by computing it, not by eye.** Four regressions have been
+   caused by ignoring this. The current build is at zero WCAG AA failures.
+2. **A colour with a reserved job keeps it.** Sage means "mine": the button,
+   links, the phrase in the headline, and the one fact that is currently off.
+3. **No web fonts, ever.** The stack is the platform UI face. Nothing downloads.
+4. **Reply outranks the form.** The reply callout precedes the button in DOM
+   order on every viewport, because every visitor arrives holding an email.
+5. **No kickers above headings, no boxes-as-structure, no cards for prose.**
+
+The hero holds a **real photograph of Joey**. The rule that governed the slot
+while it was empty governs any replacement: no illustration, monogram, avatar,
+silhouette, stock photo, or AI-generated image — a placeholder person is a
+fabricated person.
 
 ## How it deploys
 

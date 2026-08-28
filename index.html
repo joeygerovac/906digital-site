@@ -4,8 +4,8 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>906 Digital — AI &amp; Websites for Upper Peninsula Small Business</title>
-<meta name="description" content="906 Digital puts AI to work in Upper Peninsula small businesses — websites, phone answering, automation, reporting, and integration. One person, in Ironwood. Flat prices." />
-<meta name="theme-color" content="#14181B" />
+<meta name="description" content="Websites, phone answering, and automation for small businesses across the Upper Peninsula. One person, in Ironwood, who does the work himself. Flat prices." />
+<meta name="theme-color" content="#FCFBF9" />
 <link rel="canonical" href="https://906digital.com/" />
 
 <!-- Open Graph -->
@@ -58,501 +58,179 @@
 }
 </script>
 
-<!-- No web font is loaded. The stack keeps Inter first (it renders if the visitor
-     already has it) and falls through to the platform UI font. Dropping the Google
-     Fonts stylesheet removed the only render-blocking third-party request on the
-     page. Do not re-add one.
-
-     NOTE FOR DESIGN WORK: the craft floor for this visual world calls for a
-     self-hosted display face whose character matches the panel lettering. This
-     project's brief forbids any font download, and a pinned brief outranks the
-     floor. The display voice is therefore built from weight, tracking, and
-     tabular numerals rather than from a sourced face. This is a known, accepted
-     deviation — not an oversight. -->
+<!-- No web font is loaded. The stack is the platform's own UI face (SF on Apple,
+     Segoe on Windows, Roboto on Android). Nothing is downloaded. Dropping the
+     Google Fonts stylesheet removed the only render-blocking third-party request
+     on the page. Do not re-add one. -->
 
 <style>
 :root {
-  /* ---- NIGHT INSTRUMENT PANEL -------------------------------------------
-     Colour is confined to lamps, links, and the primary action. The reading
-     field stays luminous white on panel and is never tinted. Every value below carries
-     its computed contrast against the surface it is used on. ------------- */
-  --panel:       #14181B;   /* matte panel ground */
-  --face:        #0B0E10;   /* instrument face, deeper than the panel */
-  --lume:        #ECEFF1;   /* luminous markings. 15.9:1 on panel — primary ink */
-  --lume-dim:    #9BA5AB;   /* secondary markings. 7.0:1 on panel */
-  --radium:      #7FD4A2;   /* NEEDLES, live lamps, and links on panel. 10.5:1 */
-  --caution:     #E0A21A;   /* caution lamp ONLY. 7.8:1 on panel */
-  --plate:       #C9CFD2;   /* brushed placard plate — carries dark text */
-  --plate-ink:   #0B0E10;   /* on --plate: 13.4:1 */
-  --hair:        #2A3238;   /* hairline rule work */
-  --hair-2:      #39434A;   /* brighter hairline, bezels */
-
-  --container:   1140px;
-  --radius:      3px;       /* panels are cut, not rounded. 3px is a machined edge */
-  --shadow-panel: 0 1px 0 rgba(255,255,255,.04), 0 18px 40px rgba(0,0,0,.55);
-  --shadow-plate: 0 1px 0 rgba(255,255,255,.14), 0 10px 22px rgba(0,0,0,.45);
-
-  --ease-damp:   cubic-bezier(.16, 1, .3, 1);   /* exponential ease-out, hover and focus only */
+  /* ---- MODERN, WARM, BUILT AROUND THE PHOTOGRAPH ----------------------------
+     The palette is sampled from the portrait: the sage of the work shirt, the
+     warm near-black of the beard, the off-white of the tee. No metaphor. Every
+     word is set in full ink or a warm secondary that still clears 8:1; the one
+     accent means "mine" — the button, links, and the phrase in the headline. */
+  --bg:        #FCFBF9;   /* off-white, warmer than #fff, cleaner than cream */
+  --surface:   #F3F4F0;   /* one quiet surface for the facts strip and callouts */
+  --sage-soft: #E8EEE8;   /* the reply callout and the "start here" mark */
+  --ink:       #1C1917;   /* 17:1 on bg */
+  --ink-2:     #4A453F;   /* secondary copy. 9.2:1 on bg — never below 7 */
+  --hair:      #E6E2DB;   /* dividers only */
+  --sage:      #4F6B56;   /* accent. 5.6:1 on bg as text; white on it 5.9:1 */
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, "Helvetica Neue", Arial, sans-serif;
+  --container: 1120px;
+  --r: 12px;
+  --measure: 54ch;
 }
-
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  font-size: 17px;
-  line-height: 1.62;
-  color: var(--lume);
-  background: var(--panel);
-  -webkit-font-smoothing: antialiased;
-}
-
-/* ---- Browser surfaces. The parts not drawn still carry the panel. ------- */
-::selection { background: var(--radium); color: var(--face); }
-:root { accent-color: var(--radium); caret-color: var(--radium); }
-* { scrollbar-color: var(--hair-2) var(--face); scrollbar-width: thin; }
-::-webkit-scrollbar { width: 11px; height: 11px; }
-::-webkit-scrollbar-track { background: var(--face); }
-::-webkit-scrollbar-thumb { background: var(--hair-2); border: 3px solid var(--face); }
-::-webkit-scrollbar-thumb:hover { background: var(--lume-dim); }
-
-a { color: var(--radium); text-decoration: none; text-underline-offset: 3px; }
-a:hover { text-decoration: underline; }
-
-:where(a, button, input, textarea, [tabindex]):focus-visible {
-  outline: 2px solid var(--radium);
-  outline-offset: 3px;
-}
-
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+body { font-family: var(--sans); font-size: 17px; line-height: 1.6; color: var(--ink); background: var(--bg); -webkit-font-smoothing: antialiased; }
+::selection { background: var(--sage); color: #fff; }
+:root { accent-color: var(--sage); caret-color: var(--sage); }
+* { scrollbar-color: #B8B2A8 var(--bg); scrollbar-width: thin; }
+a { color: var(--sage); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+:where(a, button, input, textarea, [tabindex]):focus-visible { outline: 2px solid var(--sage); outline-offset: 3px; }
 img { max-width: 100%; display: block; }
-.sr-only {
-  position: absolute; width: 1px; height: 1px; overflow: hidden;
-  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
-}
-
-.container { max-width: var(--container); margin: 0 auto; padding: 0 28px; }
-
-h1, h2, h3 {
-  margin: 0; text-wrap: balance; letter-spacing: -.022em;
-  font-variant-numeric: tabular-nums;
-  /* Engraved, not embossed. A cut edge on a dark panel catches light on its top
-     lip and drops shadow below it; the first attempt used black at zero blur on
-     both grounds, which rendered as nothing on the panel and as embossing on the
-     light plates. Each ground now gets the direction its own lighting implies. */
-  text-shadow: 0 -1px 0 rgba(236,239,241,.09), 0 1px 0 rgba(0,0,0,.5);
-}
 p { margin: 0; }
-
-/* Placard lettering — the panel's label voice. Used for instrument labels and
-   plate designations, never as a kicker above a heading. */
-.placard {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .19em;
-  text-transform: uppercase;
-  color: var(--lume-dim);
-  font-variant-numeric: tabular-nums;
-}
-
-/* Every numeral on this page is an instrument readout. */
-.num, .readout, .price { font-variant-numeric: tabular-nums; }
-
-.skip-link {
-  position: absolute; left: -9999px; top: 0; z-index: 100;
-  background: var(--radium); color: var(--face);
-  padding: 12px 20px; font-weight: 700;
-}
+h1, h2, h3 { margin: 0; font-weight: 700; letter-spacing: -.02em; text-wrap: balance; }
+.wrap { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+.skip-link { position: absolute; left: -9999px; top: 0; z-index: 100; background: var(--ink); color: #fff; padding: 12px 20px; font-weight: 600; }
 .skip-link:focus { left: 0; }
 
-/* ================= HEADER — the panel's top rail ======================== */
-.site-header {
-  position: sticky; top: 0; z-index: 50;
-  background: rgba(11,14,16,.92);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--hair);
-}
-.site-header .container {
-  display: flex; align-items: center; justify-content: space-between;
-  height: 66px;
-}
-.logo { display: flex; align-items: baseline; gap: 9px; color: var(--lume); }
+/* ================= HEADER ================= */
+.site-header { position: sticky; top: 0; z-index: 50; background: rgba(252,251,249,.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--hair); }
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+.logo { font-weight: 700; font-size: 20px; letter-spacing: -.02em; color: var(--ink); }
+.logo span { color: var(--sage); }
 .logo:hover { text-decoration: none; }
-.logo .num {
-  font-size: 22px; font-weight: 800; letter-spacing: -.03em;
-}
-.logo .word {
-  font-size: 11px; font-weight: 700; letter-spacing: .22em;
-  text-transform: uppercase; color: var(--lume-dim);
-}
-.nav-cta {
-  font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
-  color: var(--radium);
-  border: 1px solid var(--radium);
-  padding: 10px 18px;
-  min-height: 44px; display: inline-flex; align-items: center;
-  transition: background .18s var(--ease-damp), color .18s var(--ease-damp);
-}
-.nav-cta:hover { background: var(--radium); color: var(--face); text-decoration: none; }
+.nav-cta { font-size: 16px; font-weight: 600; color: var(--ink); border: 1px solid var(--hair); border-radius: 999px; padding: 0 18px; min-height: 42px; display: inline-flex; align-items: center; }
+.nav-cta:hover { border-color: var(--ink); text-decoration: none; }
 
-/* ================= HERO — master placard + the six-pack ================= */
-.hero { padding: 70px 0 76px; position: relative; }
-.hero::before {
-  /* panel seam, not decoration: the rail the instruments are mounted on */
-  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--hair-2) 12%, var(--hair-2) 88%, transparent);
-}
-/* Mobile order has to satisfy two things at once, and an earlier pass traded one
-   for the other. The STORY is a phone outdoors in daylight, so an instrument must
-   exist in the first viewport — but this is a conversion page, so the primary
-   action cannot be pushed below it. Panel-before-lead put the whole six-gauge
-   rank between the headline and the button and shipped the CTA to y≈1230.
-   The order below keeps the button in the first screen and lets the panel's
-   first row of instruments sit directly beneath it, still above the fold. */
-.hero-grid { display: flex; flex-direction: column; gap: 0; }
-.hero-copy { display: contents; }
-.hero-grid h1          { order: 1; }
-.hero-grid .lead       { order: 2; }
-.hero-grid .cta-row    { order: 3; }
-.hero-grid .hero-media { order: 4; margin-top: 34px; }
-.hero-grid .hero-reply { order: 5; }
-h1 {
-  font-size: clamp(38px, 5.4vw, 68px);
-  line-height: 1.03;
-  font-weight: 800;
-  letter-spacing: -.035em;
-  max-width: 15ch;
-}
-/* The one fact that clears the scam question breaks the grid rather than
-   sitting politely inside it. "out of Ironwood" is the town, lit. */
-h1 em {
-  font-style: normal;
-  color: var(--radium);
-  display: block;
-}
-.lead {
-  margin-top: 24px; max-width: 56ch;
-  font-size: 18px; color: var(--lume-dim);
-}
-.cta-row { margin-top: 30px; display: flex; align-items: center; gap: 26px; flex-wrap: wrap; }
+/* ================= HERO ================= */
+.hero { padding: 40px 0 36px; }
+.hero-grid { display: grid; grid-template-columns: 1fr; gap: 36px; align-items: center; }
+h1 { font-size: clamp(30px, 4vw, 50px); line-height: 1.08; max-width: 27ch; }
+h1 em { font-style: normal; color: var(--sage); }
+.lede { margin-top: 18px; font-size: 17px; max-width: var(--measure); color: var(--ink-2); }
+@media (min-width: 720px) { .lede { font-size: 20px; margin-top: 20px; } }
+/* The reply prompt outranks the form (PRODUCT.md), so it comes before the
+   button in DOM order and carries the one tinted callout in the hero. */
+.reply { margin-top: 22px; padding: 16px 18px; background: var(--sage-soft); border-radius: var(--r); max-width: var(--measure); }
+.reply strong { font-weight: 700; }
+.cta-row { margin-top: 24px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 0 26px; border-radius: var(--r); font-weight: 600; font-size: 16px; background: var(--sage); color: #fff; border: 1px solid var(--sage); }
+.btn:hover { background: #435C4A; text-decoration: none; }
+.btn-link { font-size: 16px; font-weight: 600; color: var(--sage); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1.5px; }
+.btn-link:hover { text-decoration-thickness: 2.5px; }
+.portrait { margin: 0; position: relative; max-width: 520px; }
+.portrait img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--r); }
 
-.btn {
-  display: inline-flex; align-items: center; justify-content: center;
-  font-size: 13px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase;
-  padding: 15px 30px; min-height: 48px;
-  border: 1px solid transparent;
-  transition: background .18s var(--ease-damp), color .18s var(--ease-damp), border-color .18s var(--ease-damp);
-}
-.btn-primary { background: var(--radium); color: var(--face); }
-.btn-primary:hover { background: var(--lume); text-decoration: none; }
-.btn-link {
-  color: var(--lume-dim); padding: 0; min-height: 0; text-transform: none;
-  font-size: 15px; font-weight: 500; letter-spacing: 0;
-  border-bottom: 1px solid var(--hair-2);
-}
-.btn-link:hover { color: var(--lume); text-decoration: none; border-color: var(--lume); }
+/* Five things the reader can check. Plain rows, one hairline between. */
+.facts { margin: 44px 0 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: 0 24px; border-top: 1px solid var(--hair); }
+.facts > div { padding: 18px 0; border-bottom: 1px solid var(--hair); }
+.facts dt { font-size: 14px; font-weight: 600; color: var(--ink-2); }
+.facts dd { margin: 4px 0 0; font-size: 17px; font-weight: 600; }
+.facts .is-entity dd { font-size: 24px; font-weight: 800; letter-spacing: -.01em; font-variant-numeric: tabular-nums; }
+.facts .is-off dd { color: var(--sage); }
 
-/* The primary success action per PRODUCT.md is the reply, not the form. It gets
-   structure instead of volume: a lit rule, the panel's own marking colour. */
-/* A lit hairline across the top, in the panel's own rule vocabulary. This used
-   to be a 2px radium border-left — the most generic device in the dark-landing
-   category, sitting in the one viewport that cannot afford to look generic. */
-.hero-reply {
-  margin-top: 34px; max-width: 46ch;
-  padding-top: 16px;
-  border-top: 1px solid var(--radium);
-  color: var(--lume);
-  font-size: 16px;
-}
+/* ================= SECTIONS ================= */
+section.band { padding: 72px 0; }
+section.band + section.band { border-top: 1px solid var(--hair); }
+h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
+.intro { margin-top: 16px; max-width: var(--measure); color: var(--ink-2); }
+.outro { margin-top: 28px; max-width: var(--measure); color: var(--ink-2); }
+.leaks-grid { margin-top: 36px; display: grid; grid-template-columns: 1fr; gap: 28px; }
+.leak h3 { font-size: 22px; }
+.leak p { margin-top: 8px; max-width: var(--measure); color: var(--ink-2); }
 
-/* ---- The six-pack ------------------------------------------------------ */
-/* Mounted on the panel in the instruments' own frame language: same hairline,
-   same machined corner, same elevation. It is a photograph on a panel, not a
-   card floating above one. */
-.hero-photo {
-  width: 100%; height: auto; display: block;
-  margin-bottom: 16px;
-  border: 1px solid var(--hair-2);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-panel);
-}
+/* Services: two groups, plain rows, no cards. */
+.group { margin-top: 36px; }
+.group + .group { margin-top: 64px; }
+.group-title { font-size: 16px; font-weight: 600; color: var(--ink-2); padding-bottom: 12px; border-bottom: 1px solid var(--ink); max-width: var(--measure); }
+.svc { padding: 26px 0; border-bottom: 1px solid var(--hair); display: grid; grid-template-columns: 1fr; gap: 6px 40px; }
+.svc-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.svc h3 { font-size: 22px; }
+.price { font-size: 20px; font-weight: 700; letter-spacing: -.01em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.price span { font-size: 14px; font-weight: 500; color: var(--ink-2); margin-left: 4px; }
+.start { display: inline-block; justify-self: start; margin-top: 6px; background: var(--sage-soft); color: var(--sage); border-radius: 999px; padding: 4px 11px; font-size: 14px; font-weight: 600; }
+.svc-desc { margin-top: 6px; max-width: var(--measure); color: var(--ink-2); }
+.price-note { margin-top: 6px; max-width: var(--measure); color: var(--ink); }
+.spec { list-style: none; margin: 12px 0 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: 6px 28px; }
+.spec li { position: relative; padding-left: 18px; }
+.spec li::before { content: ""; position: absolute; left: 0; top: 12px; width: 8px; height: 2px; border-radius: 1px; background: var(--sage); }
+.about-body { margin-top: 20px; max-width: var(--measure); display: grid; gap: 16px; color: var(--ink-2); }
+.about-body strong { color: var(--ink); font-weight: 700; }
 
-/* ---- The data plate ----------------------------------------------------
-   An equipment nameplate, mounted on the panel in the same frame language as
-   the photograph above it. It replaced a six-gauge instrument cluster: the
-   dials read as clocks, and a needle pointing at "1" on a 0–4 arc is precision
-   about nothing. Same facts, read instead of decoded. */
-.dataplate {
-  background: var(--face);
-  border: 1px solid var(--hair);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-panel);
-  padding: 4px 26px 8px;
-  position: relative;
-  /* Four fasteners, where a real panel carries them. */
-  background-image:
-    radial-gradient(circle at 11px 11px, var(--hair-2) 0 2.2px, #05080a 2.2px 3.1px, transparent 3.2px),
-    radial-gradient(circle at calc(100% - 11px) 11px, var(--hair-2) 0 2.2px, #05080a 2.2px 3.1px, transparent 3.2px),
-    radial-gradient(circle at 11px calc(100% - 11px), var(--hair-2) 0 2.2px, #05080a 2.2px 3.1px, transparent 3.2px),
-    radial-gradient(circle at calc(100% - 11px) calc(100% - 11px), var(--hair-2) 0 2.2px, #05080a 2.2px 3.1px, transparent 3.2px);
-  background-repeat: no-repeat;
-}
-.specs { margin: 0; padding: 0; }
-.spec-row {
-  display: grid;
-  grid-template-columns: minmax(0,1fr) auto;
-  gap: 16px;
-  align-items: baseline;
-  padding: 16px 0;
-  border-bottom: 1px solid var(--hair);
-}
-.spec-row:last-child { border-bottom: 0; }
-.spec-row dt {
-  font-size: 11px; font-weight: 700; letter-spacing: .17em; text-transform: uppercase;
-  color: var(--lume-dim);
-  display: flex; align-items: center; gap: 9px;
-}
-.spec-row dd {
-  margin: 0; text-align: right;
-  font-size: 17px; font-weight: 600; color: var(--lume);
-  font-variant-numeric: tabular-nums;
-}
-/* The one fact a scam cannot produce gets the size. */
-.spec-row.is-entity dd { font-size: 25px; font-weight: 800; letter-spacing: .005em; }
-.spec-row.is-caution dd { color: var(--caution); }
-.row-lamp {
-  width: 9px; height: 9px; border-radius: 50%;
-  background: var(--caution);
-  box-shadow: 0 0 10px rgba(224,162,26,.5);
-  flex: none;
-}
-
-/* ================= LEAKS — annunciator panel =========================== */
-.leaks { padding: 88px 0; border-bottom: 1px solid var(--hair); }
-h2 {
-  font-size: clamp(28px, 3.5vw, 42px); font-weight: 800; line-height: 1.1;
-  max-width: 20ch;
-}
-.section-intro { margin-top: 20px; max-width: 62ch; color: var(--lume-dim); }
-.section-outro { margin-top: 34px; max-width: 68ch; color: var(--lume-dim); font-size: 15.5px; }
-
-.annunciator {
-  margin-top: 44px;
-  display: grid; grid-template-columns: 1fr; gap: 1px;
-  background: var(--hair);
-  border: 1px solid var(--hair);
-}
-.warn {
-  background: var(--face); padding: 30px 28px;
-  display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: start;
-}
-/* An UNLIT lamp — a real annunciator state, and deliberately not amber. Amber on
-   this page means exactly one thing: a system of mine that is currently off. These
-   two describe the visitor's own problems, so they get the dark lamp with a lume
-   ring instead of borrowing the caution colour. */
-.warn-lamp {
-  width: 13px; height: 13px; border-radius: 50%;
-  background: var(--face);
-  border: 2px solid var(--lume-dim);
-  margin-top: 7px;
-}
-.warn h3 { font-size: 19px; font-weight: 700; }
-.warn p { margin-top: 10px; color: var(--lume-dim); font-size: 15.5px; max-width: 46ch; }
-
-/* ================= WHAT I BUILD — the plate rank ======================= */
-.offer { padding: 88px 0; border-bottom: 1px solid var(--hair); }
-.plates { margin-top: 44px; display: grid; grid-template-columns: 1fr; gap: 14px; }
-
-/* Brushed placards on the panel. Not cards: each is a machined plate with a
-   designation, a rating, and a spec list — the panel's own document form. */
-.plate {
-  background: linear-gradient(180deg, var(--plate) 0%, #B8BFC3 100%);
-  color: var(--plate-ink);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-plate);
-  padding: 30px 32px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px 34px;
-  align-items: start;
-  position: relative;
-}
-.plate-head h3 {
-  font-size: 22px; font-weight: 800; color: var(--plate-ink);
-  text-shadow: 0 1px 0 rgba(255,255,255,.55);   /* inverted: light metal, light from above */
-}
-.plate-desc { margin-top: 9px; font-size: 15px; color: rgba(11,14,16,.72); max-width: 40ch; }
-.price {
-  margin-top: 14px;
-  font-size: 25px; font-weight: 800; letter-spacing: -.03em; color: var(--plate-ink);
-}
-.price .small { font-size: 13px; font-weight: 600; letter-spacing: 0; color: rgba(11,14,16,.72); }
-.price-note { margin-top: 6px; font-size: 13.5px; color: rgba(11,14,16,.66); max-width: 34ch; }
-
-.spec { list-style: none; margin: 0; padding: 0; }
-.spec li {
-  position: relative; padding-left: 20px; margin-bottom: 8px;
-  font-size: 14.5px; color: rgba(11,14,16,.8);
-}
-.spec li::before {
-  content: ""; position: absolute; left: 0; top: 9px;
-  width: 10px; height: 1.5px; background: rgba(11,14,16,.45);
-}
-.spec .sub { color: rgba(11,14,16,.72); }
-
-/* The entry point is marked by a LIT LAMP and nothing else. It carried the words
-   "START HERE" in 10.5px tracked uppercase directly above the plate's <h3>, which
-   is a kicker in the position the craft floor bans outright — the badge it was
-   meant to replace, wearing different clothes. The words now live only in the
-   accessible name, so the meaning survives for screen readers. */
-.plate.is-entry { box-shadow: var(--shadow-plate), 0 0 0 2px var(--radium); }
-.entry-mark {
-  grid-column: 1 / -1;
-  width: 11px; height: 11px; border-radius: 50%;
-  background: #1F6B45; box-shadow: 0 0 0 3px rgba(31,107,69,.2);
-  margin-bottom: 6px;
-}
-
-/* ================= WHO RUNS THIS ======================================= */
-.about { padding: 88px 0; border-bottom: 1px solid var(--hair); }
-.about-body { margin-top: 24px; max-width: 62ch; display: grid; gap: 18px; }
-.about-body p { color: var(--lume-dim); }
-.about-body strong { color: var(--lume); font-weight: 700; }
-
-/* ================= CAUTION PANEL — the demo line ======================= */
-/* Positioned BEFORE the form on purpose. A visitor clears the doubt, then
-   converts. It used to sit after the form, where it was the last thing read. */
-.caution-panel {
-  margin: 0 0 52px;
-  background: var(--face);
-  border: 1px solid var(--hair-2);
-  border-radius: var(--radius);
-  padding: 28px 30px;
-  display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: start;
-  max-width: 720px;
-}
-.caution-lamp {
-  width: 15px; height: 15px; border-radius: 50%;
-  background: var(--caution);
-  box-shadow: 0 0 0 4px rgba(224,162,26,.13), 0 0 16px rgba(224,162,26,.5);
-  margin-top: 6px;
-}
-.caution-panel h3 { font-size: 18px; font-weight: 700; color: var(--caution); }
-.caution-panel p { margin-top: 10px; color: var(--lume-dim); font-size: 15.5px; }
-
-/* ================= FINAL CTA =========================================== */
-.final-cta { padding: 88px 0 96px; }
-.cta-lead { margin-top: 18px; max-width: 54ch; color: var(--lume-dim); }
-
-.lead-form { margin-top: 40px; max-width: 560px; }
-.field { margin-bottom: 22px; }
-.field label {
-  display: block; margin-bottom: 9px;
-  font-size: 11px; font-weight: 700; letter-spacing: .17em; text-transform: uppercase;
-  color: var(--lume-dim);
-}
-.field .optional { letter-spacing: .1em; color: var(--lume-dim); }
-/* Inputs are readouts: recessed faces with luminous type. */
-.field input, .field textarea {
-  width: 100%;
-  font-family: inherit; font-size: 16px; color: var(--lume);
-  background: var(--face);
-  border: 1px solid var(--hair-2);
-  border-radius: var(--radius);
-  padding: 14px 16px;
-  transition: border-color .18s var(--ease-damp), box-shadow .18s var(--ease-damp);
-}
-.field textarea { resize: vertical; min-height: 96px; }
-.field input::placeholder, .field textarea::placeholder { color: #7F8A90; }
-.field input:focus, .field textarea:focus {
-  outline: none; border-color: var(--radium);
-  box-shadow: 0 0 0 3px rgba(127,212,162,.16);
-}
-.field input[aria-invalid="true"] { border-color: var(--caution); }
-.field input[aria-invalid="true"] + .invalid-mark { display: block; }
-
+/* ================= CONTACT ================= */
+/* The notice precedes the form on purpose; the anchor is on the heading below
+   it, so both contact links land on the invitation. */
+.notice { background: var(--surface); border-radius: var(--r); padding: 20px 22px; max-width: 620px; margin-bottom: 44px; }
+.notice h3 { font-size: 20px; }
+.notice p { margin-top: 8px; color: var(--ink-2); }
+.cta-lead { margin-top: 14px; max-width: var(--measure); color: var(--ink-2); }
+.lead-form { margin-top: 28px; max-width: 520px; }
+.field { margin-bottom: 18px; }
+.field label { display: block; margin-bottom: 7px; font-size: 16px; font-weight: 600; }
+.field .optional { font-weight: 400; color: var(--ink-2); }
+.field input, .field textarea { width: 100%; font-family: inherit; font-size: 16px; color: var(--ink); background: #fff; border: 1px solid #CFC9C0; border-radius: var(--r); padding: 13px 14px; }
+.field textarea { resize: vertical; min-height: 92px; }
+.field input::placeholder, .field textarea::placeholder { color: #6B655D; }
+.field input:focus-visible, .field textarea:focus-visible { border-color: var(--sage); outline: 2px solid var(--sage); outline-offset: 2px; }
+.field input[aria-invalid="true"] { border-color: #B8321E; }
 .lead-submit { width: 100%; }
-.form-status { margin-top: 18px; font-size: 15px; min-height: 1px; }
-.form-status.is-error { color: var(--caution); }
-.form-status.is-success { color: var(--radium); font-size: 17px; }
-.form-fineprint { margin-top: 16px; font-size: 13.5px; color: var(--lume-dim); max-width: 52ch; }
+.form-status { margin-top: 14px; font-size: 16px; min-height: 1px; }
+.form-status.is-error { color: #A12A18; }
+.form-status.is-success { font-weight: 600; }
+.form-fineprint { margin-top: 14px; font-size: 14px; color: var(--ink-2); max-width: var(--measure); }
 .hp-field { position: absolute; left: -9999px; opacity: 0; pointer-events: none; }
+.alt-contact { margin-top: 22px; color: var(--ink-2); }
 
-.alt-contact { margin-top: 26px; font-size: 15.5px; color: var(--lume-dim); }
+/* ================= FOOTER ================= */
+.site-footer { border-top: 1px solid var(--hair); padding: 36px 0 44px; font-size: 14px; color: var(--ink-2); }
+.site-footer .wrap { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.site-footer .entity { display: block; color: var(--ink); font-size: 17px; font-weight: 700; font-variant-numeric: tabular-nums; margin: 2px 0 6px; }
+.site-footer svg { display: inline-block; vertical-align: -1px; margin-left: 4px; }
 
-/* ================= FOOTER — the data plate ============================= */
-.site-footer {
-  border-top: 1px solid var(--hair);
-  background: var(--face);
-  padding: 40px 0;
-  font-size: 14px;
-  color: var(--lume-dim);
-}
-.site-footer .container { display: flex; justify-content: space-between; gap: 28px; flex-wrap: wrap; }
-.site-footer a { color: var(--radium); }
-/* The strongest verifiable artifact on this page gets a label and a size. */
-.entity {
-  display: block; margin: 8px 0 4px;
-  font-size: 19px; font-weight: 800; letter-spacing: .01em; color: var(--lume);
-}
-.entity-label { display: block; }
-
-/* ================= RESPONSIVE ========================================== */
 @media (min-width: 720px) {
-  .annunciator { grid-template-columns: 1fr 1fr; }
+  .facts { grid-template-columns: repeat(3, 1fr); }
+  .leaks-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .spec { grid-template-columns: 1fr 1fr; }
+  .svc { grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); }
+  .svc > .svc-head, .svc > .start, .svc > .svc-desc, .svc > .price-note { grid-column: 1; }
+  .svc > .spec { grid-column: 2; grid-row: 1 / span 4; margin-top: 4px; }
 }
 @media (min-width: 980px) {
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1.14fr .86fr;
-    column-gap: 54px;
-    align-items: center;
-  }
-  /* The wrapper becomes a real box again at desktop, so the text is ONE cell
-     beside the media column. While it was dissolved, the media spanned four
-     rows and its height was shared out between the paragraphs, opening a dead
-     gap after every one of them. */
-  .hero-copy { display: block; }
-  .hero-grid .hero-media { margin-top: 0; }
-  .plates { gap: 16px; }
+  .hero { padding: 44px 0 44px; }
+  .facts { grid-template-columns: repeat(5, 1fr); }
+  .hero-grid { grid-template-columns: 1.05fr .95fr; gap: 64px; }
+  .portrait { max-width: none; }
+  section.band { padding: 88px 0; }
 }
-@media (max-width: 719px) {
-  .plate { grid-template-columns: 1fr; }
-  .spec { margin-top: 16px; }
-  .hero { padding: 44px 0 52px; }
-  .leaks, .offer, .about, .final-cta { padding: 62px 0; }
-}
-
-/* The page now carries no authored motion at all — the needle settle went out
-   with the instrument cluster it belonged to. What remains is hover and focus
-   transitions, and those still yield to the setting. */
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after { transition-duration: .01ms !important; }
-}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 </style>
 </head>
 <body>
 
 <!--
-  DIRECTION CONTRACT — seed 61f69f41 · scope direction · mode persuade
-  THESIS: This page is an instrument panel: six gauges, each owning one checkable
-    truth about a one-person business, and an amber lamp that states what is
-    currently off. It refuses the category default this page used to be — cream
-    ground, sans display, pricing grid with a featured tier.
-  OWN-WORLD: Matte panel (#14181B) and deeper instrument faces (#0B0E10);
-    luminous white markings; radium green reserved for needles, lamps, and links;
-    amber reserved for caution alone; brushed placard plates carrying dark text.
-    Hairline rule work, machined 3px edges, drawn dials with dashed tick rings.
-  STORY: A visitor holding a cold email asks whether this is a scam. The panel
-    answers with instruments, not adjectives — town, entity number, crew of one,
-    reply time, zero web fonts — and tells them plainly which system is offline.
-  FIRST VIEWPORT: Headline left at 68px with "out of Ironwood" lit in radium on
-    its own line; the six-pack right, six drawn gauges on a fastened face.
-    Primary action is a radium button under the lead; the reply prompt sits below
-    it behind a lit rule, because reply outranks the form.
-  FORM: Night instrument six-pack. Challenger that beat the roll's assignment
-    (candidate 3, county plat book) on both axes. Seed key 61f69f41.
+  DIRECTION CONTRACT — chosen directly by the owner on 2026-08-28 after two rolled
+  worlds were rejected (night instrument panel: cold, coded to tech; hometown
+  newspaper: read as cheap). Brief in his words: modern, authentic, very
+  trustable — built around the photograph.
+  THESIS: No metaphor. A clean, warm, contemporary page whose palette is sampled
+    from the portrait, finished to a high bar. Trust comes from the real face,
+    the real name, the real registration number, and plain copy — not from a
+    costume.
+  OWN-WORLD: Off-white ground (#FCFBF9), warm ink (#1C1917), one sage accent
+    (#4F6B56) taken from the work shirt, a single quiet surface for callouts,
+    hairlines for dividers only, 10–18px radii, no shadows, no motion, the
+    platform sans, nothing downloaded.
+  STORY: A visitor holding a cold email sees a person, a town, and five facts
+    they can check, and either hits reply or presses the button.
+  FIRST VIEWPORT: Headline left with "from Ironwood." in sage; lede; the reply
+    callout; the button; the portrait right, unframed, with a name tag in its
+    corner. The facts strip runs full width beneath.
   FINISH: unreviewed and undocumented is unfinished; this build ends with the
     finish review, the verdict, DESIGN.md, and every shipping raster carrying its
     provenance.
@@ -562,173 +240,111 @@ h2 {
 
 <!-- ============== HEADER ============== -->
 <header class="site-header">
-  <!-- One row only. The demo-line bar that used to sit above this was removed:
-       (906) 767-6901 currently answers with a recorded outage message, and a
-       sticky banner promoting it made the most prominent element on the page
-       refute itself. Do not restore a phone number here until the line answers.
-       CTA reads "Get in touch" because there is no calendar behind it — it is a
-       form anchor. -->
-  <div class="container">
-    <a href="/" class="logo" aria-label="906 Digital home">
-      <span class="num">906</span>
-      <span class="word">Digital</span>
-    </a>
-    <a href="#book" class="nav-cta">Get in touch</a>
+  <!-- One row only. No phone number here until the demo line answers. The link
+       reads "Contact" so it does not duplicate the hero button's label. -->
+  <div class="wrap">
+    <a href="/" class="logo" aria-label="906 Digital home">906 <span>Digital</span></a>
+    <a href="#book" class="nav-cta">Contact</a>
   </div>
 </header>
 
 <main id="main" tabindex="-1">
 
-<!-- ============== HERO — master placard + the six-pack ============== -->
+<!-- ============== HERO ============== -->
 <section class="hero">
-  <div class="container hero-grid">
-    <div class="hero-copy">
-      <h1>I'm Joey Gerovac. I put AI to work in small businesses, <em>out of Ironwood.</em></h1>
-
-      <p class="lead">
-        906 Digital builds the websites, phone answering, and automation that
-        small businesses across the Upper Peninsula actually need. The idea is
-        simple: the office work that eats your evenings gets handled, and you
-        get on with the job.
-      </p>
-      <div class="cta-row">
-        <a href="#book" class="btn btn-primary">Get in touch</a>
-        <a href="#offer" class="btn btn-link">See what I build</a>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <!-- Copy chosen by Joey on 2026-08-28 from three drafts. The headline
+             opens on the reader's business, not on 906 Digital; the full name and
+             the town — the scam check the page exists for — lead the lede. "No
+             long contract, I'd rather you stay because the numbers work" is the
+             honest form of "we win together": a promise, not a claim, on a page
+             with no clients to cite. "AI" stays out of the hero on purpose. -->
+        <h1>Your business, your customers, your name on the truck. <em>I just make sure nobody slips through.</em></h1>
+        <p class="lede">
+          I'm Joey Gerovac, in Ironwood. I build the website you'll actually own
+          and the phone answering that catches the calls you can't. No long
+          contract — I'd rather you stay because the numbers work. When it
+          doesn't, you tell me, and I fix it.
+        </p>
+        <!-- Every visitor arrives holding an email thread — all traffic comes from
+             Joey's own outreach. PRODUCT.md ranks reply ABOVE the form. -->
+        <p class="reply">
+          <strong>Got an email or a text from me? That was me.</strong> Hitting reply
+          is the easiest way to reach me.
+        </p>
+        <div class="cta-row">
+          <a href="#book" class="btn">Get in touch</a>
+          <a href="#offer" class="btn-link">See what I build</a>
+        </div>
       </div>
-      <!-- Every visitor arrives holding an email thread — all traffic comes from
-           Joey's own outreach. PRODUCT.md ranks reply ABOVE the form. It used to be
-           the quietest element on the page, which inverted that ranking. -->
-      <p class="hero-reply">
-        If you got an email or a text from me — that was me. Hitting reply is
-        the easiest way to reach me.
-      </p>
+
+      <!-- A real photograph of Joey. The rule that governed the empty slot governs
+           every replacement: never an illustration, monogram, avatar, silhouette,
+           stock photo, or AI-generated image. No caption: every fact a caption could carry is already on screen. Source
+           joey-headshot-2025-09-30.jpg, photographer's framing, cropped 4:5 by
+           object-fit; explicit width/height prevent layout shift. -->
+      <figure class="portrait">
+        <img src="joey.webp" width="800" height="980"
+             alt="Joey Gerovac, who runs 906 Digital"
+             loading="eager" fetchpriority="high" decoding="async">
+      </figure>
     </div>
 
-    <div class="hero-media">
-      <img class="hero-photo" src="joey.webp" width="800" height="980"
-           alt="Joey Gerovac, who runs 906 Digital, outdoors in Ironwood, Michigan"
-           loading="eager" decoding="async">
-      <!-- ===================== THE DATA PLATE ===================================
-           This replaced a six-gauge instrument panel on 2026-08-28, after Joey
-           said the dials read as clocks and were confusing. He was right, and so
-           was the finish reviewer, which flagged the same thing on its first pass.
-           My earlier fix — differentiating the instruments and adding graduated
-           scales — treated the symptom.
-
-           The real fault: a needle pointing at "1" on a 0–4 arc is precision
-           about nothing. There is no scale. Nobody measures a crew of one against
-           a maximum of four. It was decoration wearing the costume of data, and
-           it made a visitor decode a fact they should simply be able to read.
-
-           Same six facts, same panel world — an equipment data plate instead of
-           an instrument cluster. Every value here is permanently true and none of
-           them drift, which is deliberate: this repo's recurring failure is facts
-           going stale on a page nobody re-reads.
-           ==================================================================== -->
-      <div class="dataplate" role="group" aria-label="Six things you can check about this business">
-        <dl class="specs">
-          <div class="spec-row">
-            <dt>Where I am</dt>
-            <dd>Ironwood, Michigan</dd>
-          </div>
-          <div class="spec-row">
-            <dt>Who does the work</dt>
-            <dd>One person. Me.</dd>
-          </div>
-          <div class="spec-row">
-            <dt>Reply within</dt>
-            <dd>One business day</dd>
-          </div>
-          <div class="spec-row is-entity">
-            <dt>Michigan LLC</dt>
-            <dd>900169562</dd>
-          </div>
-          <div class="spec-row">
-            <dt>Web fonts loaded</dt>
-            <dd>None</dd>
-          </div>
-          <div class="spec-row is-caution">
-            <dt><span class="row-lamp" aria-hidden="true"></span>Demo line</dt>
-            <dd>Off right now</dd>
-          </div>
-        </dl>
-      </div>
-    </div>
+    <!-- Five things a small-business owner can actually check. Every value is
+         permanently true and none of them drift, on purpose. -->
+    <dl class="facts">
+      <div><dt>Where I am</dt><dd>Ironwood, Michigan</dd></div>
+      <div><dt>Who does the work</dt><dd>One person. Me.</dd></div>
+      <div><dt>Reply within</dt><dd>One business day</dd></div>
+      <div class="is-entity"><dt>Michigan LLC</dt><dd>900169562</dd></div>
+      <div class="is-off"><dt>Demo line</dt><dd>Off right now</dd></div>
+    </dl>
   </div>
 </section>
 
-<!-- ============== THE LEAKS — annunciator panel ============== -->
-<section class="leaks">
-  <div class="container">
-    <!-- This headline moved down from the H1 verbatim. It was tree-specific until
-         2026-08-11, when the site widened from trades to UP small business. Keep it
-         CONCRETE — the original instruction was "do not water it down", and that
-         still holds. The failure mode is replacing a physical image with a phrase
-         like "grow your business", which says nothing and sounds like everyone. -->
+<!-- ============== THE LEAKS ============== -->
+<section class="band">
+  <div class="wrap">
+    <!-- Keep it CONCRETE — the standing instruction is "do not water it down". -->
     <h2>Stop losing work while you're busy doing the work.</h2>
-    <p class="section-intro">
+    <p class="intro">
       Two places a small outfit loses work without ever seeing it happen. This is
       just what happens when you're the one doing the work and there's nobody
       minding the storefront.
     </p>
-
-    <div class="annunciator">
-      <!-- Card 03 ("Google can't find you") was cut: it argued for a channel this
-           project's own SEO research found has effectively zero demand here.
-           The section intro reads "Two places" to match. -->
-      <div class="warn">
-        <div class="warn-lamp" aria-hidden="true"></div>
-        <div>
-          <h3>Calls go to voicemail.</h3>
-          <p>
-            You're on a ladder, under a truck, or across the counter from
-            somebody. Three voicemails later, they called the next name on
-            Google.
-          </p>
-        </div>
+    <div class="leaks-grid">
+      <div class="leak">
+        <h3>Calls go to voicemail.</h3>
+        <p>You're on a ladder, under a truck, or across the counter from somebody. Three voicemails later, they called the next name on Google.</p>
       </div>
-      <div class="warn">
-        <div class="warn-lamp" aria-hidden="true"></div>
-        <div>
-          <h3>Your "website" is a Facebook page.</h3>
-          <p>
-            Meta could shut it down tomorrow for any reason or none. Your
-            customers, reviews, and reach — all renting from a landlord.
-          </p>
-        </div>
+      <div class="leak">
+        <h3>Your "website" is a Facebook page.</h3>
+        <p>Meta could shut it down tomorrow for any reason or none. Your customers, reviews, and reach — all renting from a landlord.</p>
       </div>
     </div>
-
-    <p class="section-outro">
-      Tree and excavation, plumbing and HVAC, roofing, auto, salons, clinics, contractors, restaurants — same two leaks, same fix.
-    </p>
+    <p class="outro">Tree and excavation, plumbing and HVAC, roofing, auto, salons, clinics, contractors, restaurants — same two leaks, same fix.</p>
   </div>
 </section>
 
-<!-- ============== WHAT I BUILD — the plate rank ============== -->
-<section class="offer" id="offer" tabindex="-1">
-  <div class="container">
+<!-- ============== WHAT I BUILD ============== -->
+<section class="band" id="offer" tabindex="-1">
+  <div class="wrap">
     <h2>Five things I build. Most people start with one.</h2>
-    <p class="section-intro">
+    <p class="intro">
       Local pricing. Flat fees. Built in weeks, not months. The first two have
       published prices because they're the same job every time. The last three get
       a fixed quote within one business day of a short call, because they don't.
     </p>
 
-    <!-- Five plates in a fixed rank. This used to be a 3-column auto-fit card grid,
-         which resolved to 3+2 at desktop and left an orphaned empty slot on the
-         page's most important section. A rank cannot orphan. -->
-    <div class="plates">
-
-      <div class="plate">
-        <div class="plate-head">
-          <h3>Foundation Site</h3>
-          <!-- Turnaround and feature lines must match packages-and-pricing.md:77-95.
-               The photo gallery starts at Standard ($2,900) — it is not in the
-               $1,900 Starter, and listing it at the floor price oversells the floor. -->
-          <p class="plate-desc">A real website you actually own. Built in 10 days to 4 weeks, depending on size.</p>
-          <p class="price">$1,900–4,500 <span class="small">one-time</span></p>
-        </div>
+    <div class="group" role="group" aria-labelledby="g-priced">
+      <p class="group-title" id="g-priced">Published prices</p>
+      <div class="svc">
+        <div class="svc-head"><h3>Foundation Site</h3><p class="price">$1,900–4,500 <span>one-time</span></p></div>
+        <!-- Turnaround and feature lines must match packages-and-pricing.md:77-95.
+             The photo gallery starts at Standard ($2,900). -->
+        <p class="svc-desc">A real website you actually own. Built in 10 days to 4 weeks, depending on size.</p>
         <ul class="spec">
           <li>Mobile-first, fast-loading</li>
           <li>Google Business Profile setup</li>
@@ -739,39 +355,29 @@ h2 {
           <li>Hand-written, no page-builder bloat — you're looking at the demo</li>
         </ul>
       </div>
-
-      <div class="plate is-entry">
-        <p class="entry-mark" aria-hidden="true"></p>
-        <span class="sr-only">Most people start here.</span>
-        <div class="plate-head">
-          <h3>AI Receptionist</h3>
-          <p class="plate-desc">An AI agent that answers every call when you can't.</p>
-          <p class="price">$249–699 <span class="small">/month</span></p>
-          <p class="price-note">Plus a one-time $500 setup — I build and tune the agent for your business. No long contract on the monthly.</p>
-        </div>
+      <div class="svc">
+        <div class="svc-head"><h3>AI Receptionist</h3><p class="price">$249–699 <span>/month</span></p></div>
+        <p class="start">Most people start here</p>
+        <p class="svc-desc">An AI agent that answers every call when you can't.</p>
+        <p class="price-note">Plus a one-time $500 setup — I build and tune the agent for your business. No long contract on the monthly.</p>
         <ul class="spec">
           <li>24/7 call answering</li>
           <li>Captures the address, the job, and how urgent it is</li>
           <li>Texts the lead to your phone in seconds</li>
-          <li>Books estimates on your calendar <span class="sub">(Pro Agent and up)</span></li>
+          <li>Books estimates on your calendar (Pro Agent and up)</li>
           <li>Filters spam and junk calls</li>
         </ul>
       </div>
+    </div>
 
-      <!-- These three carry NO published price on purpose: packages-and-pricing.md
-           prices only the Foundation Site and the AI Receptionist. Inventing a
-           number for the other three would be a fabricated price on a live page.
-           "Fixed price within one business day" is the practice already stated on
-           advisory.html — it is real, not filler. If these ever get published
-           prices, they belong in packages-and-pricing.md FIRST, and the numbers
-           here must match it. -->
-      <div class="plate">
-        <div class="plate-head">
-          <h3>Process Automation</h3>
-          <p class="plate-desc">The repetitive office work, handed to an agent that does it the same way every time.</p>
-          <p class="price">Scoped <span class="small">per project</span></p>
-          <p class="price-note">Fixed price within one business day of a short call.</p>
-        </div>
+    <!-- These three carry NO published price on purpose: packages-and-pricing.md
+         prices only the Foundation Site and the AI Receptionist. Inventing a
+         number for the other three would be a fabricated price on a live page. -->
+    <div class="group" role="group" aria-labelledby="g-scoped">
+      <p class="group-title" id="g-scoped">Scoped per project — fixed price within one business day of a short call</p>
+      <div class="svc">
+        <div class="svc-head"><h3>Process Automation</h3><p class="price">Quoted <span>per project</span></p></div>
+        <p class="svc-desc">The repetitive office work, handed to an agent that does it the same way every time.</p>
         <ul class="spec">
           <li>Quotes and estimates drafted from a call or a form</li>
           <li>Follow-ups that actually go out</li>
@@ -779,14 +385,9 @@ h2 {
           <li>Job details typed once, not four times</li>
         </ul>
       </div>
-
-      <div class="plate">
-        <div class="plate-head">
-          <h3>Reporting You Can Trust</h3>
-          <p class="plate-desc">One set of numbers you can act on, instead of three dashboards that disagree.</p>
-          <p class="price">Scoped <span class="small">per project</span></p>
-          <p class="price-note">Fixed price within one business day of a short call.</p>
-        </div>
+      <div class="svc">
+        <div class="svc-head"><h3>Reporting You Can Trust</h3><p class="price">Quoted <span>per project</span></p></div>
+        <p class="svc-desc">One set of numbers you can act on, instead of three dashboards that disagree.</p>
         <ul class="spec">
           <li>Where your leads actually come from</li>
           <li>What each one costs you</li>
@@ -794,14 +395,9 @@ h2 {
           <li>A monthly summary in plain language</li>
         </ul>
       </div>
-
-      <div class="plate">
-        <div class="plate-head">
-          <h3>Systems Integration</h3>
-          <p class="plate-desc">Your tools talking to each other, so the same job stops getting retyped into all of them.</p>
-          <p class="price">Scoped <span class="small">per project</span></p>
-          <p class="price-note">Fixed price within one business day of a short call.</p>
-        </div>
+      <div class="svc">
+        <div class="svc-head"><h3>Systems Integration</h3><p class="price">Quoted <span>per project</span></p></div>
+        <p class="svc-desc">Your tools talking to each other, so the same job stops getting retyped into all of them.</p>
         <ul class="spec">
           <li>Booking, invoicing, and customer records connected</li>
           <li>Leads landing somewhere you'll actually see them</li>
@@ -809,13 +405,11 @@ h2 {
           <li>No more copy-paste between tabs</li>
         </ul>
       </div>
-
     </div>
 
-    <!-- packages-and-pricing.md:246 says "Sell only after 90 days of receptionist
-         data. Don't pitch this on day one." Nobody has ninety days of data, so it
-         was a product nobody could buy. It survives as the deferred line below. -->
-    <p class="section-outro">
+    <!-- packages-and-pricing.md:246: Managed Ads sells only after 90 days of
+         receptionist data. It survives as the deferred line below. -->
+    <p class="outro">
       Once your phone's covered and there's real call data coming in, there's
       more that can be done with it — ads built from who's actually calling you.
       That's a 90-day-later conversation, not a today conversation. Ask me about
@@ -825,35 +419,36 @@ h2 {
 </section>
 
 <!-- ============== WHO RUNS THIS ============== -->
-<section class="about">
-  <div class="container">
-    <h2>I'm Joey. I live in the UP. I built this for businesses like yours.</h2>
+<section class="band">
+  <div class="wrap">
+    <h2>I'm Joey. I live in the U.P. I built this for businesses like yours.</h2>
     <div class="about-body">
       <p>
         I started 906 Digital after watching too many local
         operators lose work to the same few problems: missed calls, stale
         websites, and renting their entire customer base from Facebook.
       </p>
-      <!-- This paragraph used to open "I'm not an agency." That line was the page's
-           trust mechanism and it is deliberately preserved in substance — one person,
-           answers his own phone — while dropping the literal denial, which stopped
-           being true when the site widened on 2026-08-11. Do not replace it with
-           "we" or "our team". There is one person here, and the whole reason this
-           page converts is that a suspicious visitor can verify that in one read. -->
+      <!-- Trust mechanism preserved in substance — one person, reachable
+           directly — without the literal "I'm not an agency" denial retired on
+           2026-08-11. "Answers his own phone" became "answers his own email" on
+           2026-08-28: the page prints no phone number while the demo line is
+           off, and a skeptic could catch the contradiction. "In days" became "in
+           weeks" to match the pricing block. Do not replace with "we" or "our team". -->
       <p>
         You're not hiring an agency floor. You're hiring <strong>one person, in Ironwood,
-        who answers his own phone.</strong> AI is what lets one person deliver in days
-        what used to take a team weeks — that's the entire reason the prices work
-        for UP businesses, and why I'm still here when something breaks.
+        who answers his own email — usually the same day.</strong> AI is what lets one
+        person deliver in weeks what used to take a team months — that's the entire
+        reason the prices work for U.P. businesses, and why I'm still here when
+        something breaks.
       </p>
       <p>If you'd rather work than market yourself, we'll get along.</p>
     </div>
   </div>
 </section>
 
-<!-- ============== FINAL CTA ============== -->
-<section class="final-cta" id="book" tabindex="-1">
-  <div class="container">
+<!-- ============== CONTACT ============== -->
+<section class="band">
+  <div class="wrap">
 
     <!-- ============ DEMO LINE — OFFLINE MODE (currently active) ============
          The demo line (906) 767-6901 is down and answers with a recorded outage
@@ -878,27 +473,26 @@ h2 {
            2. Add the number back as a link directly under the <h3>:
               <a class="demo-line" href="tel:+19067676901"
                  aria-label="Call the AI receptionist demo line at 9 0 6, 7 6 7, 6 9 0 1">(906) 767-6901</a>
-           3. Add .caution-panel .demo-line { font-size: 28px; margin: 6px 0; min-height: 48px; }
+           3. Add .notice .demo-line { font-size: 28px; margin: 6px 0; min-height: 48px; }
            4. Change the <h3> back to "Want to hear it before you decide?"
-           5. Set the DEMO LINE gauge in the six-pack back to a live reading:
-              remove class "is-caution", set the value text to "ON".
+           5. In the facts strip, change the Demo line value to "On — call it"
+              and drop its is-off class so it prints in ink.
          The AI-disclosure sentence is ethically load-bearing. It must travel with
          the digits every single time they appear. Do not ship one without it.
          ====================================================================== -->
-    <div class="caution-panel">
-      <div class="caution-lamp" aria-hidden="true"></div>
-      <div>
-        <h3>There is no phone number on this page</h3>
-        <p>
-          The demo line is off while I sort out billing limits on it, and a number
-          that rings nowhere is worse than no number at all. That's why you won't
-          find one anywhere above. Email me and I'll tell you the day it's back:
-          <a href="mailto:joey@906digital.com?subject=906%20Digital%20-%20hear%20the%20demo%20line">joey@906digital.com</a>.
-        </p>
-      </div>
+    <div class="notice">
+      <h3>I won't publish a number that rings nowhere</h3>
+      <p>
+        The demo line is off while I sort out billing limits on it, so there is
+        no phone number anywhere on this page — on purpose. Email me and I'll
+        tell you the day it's back:
+        <a href="mailto:joey@906digital.com?subject=906%20Digital%20-%20hear%20the%20demo%20line">joey@906digital.com</a>.
+      </p>
     </div>
 
-    <h2>15 minutes. No pressure. We'll figure out if this fits.</h2>
+    <!-- The anchor sits on the heading, not the section: scrollers meet the
+         notice first, but the two contact links land on the invitation. -->
+    <h2 id="book" tabindex="-1">15 minutes. No pressure. Let's figure out if this fits.</h2>
     <p class="cta-lead">
       Leave your name and number. I'll text you back within one business day —
       usually a lot sooner.
@@ -956,7 +550,7 @@ h2 {
                   placeholder="Missing calls, no website, whatever it is."></textarea>
       </div>
 
-      <button type="submit" class="btn btn-primary lead-submit">Send it</button>
+      <button type="submit" class="btn lead-submit">Send it</button>
 
       <p class="form-status" id="lead-status" role="status" aria-live="polite"></p>
       <p class="form-fineprint">No spam, no newsletter. I'll text you back, that's it.
@@ -969,34 +563,23 @@ h2 {
   </div>
 </section>
 
-<!-- ============== FOOTER ============== -->
 </main>
 
+<!-- ============== FOOTER ============== -->
 <footer class="site-footer">
-  <!-- No registry link: the Michigan COFS URL is dead (SSL handshake failure,
-       service retired June 2025) and no replacement has been verified. A dead
-       "look it up" link here inverts the whole point of printing the entity ID.
-       The ID now also appears as a gauge in the hero, at the fold, where the
-       skeptic actually needs it. No address, no hours, no phone. -->
-  <div class="container">
+  <!-- No registry link: the Michigan COFS URL is dead and no replacement has been
+       verified. A dead "look it up" link inverts the point of printing the ID. -->
+  <div class="wrap">
     <div>
-      906 Digital LLC · Ironwood, Michigan
-      <span class="placard entity-label">Registered in Michigan — entity number</span>
+      906 Digital LLC · Ironwood, Michigan<br>
+      Registered in Michigan — entity number
       <span class="entity">900169562</span>
       <a href="mailto:joey@906digital.com">joey@906digital.com</a><br>
       © <span id="year"></span>
     </div>
-    <!-- Link to the B2B advisory page lives in the footer, deliberately. It sits
-         after the conversion point so it cannot pull a trades visitor out of the
-         funnel, and it gives Joey a path to send B2B prospects who land here
-         first. Do not promote it into the header or the offer grid. -->
+    <!-- The B2B advisory link stays in the footer, after the conversion point. -->
     <div>
-      <a href="/advisory">Technical advisory for B2B teams
-        <svg width="15" height="10" viewBox="0 0 15 10" aria-hidden="true" focusable="false"
-             style="display:inline-block;vertical-align:-1px;margin-left:5px">
-          <path d="M0 5h12M9 1.5 12.5 5 9 8.5" fill="none" stroke="currentColor"
-                stroke-width="1.5" stroke-linecap="square"/>
-        </svg></a>
+      <a href="/advisory">Technical advisory for B2B teams<svg width="15" height="10" viewBox="0 0 15 10" aria-hidden="true" focusable="false"><path d="M0 5h12M9 1.5 12.5 5 9 8.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg></a>
     </div>
   </div>
 </footer>

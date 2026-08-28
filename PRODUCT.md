@@ -62,7 +62,7 @@ pricing possible, and it is stated plainly rather than implied.
 
 **Local, specifically.** Ironwood, Michigan — named, not gestured at. A national
 competitor can copy the services; it cannot truthfully copy being in Ironwood and
-answering its own phone.
+answering its own email the same day.
 
 **Payment on delivery** (advisory) is a real commercial commitment, not a
 marketing line.
@@ -111,15 +111,13 @@ deferred "ask me in 90 days" line.
 
 - No build step, no framework, no dependencies, no package manager. Markup, CSS,
   and JS live inline in each HTML file.
-- **No web fonts.** The stack starts with `'Inter'` so it is used where already
-  installed, then falls back to system fonts. Nothing is downloaded. A font
-  request is the single easiest way to undo the page's load time (~0.13–0.16s).
+- **No web fonts.** The stack is the platform's own UI face; nothing is
+  downloaded. A font request is the single easiest way to undo the page's load
+  time (~0.13–0.16s).
 - Exactly three external requests, by design: the Web3Forms lead POST on submit,
   the Cloudflare analytics beacon, and outbound profile links on `advisory.html`.
-- `--copper` is split into three roles because one value cannot meet WCAG AA on
-  both light and dark backgrounds. `--copper` is non-text only; `--copper-dark`
-  is text on light; `--copper-lite` is text on dark. Two contrast regressions
-  have already been caused by ignoring this.
+- Colour roles are documented in `DESIGN.md` and enforced by computed contrast,
+  not by eye. Four contrast regressions have been caused by ignoring this.
 - Sections are marked with banner comments. Search for those, not line numbers.
 
 ## Brand Commitments
@@ -130,7 +128,7 @@ that in one read.
 
 The literal denial "I'm not an agency" was retired on `index.html` when the
 offering widened — it stopped being the right sentence — but its substance is
-preserved: one person, in Ironwood, who answers his own phone. Do not restore the
+preserved: one person, in Ironwood, who answers his own email. Do not restore the
 denial and do not drop the substance.
 
 **Concrete over abstract.** The problem headline is "Stop losing work while
@@ -153,21 +151,17 @@ most of it in B2B SaaS and marketing technology. Every line in the advisory
 background section traces to a specific employer, role, and date. The companies
 listed were employers, not clients, and the page says so.
 
+**Present:** a real photograph of Joey exists and ships in the hero (`joey.webp`, from
+`joey-headshot-2025-09-30.jpg`, landed 2026-08-28). It is the only permitted
+imagery of a person: never an illustration, monogram, avatar, silhouette, stock
+photo, or AI-generated image. `og:image` is a crop of the same photograph.
+
 **Deliberately absent — do not fabricate:**
 
 - **No testimonials, no case studies, no client logos, no ratings, no reviews.**
   There are zero paying clients. The advisory page replaces the testimonial block
   a page like this would normally carry with employment history precisely because
   the testimonials do not exist.
-- **No `og:image`.** No share image asset exists. Referencing a missing file is
-  worse than omitting the tag.
-- **No hero photograph.** The photo slot in `index.html` is intentionally empty
-  and must not be filled with an illustration, monogram, avatar, silhouette,
-  stock photo, or AI-generated image. A placeholder person is a fabricated
-  person. *(Status 2026-08-27: a real photo is reported to exist but its path is
-  not yet confirmed. The slot stays empty until the actual file is in hand. When
-  it lands: 4:3, explicit width/height to prevent layout shift, and consider
-  reusing it as `og:image`.)*
 - **No published phone number** while the demo line is off.
 - **No street address, hours, or price in the JSON-LD** — only verified facts.
 

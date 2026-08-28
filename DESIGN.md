@@ -1,411 +1,360 @@
 ---
 name: 906 Digital
-description: A night instrument panel — a matte panel, brushed placard plates, and one equipment data plate carrying six checkable truths about a one-person business.
+description: A modern, warm, high-trust page built around one real photograph — off-white ground, warm ink, one sage accent taken from the shirt in the portrait.
 colors:
-  panel: "#14181B"
-  face: "#0B0E10"
-  deep-cut: "#05080A"
-  lume: "#ECEFF1"
-  lume-dim: "#9BA5AB"
-  radium: "#7FD4A2"
-  caution: "#E0A21A"
-  plate: "#C9CFD2"
-  plate-shade: "#B8BFC3"
-  plate-ink: "#0B0E10"
-  hair: "#2A3238"
-  hair-2: "#39434A"
-  entry-green: "#1F6B45"
-  entry-green-ring: "rgba(31,107,69,.2)"
-  placeholder: "#7F8A90"
+  bg: "#FCFBF9"
+  surface: "#F3F4F0"
+  sage-soft: "#E8EEE8"
+  ink: "#1C1917"
+  ink-2: "#4A453F"
+  hair: "#E6E2DB"
+  sage: "#4F6B56"
+  sage-deep: "#435C4A"
+  paper-white: "#FFFFFF"
+  field-border: "#CFC9C0"
+  placeholder: "#6B655D"
+  error-border: "#B8321E"
+  error-text: "#A12A18"
+  scrollbar-thumb: "#B8B2A8"
+  header-veil: "rgba(252,251,249,.92)"
 typography:
+  scale:
+    small-print: "14px"
+    control: "16px"
+    prose: "17px"
+    lede: "20px"
+    title: "22px"
+    entity: "24px"
   display:
-    fontFamily: "Inter, -apple-system, BlinkMacSystemFont, system-ui, sans-serif"
-    fontSize: "clamp(38px, 5.4vw, 68px)"
-    fontWeight: 800
-    lineHeight: 1.03
-    letterSpacing: "-0.035em"
-    fontFeature: "tabular-nums"
+    fontFamily: "-apple-system, BlinkMacSystemFont, Segoe UI, system-ui, Helvetica Neue, Arial, sans-serif"
+    fontSize: "clamp(30px, 4vw, 50px)"
+    fontWeight: 700
+    lineHeight: 1.08
+    letterSpacing: "-0.02em"
   headline:
-    fontFamily: "Inter, -apple-system, BlinkMacSystemFont, system-ui, sans-serif"
-    fontSize: "clamp(28px, 3.5vw, 42px)"
-    fontWeight: 800
-    lineHeight: 1.1
-    letterSpacing: "-0.022em"
-    fontFeature: "tabular-nums"
+    fontFamily: "-apple-system, BlinkMacSystemFont, Segoe UI, system-ui, Helvetica Neue, Arial, sans-serif"
+    fontSize: "clamp(28px, 3.2vw, 38px)"
+    fontWeight: 700
+    lineHeight: 1.12
+    letterSpacing: "-0.02em"
   title:
     fontSize: "22px"
-    fontWeight: 800
-    letterSpacing: "-0.022em"
+    fontWeight: 700
+    lineHeight: 1.3
+    letterSpacing: "-0.02em"
   entity:
-    fontSize: "25px"
+    fontSize: "24px"
     fontWeight: 800
-    letterSpacing: "0.005em"
+    letterSpacing: "-0.01em"
     fontFeature: "tabular-nums"
   price:
-    fontSize: "25px"
-    fontWeight: 800
-    letterSpacing: "-0.03em"
+    fontSize: "20px"
+    fontWeight: 700
+    letterSpacing: "-0.01em"
     fontFeature: "tabular-nums"
-  readout:
-    fontSize: "19px"
-    fontWeight: 800
-    letterSpacing: "0.01em"
-    fontFeature: "tabular-nums"
-  spec-value:
-    fontSize: "17px"
-    fontWeight: 600
-    fontFeature: "tabular-nums"
+  lede:
+    fontSize: "20px"
+    fontWeight: 400
+    lineHeight: 1.6
   body:
-    fontFamily: "Inter, -apple-system, BlinkMacSystemFont, system-ui, sans-serif"
+    fontFamily: "-apple-system, BlinkMacSystemFont, Segoe UI, system-ui, Helvetica Neue, Arial, sans-serif"
     fontSize: "17px"
     fontWeight: 400
-    lineHeight: 1.62
-  lead:
-    fontSize: "18px"
-    fontWeight: 400
-    lineHeight: 1.62
-  action:
-    fontSize: "13px"
-    fontWeight: 700
-    letterSpacing: "0.13em"
-  action-sm:
-    fontSize: "12px"
-    fontWeight: 700
-    letterSpacing: "0.14em"
-  placard:
-    fontSize: "11px"
-    fontWeight: 700
-    letterSpacing: "0.19em"
-    fontFeature: "tabular-nums"
-  # Supporting steps, recorded as built. The 13.5-16px cluster is drift, not a
-  # system: six near-duplicate steps authored per component. See the prose note
-  # under Typography > Hierarchy for the consolidation this needs.
-  supporting-lg:
+    lineHeight: 1.6
+  label:
     fontSize: "16px"
-    fontWeight: 400
-  supporting:
-    fontSize: "15.5px"
-    fontWeight: 400
-  supporting-sm:
-    fontSize: "15px"
-    fontWeight: 400
-  spec:
-    fontSize: "14.5px"
-    fontWeight: 400
-  fine:
+    fontWeight: 600
+    lineHeight: 1.4
+  fineprint:
     fontSize: "14px"
     fontWeight: 400
-  fineprint:
-    fontSize: "13.5px"
-    fontWeight: 400
+    lineHeight: 1.5
 rounded:
-  machined: "3px"
-  lamp: "50%"
+  md: "12px"
+  dash: "1px"
+  pill: "999px"
 spacing:
-  gutter: "28px"
-  row: "16px"
-  item: "22px"
-  gutter-wide: "26px"
-  block: "34px"
-  group: "44px"
-  section: "88px"
-  section-compact: "62px"
+  gutter: "24px"
+  field: "18px"
+  row: "26px"
+  stack: "36px"
+  group: "64px"
+  band: "72px"
+  band-wide: "88px"
 components:
   button-primary:
-    backgroundColor: "{colors.radium}"
-    textColor: "{colors.face}"
-    typography: "{typography.action}"
-    rounded: "0"
-    padding: "15px 30px"
-    height: "48px"
+    backgroundColor: "{colors.sage}"
+    textColor: "{colors.paper-white}"
+    typography: "{typography.label}"
+    rounded: "{rounded.md}"
+    padding: "0 26px"
+    height: "50px"
   button-primary-hover:
-    backgroundColor: "{colors.lume}"
-    textColor: "{colors.face}"
+    backgroundColor: "{colors.sage-deep}"
+    textColor: "{colors.paper-white}"
   button-link:
-    backgroundColor: "transparent"
-    textColor: "{colors.lume-dim}"
-    padding: "0"
-  button-link-hover:
-    textColor: "{colors.lume}"
+    textColor: "{colors.sage}"
+    typography: "{typography.label}"
   nav-cta:
-    backgroundColor: "transparent"
-    textColor: "{colors.radium}"
-    typography: "{typography.action-sm}"
-    rounded: "0"
-    padding: "10px 18px"
-    height: "44px"
-  nav-cta-hover:
-    backgroundColor: "{colors.radium}"
-    textColor: "{colors.face}"
-  data-plate:
-    backgroundColor: "{colors.face}"
-    textColor: "{colors.lume}"
-    rounded: "{rounded.machined}"
-    padding: "4px 26px 8px"
-  data-plate-row:
-    backgroundColor: "transparent"
-    textColor: "{colors.lume}"
-    typography: "{typography.spec-value}"
-    padding: "16px 0"
-  data-plate-row-caution:
-    textColor: "{colors.caution}"
-  hero-photo:
-    rounded: "{rounded.machined}"
-    width: "800px"
-    height: "980px"
-  placard-plate:
-    backgroundColor: "{colors.plate}"
-    textColor: "{colors.plate-ink}"
-    rounded: "{rounded.machined}"
-    padding: "30px 32px"
-  annunciator-cell:
-    backgroundColor: "{colors.face}"
-    textColor: "{colors.lume}"
-    rounded: "0"
-    padding: "30px 28px"
-  caution-panel:
-    backgroundColor: "{colors.face}"
-    textColor: "{colors.lume-dim}"
-    rounded: "{rounded.machined}"
-    padding: "28px 30px"
-  input-readout:
-    backgroundColor: "{colors.face}"
-    textColor: "{colors.lume}"
-    typography: "{typography.supporting-lg}"
-    rounded: "{rounded.machined}"
-    padding: "14px 16px"
-  entry-lamp:
-    backgroundColor: "{colors.entry-green}"
-    rounded: "{rounded.lamp}"
-    size: "11px"
-  row-lamp:
-    backgroundColor: "{colors.caution}"
-    rounded: "{rounded.lamp}"
-    size: "9px"
-  warn-lamp:
-    backgroundColor: "{colors.face}"
-    rounded: "{rounded.lamp}"
-    size: "13px"
-  caution-lamp:
-    backgroundColor: "{colors.caution}"
-    rounded: "{rounded.lamp}"
-    size: "15px"
+    textColor: "{colors.ink}"
+    typography: "{typography.label}"
+    rounded: "{rounded.pill}"
+    padding: "0 18px"
+    height: "42px"
+  input:
+    backgroundColor: "{colors.paper-white}"
+    textColor: "{colors.ink}"
+    typography: "{typography.label}"
+    rounded: "{rounded.md}"
+    padding: "13px 14px"
+    width: "100%"
+  callout-reply:
+    backgroundColor: "{colors.sage-soft}"
+    textColor: "{colors.ink}"
+    typography: "{typography.body}"
+    rounded: "{rounded.md}"
+    padding: "16px 18px"
+  notice:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.ink}"
+    typography: "{typography.body}"
+    rounded: "{rounded.md}"
+    padding: "20px 22px"
+    width: "620px"
+  start-pill:
+    backgroundColor: "{colors.sage-soft}"
+    textColor: "{colors.sage}"
+    typography: "{typography.fineprint}"
+    rounded: "{rounded.pill}"
+    padding: "4px 11px"
 ---
 
 # Design System: 906 Digital
 
 ## Overview
 
-**Creative North Star: "The Night Instrument Panel"**
+**Creative North Star: "The Photograph and Five Facts"**
 
-The page is a matte instrument panel photographed at night. Its argument is not made in adjectives — it is made in hardware. A photograph of the person establishes who; directly beneath it an **equipment data plate** carries six facts a suspicious visitor can check on their own: the town, the size of the crew, the reply time, the registered entity number, the number of web fonts downloaded, and whether the demo line is answering. Colour is confined to lamps, links, and the action. The reading field stays luminous white on panel and is never tinted. Where a normal landing page would put a badge, a gradient, or a testimonial, this one puts a stamped label and a value and lets the visitor read it.
+There is no metaphor here, and the absence is the decision. The owner chose this
+direction himself on 2026-08-28 after two costumed worlds were built and rolled
+back — a dark "night instrument panel" that read cold and coded to tech, and a
+"hometown newspaper" that read cheap. The brief in his words: *modern, authentic,
+very trustable — built around the photograph.* The page's whole job is to move a
+visitor from "is this a scam?" to "this is a real guy in Ironwood," and it does
+that with a real face, a real name, a checkable registration number, and plain
+copy. Nothing on the page is dressed as anything.
 
-The material vocabulary is narrow and physical: a matte panel ground (`#14181B`), instrument faces cut deeper than the panel (`#0B0E10`), brushed placard plates in light metal that carry dark text, hairline rule work, and machined 3px edges — panels are *cut*, not rounded. Depth comes from the physics of a real panel: an engraved text-shadow whose direction changes with the ground it sits on, a hard 1px top highlight and a long soft drop under raised surfaces, four corner fasteners painted into the data plate where a real panel carries screws. Nothing is drawn as an illustration; the only vector on the page is the footer's stroked arrow.
+The palette is sampled from the portrait rather than picked from a theory: the
+off-white of the tee became the ground, the warm near-black of the beard became
+the ink, and the sage of the work shirt became the single accent. The result is
+warm and quiet at rest. Every surface is flat, every divider is a hairline, and
+the one saturated colour appears only where the reader is meant to act or to
+recognise the author's own voice. Density is generous — 72–88px between bands,
+a 54ch measure on every paragraph — because the reader is skimming for evidence
+on a phone, possibly on rural signal, not settling in to read.
 
-An earlier build put those same six facts on a **six-gauge instrument cluster** — compass card, graduated arcs, drum counter, annunciator plate, needles and dashed tick rings, and a damped needle settle. It was removed on 2026-08-28. The dials read as clocks, and a needle pointing at "1" on a 0–4 arc is precision about nothing: there is no scale, nobody measures a crew of one against a maximum of four, and it forced a visitor to *decode* a fact they should simply be able to *read*. The data plate is the same six facts in the same world, read instead of decoded. **Do not reintroduce dials, needles, tick rings, or any drawn gauge to carry a fact that is a label and a value.**
-
-This world is a deliberate refusal of what the page used to be — cream ground, sans display type, a pricing grid with a featured tier. It is also budget-constrained on purpose: **no web font is downloaded, ever**. The display voice is built from weight, tracking, tabular numerals, and engraving instead of from a sourced face. That is a pinned product constraint, and it outranks the general craft rule that a display world should ship a display face. The deviation is recorded in a comment in `<head>` and must not be "fixed" by adding a font link.
-
-Scope note: this system describes `index.html`. `advisory.html` still runs the project's older copper-and-birch light system and has not been converted; do not mix the two palettes on one page.
+Finish comes from restraint held consistently rather than from effects. There are
+no shadows anywhere in the stylesheet, no transitions, no transforms, no
+keyframes, and no downloaded font. The page is one radius, one accent, one
+hairline, one surface tint, and a type ramp with three body tiers. The photograph
+is the only image, and it is the only place the page raises its voice.
 
 **Key Characteristics:**
-- Panel realism from material, not from drawing: fasteners, hairlines, bezels, engraving, lamps
-- Facts are stamped as label/value rows, never plotted on a scale
-- Colour only on lamps, links, and the action — never on the reading field
-- Amber means exactly one thing, everywhere on the page
-- Machined 3px corners; circles reserved for lamps
-- Zero downloaded fonts; display voice from weight, tracking, and engraving
-- Every numeral is a tabular readout
-- No authored motion at all
+- Off-white warm ground (#FCFBF9), never pure white as a page colour
+- One sage accent (#4F6B56) with exactly one meaning: *this is mine, or act here*
+- Platform UI type stack, nothing downloaded, no web font ever
+- Flat by construction: zero `box-shadow` declarations in the file
+- Motionless: no transition, animation, or transform; only smooth scroll, disabled under `prefers-reduced-motion`
+- Hairlines divide; they never colour text
+- Contrast verified by computation, not by eye
 
 ## Colors
 
-A near-monochrome night panel with two signal colours that are rationed to the point of being a language.
+A warm, low-chroma neutral field sampled from a single photograph, carrying one
+desaturated forest-sage accent and nothing else.
 
 ### Primary
-- **Radium Green** (`#7FD4A2`): the live-signal colour. With the needles gone it now marks lit lamps, every link on the panel ground, the primary button fill, the header CTA outline, the lit rule above the hero reply prompt, the entry-plate ring, the focus ring, the caret, and the selection background. 10.5:1 on panel. It carries no other job — it is not a decorative accent and it never becomes a background wash.
-
-### Secondary
-- **Caution Amber** (`#E0A21A`): means one thing and one thing only — *a system of this business that is currently off*. It appears in exactly two places: the demo-line row on the data plate (its value text plus a small lit 9px lamp beside the label), and the caution panel above the lead form. It is also borrowed by the form's invalid-field border and error status, which are the same statement (something here is not working) rather than a new one. 7.8:1 on panel.
+- **Work-Shirt Sage** (#4F6B56): the only accent, and it has one job — marking what belongs to Joey or what the reader should press. It appears on the primary button, on links, on the word "Digital" in the logo, on the headline phrase *"from Ironwood."*, on the "Off right now" demo-line value, on the "Most people start here" pill text, on the 8×2px dash before every spec line, on focus rings, on the text selection highlight, and as `accent-color` / `caret-color`. It clears 5.69:1 as text on the ground and carries white at 5.88:1.
+- **Sage Deep** (#435C4A): the button's hover state only. White on it is 7.32:1, so the hover is a step *up* in contrast, never a fade.
+- **Sage Wash** (#E8EEE8): the one tinted surface. It carries the reply callout in the hero and the "start here" pill. Ink on it computes 14.85:1; sage text on it computes 4.99:1.
 
 ### Neutral
-- **Lume** (`#ECEFF1`): luminous markings — primary ink for all body copy, headings, and data-plate values. 15.9:1 on panel.
-- **Dim Lume** (`#9BA5AB`): secondary markings — lead paragraphs, section intros, data-plate labels, placard lettering, form labels, footer text, unlit lamp rings. 7.0:1 on panel.
-- **Panel** (`#14181B`): the matte panel ground; the page background.
-- **Face** (`#0B0E10`): surfaces cut deeper than the panel. Used for the data plate, annunciator cells, the caution panel, form inputs, the sticky header (at 92% with an 8px blur), and the footer.
-- **Raised Placard Body** (`#191F23`): the panel's raised-but-still-dark surface. Declared in `:root` and currently unreferenced — kept as a reserved step, not evidence of a pattern.
-- **Deep Cut** (`#05080A`): the deepest cut on the page, now used only for the shadow ring inside each of the data plate's four fasteners. A literal in the build, not a custom property.
-- **Brushed Plate** (`#C9CFD2`) and **Plate Shade** (`#B8BFC3`): the light metal placard, drawn as a top-to-bottom gradient between them. The only light surfaces on the page.
-- **Plate Ink** (`#0B0E10`): text on the brushed plate. 13.4:1 on plate. Supporting copy on plates is the same ink at 66–80% alpha rather than a separate grey token.
-- **Entry Green** (`#1F6B45`, with `rgba(31,107,69,.2)` as its glow ring): the lit lamp marking the entry-point plate. A *separate* green from radium on purpose — radium is calibrated for the dark panel and fails contrast on the light brushed plate, so the plate gets its own darker green. The entry marker is a lamp only; it carries no text.
-- **Placeholder Grey** (`#7F8A90`): input placeholder text on the face-coloured inputs. 5.3:1 on face — chosen by measurement, because the first value used was 4.29:1 and failed.
-- **Hairline** (`#2A3238`) and **Bright Hairline** (`#39434A`): all rule work. The dim hairline draws section dividers, the data plate's border and its row separators, and the annunciator's gutter; the bright one draws input borders, the photograph's mount, the scrollbar thumb, the caution panel's border, the fastener heads, and the hero's mounting seam.
+- **Warm Paper** (#FCFBF9): the page ground. Warmer than white, cleaner than cream. The sticky header floats a 92%-opaque veil of this same colour over blurred content.
+- **Quiet Surface** (#F3F4F0): a single untinted panel colour, used once — the demo-line notice above the contact form.
+- **Beard Ink** (#1C1917): all primary text, the logo, the skip link's ground, the emphasis inside body copy, and the single full-strength rule under each service group title. 16.91:1 on the ground.
+- **Second Ink** (#4A453F): secondary copy — ledes, section intros, service descriptions, fineprint, footer, facts labels. 9.17:1 on the ground, so "secondary" never means "faint."
+- **Hairline** (#E6E2DB): dividers only — header underline, band separators, facts rows, service rows, footer top edge, and the resting nav-pill border.
+- **Field Edge** (#CFC9C0) and **Placeholder** (#6B655D): input chrome. Placeholders sit at 5.76:1 on white, above AA for body text rather than at the customary grey.
+- **Scrollbar Thumb** (#B8B2A8): the thin scrollbar, tinted warm so the chrome matches the page.
+
+### Tertiary
+- **Alert Red** (#A12A18) for form error text (7.10:1 on the ground) and **Error Edge** (#B8321E) for the invalid input border. These are the only hues on the page besides sage, they only ever appear in response to a failed submit, and they never decorate.
 
 ### Named Rules
-**The Two Lamps Rule.** Radium means live; amber means off. Amber is never borrowed for the visitor's own problems, for emphasis, for a highlight, or for a warning about anything outside this business's own systems. The annunciator cells describing the visitor's leaks use a deliberately *unlit* lamp — a face-filled disc with a 2px dim-lume ring — precisely because lighting them amber would spend the page's one reserved word on someone else's problem.
+**The One Job Rule.** Sage means *mine, or press here.* If a new element is neither authored-by-Joey nor an action, it is ink or ink-2. Never introduce a second accent, and never use sage to add interest to a heading, a rule, an icon, or a background panel.
 
-**The Uncoloured Field Rule.** The reading field is never tinted. Body copy, headings, and data-plate values are lume or dim-lume on panel; no paragraph, card, row, or section ever takes a coloured background, gradient wash, or tinted text treatment. The one exception is the single caution row, and that is the whole point of it.
+**The No-Pure-White-Ground Rule.** #FFFFFF is legal in exactly two places: inside a form field, and as text on sage. The page's ground is #FCFBF9, and a white block dropped onto it reads as a foreign element.
 
-**The Ratio-On-Record Rule.** Every colour used for text carries its computed contrast against the surface it sits on, recorded in the stylesheet beside the token. New colours are verified by computation before they ship, not by eye.
+**The Computed Contrast Rule.** No colour pairing ships on the strength of how it looks. Compute the ratio; body text stays at or above 7:1, and nothing on this page has ever been allowed to sit merely at 4.5:1 by accident. Four contrast regressions here were caused by skipping this step.
 
 ## Typography
 
-**Display Font:** none downloaded. `Inter` is named first so it renders for visitors who already have it, then the platform UI stack (`-apple-system`, `BlinkMacSystemFont`, `system-ui`, `sans-serif`).
-**Body Font:** the same stack. There is one family on the page.
+**Display Font:** the platform's own UI face — `-apple-system` / `BlinkMacSystemFont` / `Segoe UI` / `system-ui`, falling back to Helvetica Neue and Arial
+**Body Font:** the same stack. There is exactly one family on the page.
+**Label/Mono Font:** none. Numbers get `font-variant-numeric: tabular-nums` instead of a second family.
 
-**Character:** The display voice is *constructed*, not sourced. It comes from four devices used together: heavy weight (800), tight negative tracking (-0.022em on all headings, -0.035em on the h1), tabular numerals everywhere, and an engraved text-shadow that reads as lettering cut into the panel rather than printed on it. Against that, the label voice runs the opposite direction — 11–13px, weight 700, uppercase, wide 0.13–0.22em tracking — which is exactly how real placard lettering behaves next to instrument numerals. The gap between those two settings does the work a second typeface would normally do.
+**Character:** neutral, native, and completely undecorated. Because the face is whatever the reader's own device uses, the page looks like it belongs to their phone rather than to a template — which is precisely the trust argument the copy is making. Headings are tight (700 weight, −0.02em, `text-wrap: balance`); body copy is unstyled and generously leaded at 1.6.
 
 ### Hierarchy
-- **Display** (800, `clamp(38px, 5.4vw, 68px)`, 1.03, -0.035em, `max-width: 15ch`): the h1 only. One phrase inside it — the town — is promoted to its own line in radium (`h1 em`, `font-style: normal`), because that is the single fact that clears the scam question.
-- **Headline** (800, `clamp(28px, 3.5vw, 42px)`, 1.1, `max-width: 20ch`): section h2.
-- **Title** (800, 22px on plates; 700, 18–19px in annunciator cells and the caution panel): component headings.
-- **Entity** (800, 25px, +0.005em, tabular): the Michigan entity number on the data plate — the one row given display size, because it is the one fact a scam cannot produce. Prices are the same size in the opposite direction (800, 25px, -0.03em): a number to read fast, not a number to verify.
-- **Readout** (800, 19px, +0.01em, tabular): the footer's entity number — the plate voice reused outside the plate.
-- **Spec value** (600, 17px, tabular, right-aligned): every other data-plate value.
-- **Body** (400, 17px, 1.62): all running copy. Measures are capped per role: 56ch lead, 62ch section intro and about copy, 68ch section outro, 46ch annunciator copy and hero reply, 40ch plate description.
-- **Lead** (400, 18px, dim lume): the hero paragraph and section intros.
-- **Action** (700, 13px, 0.13em, uppercase): buttons. The header CTA is 12px/0.14em; the logo wordmark 11px/0.22em.
-- **Placard** (700, 11px, 0.17–0.19em, uppercase, dim lume): plate designations, data-plate labels, and form labels. The data-plate label sits at 0.17em; the shared `.placard` class at 0.19em.
-- **Supporting** (400, 13.5–16px): the sizes that carry secondary copy — 16px hero reply and inputs, 15.5px annunciator and caution copy and the alt-contact line, 15px plate descriptions and form status, 14.5px plate spec items, 14px footer, 13.5px price notes and form fineprint.
-
-  **These six near-duplicate steps between 13.5px and 16px are drift, not a system.** They were authored per-component rather than from a ramp, and 13.5/14/14.5/15/15.5/16 are not meaningfully distinguishable to a reader. A future pass should collapse them to two steps (15px supporting, 13.5px fine print) and re-verify contrast at the new sizes. Recorded here as what is built, flagged as what should change.
+- **Display / h1** (700, `clamp(30px, 4vw, 50px)`, 1.08, max 27ch): one per page, the hero headline. The final phrase is wrapped in `<em>` that is un-italicised and coloured sage.
+- **Headline / h2** (700, `clamp(28px, 3.2vw, 38px)`, 1.12, max 22ch): one per band. Never preceded by a kicker.
+- **Title / h3** (700, 22px): leak titles and service names. The notice's h3 drops to 20px because it sits inside a panel.
+- **Entity** (800, 24px, −0.01em, tabular): the Michigan LLC number in the facts strip — the single largest non-heading text on the page, because it is the fact most worth checking. The footer repeats it at 17px/700.
+- **Price** (700, 20px, tabular, `white-space: nowrap`) with its unit in a 14px/500 ink-2 span.
+- **Lede** (400, 20px at ≥720px, 17px below): the hero paragraph only.
+- **Body / prose** (400, 17px, 1.6, max 54ch): every paragraph.
+- **Control** (600, 16px): nav link, buttons, form labels, form status.
+- **Small print** (400–600, 14px): fineprint, footer, facts labels, price units, the "start here" pill.
 
 ### Named Rules
-**The No Downloaded Face Rule.** No `@font-face`, no font CDN link, no `<link rel="preconnect">` to a font host — ever. If the display voice needs more force, it comes from weight, tracking, size, or engraving. This is the page's performance thesis and it is also one of the six facts stamped on the data plate: *Web fonts loaded — None*. Adding a font makes the page lie about itself.
+**The Three-Tier Rule.** Prose is 17px, controls are 16px, small print is 14px — always, everywhere, no exceptions and no fourth tier. Everything larger is a heading or a number, and headings own 20/22/24 and the two clamps. A new size is a design-system change, not a component decision.
 
-**The No Kicker Rule.** Nothing goes above a heading. No eyebrow, no tracked category line, no badge, no "START HERE" label. Kickers have been built and removed here more than once; the entry-point plate is marked by a lit lamp with screen-reader-only text ("Most people start here.") for exactly this reason. Placard lettering is for plate *designations*, data-plate labels, and form labels — never for a line stacked above an `<h2>` or `<h3>`.
+**The No-Kicker Rule.** Nothing is set above a heading — no eyebrow, no label, no all-caps category line, no numeral. Headings open their own sections. The only text that sits above an h2 anywhere on this page is the notice panel, which is a component, not a label.
 
-**The Tabular Numeral Rule.** `font-variant-numeric: tabular-nums` on every heading, every numeral class, and every data-plate value. Every number on this page is an instrument readout and must align like one.
+**The Measure Rule.** Every run of prose is capped at `--measure` (54ch). Headings get their own tighter caps (27ch for h1, 22ch for h2) so a long line breaks where the writer would break it.
 
 ## Layout
 
-A single centred column, 1140px maximum, with 28px side gutters — the panel is one continuous surface rather than a set of floating cards.
+A single centred column of `--container` (1120px) with a 24px gutter, sectioned
+into bands. Bands are 72px tall in padding, rising to 88px at ≥980px, and each
+band after the first is separated from the previous one by a single hairline —
+there is no alternating background, no card, and no container-within-container.
 
-**Vertical rhythm.** Sections run 88px of top and bottom padding (the final CTA takes 96px at the bottom) and are separated by a 1px dim hairline; below 720px that collapses to 62px. Inside a section the rhythm is consistent: heading, 20px to the intro paragraph, 44px to the main content block (the form is 40px), 34px to the closing paragraph. Component internals sit on a tighter step: 34px hero block spacing, 22px between form fields, 16px above and below each data-plate row, 14–16px between plates.
+Three breakpoints do all the responsive work:
 
-**Breakpoints.** Two, both min-width, plus one compaction rule:
-- **≥720px** — the annunciator goes two-up.
-- **≥980px** — the hero becomes a two-column grid (`1.14fr .86fr`, 54px column gap), copy left and media right, vertically centred.
-- **≤719px** — plates go single-column, hero padding drops to 44px/52px, sections to 62px.
+- **Base (single column).** Everything stacks. The facts strip is one column of full-width rows. The portrait is capped at 520px so it never dominates a phone screen. The lede is 17px.
+- **≥720px.** The facts strip becomes three columns; leaks become two; the spec list inside a service becomes two columns; each service row splits into `minmax(0, 1.1fr) / minmax(0, .9fr)` with the copy stack in column one and the spec list spanning four rows in column two; the lede grows to 20px.
+- **≥980px.** The hero becomes `1.05fr .95fr` with a 64px gap — copy left, portrait right, vertically centred — and the portrait's max-width cap is released. The facts strip opens to all five columns. Bands grow to 88px.
 
-**The hero's two-mode wrapper is load-bearing.** `.hero-copy` is a real box only at ≥980px (`display: block`), where the copy must be **one grid cell** beside the media column. While it was permanently dissolved, the media spanned four rows and its height was shared out between the paragraphs, opening a dead gap after every one of them. Below 980px the wrapper becomes `display: contents` so its children join the hero's flex column and can be interleaved with the media by explicit `order`: **headline (1), lead (2), CTA row (3), media — photograph + data plate (4), reply prompt (5).**
+The sticky header is 68px tall and the document carries `scroll-padding-top: 84px`
+so an anchor jump clears it. The contact anchor (`#book`) sits on the heading, not
+on the section, so both contact links land on the invitation rather than on the
+notice above it.
 
-That order satisfies two requirements an earlier pass traded against each other: the primary action stays inside the first viewport, *and* the top of the media column sits directly beneath it, still above the fold. Putting the media before the lead pushed the button to roughly y=1230. Do not reorder, and do not remove the `display: contents` / `display: block` switch — either half alone reintroduces one of the two failures.
+**Vertical rhythm:** 18px between form fields, 26px inside a service row, 36px for
+a standard stack (hero gap, leaks grid, group start), 64px between the two service
+groups, 44px above the facts strip and below the notice.
 
 ### Named Rules
-**The Rank Cannot Orphan Rule.** Repeating elements are laid out as a rank with a fixed column count, not an auto-fit grid. The five service plates are a single-column rank precisely because a 3-column auto-fit resolved to 3+2 and left an empty slot on the page's most important section.
+**The One Column Rule.** The page is a single column that occasionally splits in two. It never nests a grid inside a grid, and it never uses a third column at any width except the facts strip, whose five cells are five short facts and nothing else.
 
 ## Elevation & Depth
 
-Depth here is physical and directional, not a generic drop shadow. Every raised surface gets the same two-part treatment: a 1px hard highlight on its top lip (light from above) plus a long, soft, dark drop beneath it. Face-coloured surfaces go the other way — they are *cut into* the panel, so they get a dark fill and a hairline stroke instead of a shadow. Lamps glow with concentric rgba rings.
+**This system has no shadows at all.** `grep box-shadow` over the artifact returns
+nothing, and that is a load-bearing property rather than an oversight. Depth is
+communicated three ways and only three ways: a tint (`--surface` or `--sage-soft`
+behind a panel), a hairline (`--hair` between bands and rows), and whitespace.
+The sticky header is the only element that layers over content, and it does so
+with a 92%-opaque veil of the page's own ground plus a 10px backdrop blur — a
+translucency, not a lift.
 
-### Shadow Vocabulary
-- **Panel** (`box-shadow: 0 1px 0 rgba(255,255,255,.04), 0 18px 40px rgba(0,0,0,.55)`): the hero photograph and the data plate beneath it — the two mounted objects in the hero. The deepest lift on the page.
-- **Plate** (`box-shadow: 0 1px 0 rgba(255,255,255,.14), 0 10px 22px rgba(0,0,0,.45)`): brushed placard plates. Brighter top lip because light metal catches more.
-- **Entry ring** (`var(--shadow-plate), 0 0 0 2px var(--radium)`): the one plate that is the recommended entry point. A ring, not a raise — its elevation is identical to its siblings.
-- **Focus glow on inputs** (`0 0 0 3px rgba(127,212,162,.16)` with a radium border): a lamp coming up behind the readout.
-- **Row lamp** (`0 0 10px rgba(224,162,26,.5)`): the 9px amber lamp on the data plate's caution row.
-- **Caution lamp glow** (`0 0 0 4px rgba(224,162,26,.13), 0 0 16px rgba(224,162,26,.5)`): the strongest glow on the page, on the 15px lamp of the caution panel.
-- **Fasteners**: four `radial-gradient` screws painted into the data plate's background at 11px from each corner — bright-hairline head, deep-cut shadow ring, no extra elements.
+Motion is likewise absent: no `transition`, no `animation`, no `transform`, no
+`@keyframes`. The only movement declared anywhere is `scroll-behavior: smooth`,
+and it is switched off under `prefers-reduced-motion: reduce`.
 
 ### Named Rules
-**The Engraved-By-Ground Rule.** Lettering is engraved, and engraving is lit from above on whichever ground it sits on — so the shadow *must* invert between grounds. On the dark panel, headings carry `0 -1px 0 rgba(236,239,241,.09), 0 1px 0 rgba(0,0,0,.5)`: a faint lume catch on the top lip, a dark drop below. On the light brushed plate, the plate heading carries `0 1px 0 rgba(255,255,255,.55)`: a white lift below the glyph. Using either value on the other ground is the known failure — black-at-zero-blur on both rendered as nothing on the panel and as cheap embossing on the plates.
+**The Flat-Forever Rule.** Do not add a box-shadow to this page, for any element, in any state. A surface that needs to separate itself gets a tint or a hairline. The first shadow would make every flat surface look unfinished.
 
-**The Cut-Or-Raised Rule.** A surface is either cut into the panel (dark fill `#0B0E10`, hairline stroke, no shadow) or raised off it (top-lip highlight plus long drop). There is no third treatment, and nothing floats without one of the two.
+**The Still-Page Rule.** Nothing moves, fades, slides, or scales — not on hover, not on load, not on scroll. State changes are colour changes (button ground darkens, link underline thickens from 1.5px to 2.5px, border turns sage) and they are instantaneous.
 
 ## Shapes
 
-**The corner language is 3px, everywhere.** Panels are cut, not rounded: `--radius: 3px` is a machined edge, applied to the data plate, the hero photograph, the brushed plates, the caution panel, and form inputs. Buttons take no radius at all (0). Nothing on this page is pill-shaped or softly rounded.
+One radius does nearly everything: `--r` (12px) on the button, the portrait, the
+reply callout, the notice, and every input. Two exceptions exist, both narrow:
+a full pill (999px) on the two things that are shaped like tags rather than
+panels — the header's "Contact" link and the "Most people start here" mark — and
+a 1px round on the 8×2px sage dash that marks each spec line.
 
-**Circles are reserved.** `border-radius: 50%` appears only on lamps: 9px on the data plate's caution row, 11px on the entry plate, 13px unlit in the annunciator, 15px lit on the caution panel. A circle on this page means *lamp*; it is never a decorative shape or an avatar frame.
+Borders are hairlines and they are structural: they divide bands, rows, and the
+header from the page. The only full-strength rule on the page is the 1px ink line
+under each service group title, which is doing the work a heading underline does.
+The portrait is a plain 4:5 crop with the shared 12px radius, no frame, no border,
+no overlay, and no caption — every fact a caption could carry is already on screen.
 
-**Rule work is hairline.** All borders and dividers are 1px in `--hair` or `--hair-2`. One structural exception: the hero's bottom seam is a 1px gradient rule that fades to transparent at 12% and 88% — a mounting rail, not a divider. The data plate's rows are separated by the same 1px dim hairline, with the last row's rule removed so the plate closes cleanly.
+### Named Rules
+**The One Radius Rule.** Panels, fields, images, and buttons all take `--r`. Pills are reserved for tag-shaped labels. Do not introduce a third panel radius.
 
-**List markers are engraved dashes.** Spec-list bullets are a 10px × 1.5px bar at 45% plate-ink, not a glyph, disc, or checkmark. No icon font, no emoji, no glyph icons anywhere; the only SVG icon on the page is the footer's stroked arrow at `currentColor`.
+**The Hairlines-Divide-Only Rule.** `--hair` is a border colour. It is never a text colour, never a background, and never used to draw a box around prose.
 
 ## Components
 
 ### Buttons
-- **Shape:** hard corners (0 radius), 1px transparent border reserved so hover can colour it without shifting layout.
-- **Primary:** radium fill, face-coloured text, 13px/700/0.13em uppercase, 15px 30px padding, 48px minimum height. Hover swaps the fill to lume — brighter, not darker; a lamp turning up.
-- **Header CTA:** the outline variant — radium text on a 1px radium border, 10px 18px, 44px minimum height. Hover inverts to a radium fill.
-- **Quiet link:** dim-lume text on a bright-hairline underline, 15px/500, no tracking, no uppercase, zero padding. Hover raises both to lume. Used for the hero's secondary action.
-- **Transitions:** 0.18s on `--ease-damp` for background, colour, and border-colour only.
+- **Shape:** the shared 12px radius (`--r`); never a pill.
+- **Primary:** sage ground, white label, 1px sage border, 50px minimum height, 26px horizontal padding, 16px/600 label. Full width when it is the form's submit.
+- **Hover / Focus:** ground darkens to #435C4A with no transition; focus draws a 2px sage outline at 3px offset.
+- **Disabled (submitting):** the label is swapped to "Sending…" and the button is disabled; no spinner, no dimming.
+- **Link button:** sage 16px/600 with a 1.5px underline at 4px offset, thickening to 2.5px on hover. This is the secondary action beside the primary button, and it is the page's only "ghost" affordance.
 
-### The Data Plate (signature component)
-An equipment nameplate, mounted on the panel in the same frame language as the photograph above it: face ground, 1px dim-hairline border, 3px machined corner, panel elevation, four painted fasteners, `4px 26px 8px` padding. Inside it a `<dl>` of six rows, each a two-column grid (`minmax(0,1fr) auto`, 16px gap, baseline-aligned, 16px vertical padding) separated by a 1px dim hairline, the last rule removed. The whole plate is a `role="group"` with an accessible name; nothing inside it is decorative markup.
-
-- **Label** (`dt`): placard lettering — 11px/700/0.17em uppercase dim lume, laid out as a flex row with a 9px gap so a lamp can precede the words.
-- **Value** (`dd`): right-aligned, 17px/600 lume, tabular.
-- **Entity row** (`.is-entity`): the value steps up to 25px/800/+0.005em. The one fact a scam cannot produce gets the size.
-- **Caution row** (`.is-caution`): the value turns amber and the label gains a lit 9px amber lamp. This is the only amber on the plate and the only tinted text in the hero.
-
-**Why it is a plate and not a cluster.** It replaced a six-gauge instrument panel. Reach for a stamped label/value row whenever a fact is a *word or an identifier*. A dial is only honest when there is a real scale a reader already knows — and none of these six facts have one.
-
-**The reading is the whole component.** There is no face, no needle, no scale, and no decoding step: a visitor reads six lines top to bottom and is done.
-
-### Hero Photograph
-A real photograph of Joey, mounted directly above the data plate in the panel's own frame language — 1px bright-hairline border, 3px machined corner, panel elevation, 16px below it to the plate. It is the photographer's own framing, shipped at its native `800×980` with explicit `width`/`height` attributes and `loading="eager"`; the subject's head occupies roughly 49% of the frame height. An earlier 5:4 crop pushed the head to 77% and read as looming — **do not re-crop tighter.**
-
-### Brushed Placard Plate
-The panel's document form — a machined plate, not a card. Light-metal gradient (`#C9CFD2` → `#B8BFC3`), dark ink, 3px corners, plate shadow, 30px 32px padding, and a two-column split (designation + description + price on the left, spec list on the right, 34px apart) that collapses to one column below 720px. Price sits at 25px/800 with a 13px/600 qualifier; a price note follows at 13.5px. Spec items are 14.5px at 80% ink with the engraved dash marker.
-- **Entry variant:** the recommended plate keeps identical elevation and adds a 2px radium ring plus an 11px lamp disc (`#1F6B45` with a 3px translucent ring) spanning the full grid width above the heading, followed by screen-reader-only text. The lamp is the entire visual marker; the words exist only for assistive technology.
-
-### Annunciator Panel
-A 1px-gutter grid over a hairline background so the cells read as a single hinged panel rather than separate cards: face-coloured cells, 30px 28px padding, a lamp column and a text column 20px apart. One column below 720px, two above. Each cell leads with an **unlit** 13px lamp — face fill, 2px dim-lume ring — then a 19px/700 heading and 15.5px dim-lume copy at 46ch.
-
-### Caution Panel
-The single amber statement outside the data plate, and it sits *before* the form, never after: a visitor clears the doubt and then converts. Face ground, bright-hairline border, 3px corners, 28px 30px padding, 720px maximum, a lit 15px amber lamp with its double glow, an 18px/700 amber heading, and dim-lume copy. It states the standard being upheld rather than apologising.
+### Cards / Containers
+There are no cards. Prose is never boxed. Two tinted panels exist and both are
+announcements rather than content containers: the **reply callout** (sage wash,
+12px radius, 16×18px padding, capped at the 54ch measure) and the **notice**
+(quiet surface, 12px radius, 20×22px padding, capped at 620px). Services and
+leaks are plain rows separated by hairlines, not tiles.
 
 ### Inputs / Fields
-Inputs are readouts: recessed face-coloured wells with luminous 16px type, bright-hairline border, 3px corners, 14px 16px padding, placeholder at `#7F8A90`. Labels above are placard lettering (11px/700/0.17em uppercase, dim lume) with an "(optional)" qualifier at looser 0.1em tracking.
-- **Focus:** border goes radium and a 3px translucent radium glow comes up behind it — the readout lighting.
-- **Invalid:** border goes amber (`aria-invalid="true"`), and the shared live-region status below turns amber. Success turns the same region radium at 17px.
-- The submit button is the primary button at full width.
+- **Style:** white ground, 1px #CFC9C0 edge, 12px radius, 13×14px padding, 16px text (which also prevents iOS zoom-on-focus), full width, label above at 16px/600 with an "(optional)" span in ink-2/400.
+- **Focus:** border turns sage *and* a 2px sage outline is drawn at 2px offset — the border shift alone was not enough of a signal.
+- **Error:** `aria-invalid="true"` turns the border #B8321E and the status line under the form turns #A12A18; the message is plain language, not a validation string.
+- **Success:** the fields hide, and the existing live region fills with a confirmation naming the number back to the reader plus an escape route.
 
 ### Navigation
-A sticky 66px top rail: face ground at 92% alpha with an 8px backdrop blur, dim hairline below. One row only. The logo pairs a 22px/800 numeral with an 11px/0.22em uppercase dim-lume wordmark on a shared baseline. One CTA on the right, in the outline button variant.
+One row, 68px tall, sticky, with a 92% page-coloured veil and a 10px blur over a
+hairline bottom edge. Left: the wordmark at 20px/700 with "Digital" in sage.
+Right: a single pill-shaped "Contact" link, 16px/600 ink on a hairline border,
+whose border darkens to full ink on hover. There is no menu, no hamburger, and no
+second link at any width.
 
-### Footer
-Face ground above a hairline, 40px vertical padding, 14px dim-lume text, flex row that wraps. The entity number is treated as the strongest verifiable artifact on the page: a placard label above it, then the number itself in lume at 19px/800 — the plate voice reused outside the plate.
+### Facts Strip (signature)
+A `<dl>` of five checkable facts directly under the hero, 1 / 3 / 5 columns across
+the breakpoints, each cell a 14px/600 ink-2 term over a 17px/600 ink value, with a
+hairline above the strip and below every row. Two cells are special: the Michigan
+entity number is set at 24px/800 tabular, and the demo-line value prints in sage
+because "Off right now" is the one status on the page that changes. Every value is
+permanently true and none of them drift — that is the point of the component, and
+it is why it carries no counters, no badges, and no icons.
 
-### Motion
-**There is none.** The page carries no authored animation whatsoever: no keyframes, no entrance or scroll-triggered reveals, no parallax, no hover transforms, and no JavaScript that drives a visual. The damped needle settle that used to be the one authored moment went out with the instrument cluster it belonged to, and its script was deleted with it.
-
-What remains is state feedback: a 0.18s transition on `--ease-damp` (`cubic-bezier(.16, 1, .3, 1)`) applied to background, colour, border-colour, and box-shadow on the header CTA, the buttons, and the form inputs — plus native smooth scrolling. Under `prefers-reduced-motion: reduce` the block does exactly two things: turns smooth scrolling off and collapses every transition to 0.01ms. There is nothing else for it to neutralise, and that is the correct state of the file — a reduced-motion block that has to disable an animation means an animation was added.
-
-### Named Rules
-**The Permanent Reading Rule.** Every value on the data plate is permanently true and cannot drift: Ironwood Michigan; one person; one business day; entity 900169562; web fonts None; demo line off right now. All six are static text in the markup — **none of them are dynamic data, and none of them may become dynamic.** No row displays a count, a date, a streak, a client number, or anything else that requires re-verification. This repo's recurring failure is facts going stale on a page nobody re-reads; the plate is built so that cannot happen.
-
-**The Read-Don't-Decode Rule.** A fact goes on the page in the form it is actually held in. Words and identifiers are stamped as label/value; a scale is used only when a reader already knows the scale. Precision about nothing — a needle, a meter, a percentage ring, a progress bar around a fact with no maximum — is decoration wearing the costume of data, and it costs the visitor a decoding step to arrive back at the word they could have read.
-
-**The Real Photograph Rule.** The hero photograph may only ever be a real photograph of Joey. Never an illustration, monogram, avatar, silhouette, stock photo, or AI-generated image — a placeholder person is a fabricated person. The photo goes **above** the data plate, never instead of it: the plate carries the checkable facts and the photograph carries the person, and the page needs both. Any replacement keeps the same mount — hairline border, 3px machined corner, panel elevation — and the photographer's own framing.
+### Service Row (signature)
+A plain hairline-separated row, never a card. A flex `.svc-head` puts the 22px
+service name on the left and the 20px tabular price hard right (with its unit in
+14px ink-2), wrapping rather than shrinking. Below it an optional 14px sage pill
+("Most people start here"), the ink-2 description, an optional ink price note, and
+a spec list whose items are marked by an 8×2px sage dash rather than a bullet or a
+glyph icon. At ≥720px the spec list moves to a second column spanning the row.
+Rows are grouped under a `.group-title` — 16px/600 ink-2 over a full-strength 1px
+ink rule — which is the page's only underlined label.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** confine radium (`#7FD4A2`) to lamps, links, the primary button, the CTA outline, the lit rule above the reply prompt, and focus/caret/selection — and verify any new use against The Two Lamps Rule.
-- **Do** reserve amber (`#E0A21A`) for the one meaning it has: a system of this business that is currently off.
-- **Do** draw an off state as an unlit lamp — face-filled disc, dim-lume ring — when it is not one of *this business's* systems.
-- **Do** stamp a new fact as a data-plate row: placard label left, tabular value right, hairline beneath — and add it only if it is permanently true.
-- **Do** build display emphasis from weight (800), negative tracking (-0.022em / -0.035em), and the engraved text-shadow.
-- **Do** invert the engraved shadow with the ground: lume-catch-above on the dark panel, white-lift-below on the brushed plate.
-- **Do** put `font-variant-numeric: tabular-nums` on anything containing a numeral.
-- **Do** cut corners at 3px, and keep circles for lamps only.
-- **Do** keep the hero photograph at the photographer's framing and mount it above the data plate.
-- **Do** keep the hero's `display: contents` / `display: block` wrapper switch and the mobile order — headline, lead, CTA, media, reply.
-- **Do** record the computed contrast ratio beside any new colour token.
+- **Do** keep every colour inside the fifteen documented values, and compute the contrast ratio before shipping any new pairing.
+- **Do** hold the three-tier ramp: prose 17px, controls 16px, small print 14px.
+- **Do** use sage for exactly one thing — what is Joey's, or what the reader should press.
+- **Do** keep the reply callout ahead of the primary button in DOM order; PRODUCT.md ranks a reply above a form submission, and the layout has to agree.
+- **Do** cap prose at `--measure` (54ch) and headings at their own tighter caps.
+- **Do** separate sections with a single hairline and generous band padding.
+- **Do** keep the five facts static and checkable; if a value would need updating, it does not belong in that strip.
+- **Do** put the anchor on the heading rather than the section, and keep `scroll-padding-top` in sync with the 68px header.
 
 ### Don't:
-- **Don't** add a web font, a font CDN link, or a preconnect to one. The page states its own font-download count on the data plate; there is exactly one correct value.
-- **Don't** put a kicker, eyebrow, tracked label, or badge above any heading. Mark an entry point with a lamp and screen-reader text.
-- **Don't** bring back dials, needles, tick rings, drum counters, meters, or progress rings. They were removed for reading as clocks and for being precision about nothing.
-- **Don't** tint the reading field. No coloured backgrounds behind copy, no gradient washes, no accent-coloured paragraphs beyond the single caution row.
-- **Don't** borrow amber for the visitor's problems, for emphasis, or for any second meaning.
-- **Don't** replace the hero photograph with an illustration, monogram, avatar, silhouette, stock photo, or AI-generated image — and don't let a photo replace the data plate.
-- **Don't** make a data-plate value dynamic, computed, or dated. All six are permanently true by design.
-- **Don't** re-crop the hero photograph tighter; the 5:4 crop that put the head at 77% of frame height read as looming.
-- **Don't** add an animation. The page's motion budget is zero authored motion plus 0.18s state changes.
-- **Don't** use an auto-fit grid for a rank of items that can leave an orphan.
-- **Don't** round anything past 3px, and don't introduce a shadow outside the panel/plate/lamp vocabulary.
-- **Don't** mix this palette with `advisory.html`'s copper-and-birch system on the same page.
+- **Don't** load a web font. Ever. The platform stack is the design, and a font request is the single easiest way to undo the page's load time.
+- **Don't** replace the photograph with anything that is not a real photograph of Joey — no illustration, monogram, avatar, silhouette, initial, stock photo, or AI-generated image. An empty slot is preferable to a substitute.
+- **Don't** add a box-shadow, a transition, a transform, or a keyframe animation.
+- **Don't** put a kicker, eyebrow, or all-caps label above a heading.
+- **Don't** wrap prose in a card, a bordered box, or a nested container.
+- **Don't** introduce a second accent colour, or use sage on anything that is neither authored-by-Joey nor an action.
+- **Don't** use #FFFFFF as a page or panel ground; it is for field interiors and text on sage only.
+- **Don't** use a hairline as a text colour or a heading rule — the group-title rule is full ink on purpose.
+- **Don't** add a third panel radius; 12px for panels, 999px for tag-shaped pills.
+- **Don't** print a phone number anywhere while the demo line is off, and never separate the digits from the AI-disclosure sentence when they return.
+- **Don't** import anything from `advisory.html`, which still runs an older copper-and-birch system. The two must not be mixed or averaged.
