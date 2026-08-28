@@ -14,7 +14,7 @@ dependencies, no package manager.
 
 | File | |
 |---|---|
-| `index.html` | The small-business site — 849 lines, 43 KB. Markup, CSS, and JS in one file. Still zero dependencies and zero new network requests; the only asset is the hero photograph. |
+| `index.html` | The small-business site — 891 lines, 46 KB. Markup, CSS, and JS in one file. Still zero dependencies and zero new network requests; the only asset is the hero photograph. |
 | `advisory.html` | Redirect stub to `/#advisory`. The advisory content lives in `index.html`. |
 | `scripts/check-content.mjs` | Content checks. See "Checks" below. |
 | `.circleci/config.yml` | CI pipeline. |
@@ -45,7 +45,7 @@ Every section is marked with a banner comment (`<!-- ====== HERO ====== -->`).
 Search for those rather than line numbers, which drift as you edit.
 
 In `index.html`, in order: JSON-LD → all CSS inline → direction contract comment →
-skip link → header → hero (headline + photograph) → facts strip → the leaks → what I build →
+skip link → header → hero (headline + photograph) → facts strip → demo-line notice → the leaks → what I build →
 who runs this → final CTA with the demo-line caution panel **above** the lead form
 → footer → needle settle + form handling → analytics beacon.
 

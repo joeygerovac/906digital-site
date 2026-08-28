@@ -8,3 +8,7 @@ node_modules/
 # A critique naming the weakest thing about the sales page must not be a URL on it.
 .impeccable/
 .codex/
+
+# Local inspection harnesses — never serve these
+mobile-frame.html
+mid-frame.html

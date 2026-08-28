@@ -7,9 +7,11 @@
 <meta name="description" content="Websites, phone answering, and automation for small businesses across the Upper Peninsula — and technical advisory for B2B teams. One person, in Ironwood, who does the work himself." />
 <meta name="theme-color" content="#FCFBF9" />
 <link rel="canonical" href="https://906digital.com/" />
+<link rel="icon" href="/favicon-0ef66b21.png" type="image/png" sizes="32x32" />
+<link rel="apple-touch-icon" href="/touch-208d2637.png" />
 
 <!-- Open Graph -->
-<meta property="og:title" content="906 Digital — AI That Does the Office Work" />
+<meta property="og:title" content="906 Digital — Websites and phone answering for U.P. businesses" />
 <meta property="og:description" content="AI, websites, and automation for Upper Peninsula small business." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://906digital.com/" />
@@ -25,7 +27,7 @@
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="906 Digital — AI That Does the Office Work" />
+<meta name="twitter:title" content="906 Digital — Websites and phone answering for U.P. businesses" />
 <meta name="twitter:description" content="AI, websites, and automation for Upper Peninsula small business." />
 
 <!-- Structured data. Only verified facts. No address, hours, ratings, reviews, price
@@ -81,12 +83,13 @@
   --field:     #FFFFFF;   /* input ground */
   --field-line:#CFC9C0;   /* input border at rest */
   --placeholder:#6B655D;  /* 5.8:1 on field */
-  --error:     #A12A18;   /* error text and invalid border. 6.7:1 on bg */
+  --error:     #A12A18;   /* error text and invalid border. 7.1:1 on bg */
   --scroll:    #B8B2A8;   /* scrollbar thumb */
   --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, "Helvetica Neue", Arial, sans-serif;
   --container: 1120px;
   --r: 12px;
   --measure: 54ch;
+  --measure-narrow: 40ch;
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
@@ -107,7 +110,7 @@ h1, h2, h3 { margin: 0; font-weight: 700; letter-spacing: -.02em; text-wrap: bal
 .skip-link:focus { left: 0; }
 
 /* ================= HEADER ================= */
-.site-header { position: sticky; top: 0; z-index: 50; background: rgba(252,251,249,.96); border-bottom: 1px solid var(--hair); }
+.site-header { position: sticky; top: 0; z-index: 50; background: var(--bg); border-bottom: 1px solid var(--hair); }
 .site-header .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; }
 .logo { font-weight: 700; font-size: 20px; letter-spacing: -.02em; color: var(--ink); }
 .logo span { color: var(--sage); }
@@ -117,21 +120,28 @@ h1, h2, h3 { margin: 0; font-weight: 700; letter-spacing: -.02em; text-wrap: bal
 
 /* ================= HERO ================= */
 .hero { padding: 40px 0 36px; }
-.hero-grid { display: grid; grid-template-columns: 1fr; gap: 36px; align-items: center; }
+/* Below 980px the portrait sits beside the lede at 124px so a face is in the
+   first phone screen — the eight seconds this reader gives a cold link. Above
+   980px it is the full right column. */
+.hero-grid { display: grid; grid-template-columns: 124px minmax(0, 1fr); grid-template-areas: "h h" "p l" "r r" "c c"; column-gap: 14px; row-gap: 0; align-items: start; }
+.hero-grid > h1 { grid-area: h; }
+.hero-grid > .lede { grid-area: l; }
+.hero-grid > .reply { grid-area: r; }
+.hero-grid > .cta-row { grid-area: c; }
+.hero-grid > .portrait { grid-area: p; align-self: start; margin-top: 18px; }
 h1 { font-size: clamp(30px, 4vw, 50px); line-height: 1.08; max-width: 27ch; }
 h1 em { font-style: normal; color: var(--sage); }
-.lede { margin-top: 18px; font-size: 17px; max-width: var(--measure); color: var(--ink-2); }
+.lede { margin-top: 18px; font-size: 16px; max-width: var(--measure); color: var(--ink-2); }
 @media (min-width: 720px) { .lede { font-size: 20px; margin-top: 20px; } }
 /* The reply prompt outranks the form (PRODUCT.md), so it comes before the
    button in DOM order and carries the one tinted callout in the hero. */
-.reply { margin-top: 22px; padding: 16px 18px; background: var(--sage-soft); border-radius: var(--r); max-width: var(--measure); }
-.reply strong { font-weight: 700; }
-.cta-row { margin-top: 24px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 0 26px; border-radius: var(--r); font-weight: 600; font-size: 16px; background: var(--sage); color: var(--field); border: 1px solid var(--sage); }
+.reply { margin-top: 20px; padding: 14px 16px; background: var(--sage-soft); border-radius: var(--r); max-width: var(--measure); }
+.cta-row { margin-top: 20px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 12px 26px; border-radius: var(--r); font-weight: 600; font-size: 16px; background: var(--sage); color: var(--field); border: 1px solid var(--sage); }
 .btn:hover { background: var(--sage-deep); text-decoration: none; }
 .btn-link { display: inline-flex; align-items: center; min-height: 44px; font-size: 16px; font-weight: 600; color: var(--sage); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1.5px; }
 .btn-link:hover { text-decoration-thickness: 2.5px; }
-.portrait { margin: 0; position: relative; max-width: 520px; }
+.portrait { margin: 0; position: relative; }
 .portrait img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--r); }
 
 /* Five things the reader can check. Plain rows, one hairline between. */
@@ -140,10 +150,10 @@ h1 em { font-style: normal; color: var(--sage); }
 .facts dt { font-size: 14px; font-weight: 600; color: var(--ink-2); }
 .facts dd { margin: 4px 0 0; font-size: 17px; font-weight: 600; }
 .facts .is-entity dd { font-size: 24px; font-weight: 800; letter-spacing: -.01em; font-variant-numeric: tabular-nums; }
-.facts .is-off dd { color: var(--sage); }
+.facts .is-off dd { color: var(--ink); }
 
 /* ================= SECTIONS ================= */
-section.band { padding: 72px 0; }
+section.band { padding: 56px 0; }
 section.band + section.band, main > section.band:last-child { border-top: 1px solid var(--hair); }
 h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
 .intro { margin-top: 16px; max-width: var(--measure); color: var(--ink-2); }
@@ -166,11 +176,12 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
 .group + .group { margin-top: 56px; }
 .group-title { font-size: 16px; font-weight: 600; color: var(--ink-2); margin-bottom: 6px; }
 .svc { display: grid; grid-template-columns: 1fr; gap: 14px 40px; padding: 26px 0; border-top: 1px solid var(--hair); }
+.svc > .spec { order: 2; }   /* on a phone the price comes before the feature list */
 .group .svc:last-child { border-bottom: 1px solid var(--hair); }
 .svc-name { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .svc h3 { font-size: 22px; }
 .start { display: inline-block; background: var(--sage-soft); color: var(--sage); border-radius: 999px; padding: 3px 10px; font-size: 14px; font-weight: 600; }
-.svc-desc { margin-top: 6px; max-width: 40ch; color: var(--ink-2); }
+.svc-desc { margin-top: 6px; max-width: var(--measure-narrow); color: var(--ink-2); }
 .spec { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; align-content: start; }
 .spec li { position: relative; padding-left: 18px; }
 .spec li::before { content: ""; position: absolute; left: 0; top: 12px; width: 8px; height: 2px; border-radius: 1px; background: var(--sage); }
@@ -178,12 +189,16 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
 .price span { font-size: 14px; font-weight: 500; color: var(--ink-2); margin-left: 4px; }
 .price-note { margin-top: 4px; font-size: 14px; color: var(--ink-2); }
 .about-body { margin-top: 20px; max-width: var(--measure); display: grid; gap: 16px; color: var(--ink-2); }
+.split { display: grid; grid-template-columns: 1fr; gap: 0 64px; align-items: start; }
+.next { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--hair); max-width: var(--measure-narrow); }
+.next h3 { font-size: 17px; }
+.next ol { margin: 10px 0 0; padding-left: 20px; color: var(--ink-2); display: grid; gap: 6px; }
 .about-body strong { color: var(--ink); font-weight: 700; }
 
 /* ================= CONTACT ================= */
 /* The notice precedes the form on purpose; the anchor is on the heading below
    it, so both contact links land on the invitation. */
-.notice { background: var(--surface); border-radius: var(--r); padding: 20px 22px; max-width: 620px; margin-bottom: 44px; }
+.notice { background: var(--surface); border-radius: var(--r); padding: 20px 22px; max-width: 620px; margin-top: 28px; }
 .notice h3 { font-size: 20px; }
 .notice p { margin-top: 8px; color: var(--ink-2); }
 .cta-lead { margin-top: 14px; max-width: var(--measure); color: var(--ink-2); }
@@ -198,11 +213,12 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
 .field input[aria-invalid="true"] { border-color: var(--error); }
 .lead-submit { width: 100%; }
 .form-status { margin-top: 14px; font-size: 16px; min-height: 1px; }
+.field-error { margin-top: 6px; font-size: 14px; color: var(--error); }
+.field-error:empty { display: none; }
 .form-status.is-error { color: var(--error); }
 .form-status.is-success { font-weight: 600; }
 .form-fineprint { margin-top: 14px; font-size: 14px; color: var(--ink-2); max-width: var(--measure); }
 .hp-field { position: absolute; left: -9999px; opacity: 0; pointer-events: none; }
-.alt-contact { margin-top: 22px; color: var(--ink-2); }
 
 /* ================= ADVISORY ================= */
 /* Folded in from advisory.html on 2026-08-28 at Joey's decision, over the
@@ -217,7 +233,7 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
 .steps { list-style: none; margin: 32px 0 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: 0; border-top: 1px solid var(--hair); }
 .steps li { padding: 18px 0; border-bottom: 1px solid var(--hair); }
 .steps strong { display: block; font-weight: 700; }
-.steps span { display: block; margin-top: 4px; color: var(--ink-2); max-width: 40ch; }
+.steps span { display: block; margin-top: 4px; color: var(--ink-2); max-width: var(--measure-narrow); }
 .adv-cta { margin-top: 28px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
 .adv-links { font-size: 16px; color: var(--ink-2); }
 .adv-links a { display: inline-flex; align-items: center; min-height: 44px; margin-right: 18px; }
@@ -239,15 +255,19 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
      track empty rather than shifting the middle one. */
   .svc { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr) minmax(150px, 210px); align-items: start; }
   .svc-price { grid-column: 3; text-align: right; }
+  .svc > .spec { order: 0; }
 }
 @media (min-width: 900px) {
   .leaks-grid { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 64px; align-items: start; }
+  .split { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); }
+  .split .about-body { margin-top: 0; }
+  .split .next { margin-top: 0; padding-top: 0; border-top: 0; }
 }
 @media (min-width: 980px) {
   .hero { padding: 44px 0 44px; }
   .facts { grid-template-columns: repeat(5, 1fr); }
-  .hero-grid { grid-template-columns: 1.05fr .95fr; gap: 64px; }
-  .portrait { max-width: none; }
+  .hero-grid { grid-template-columns: 1.05fr .95fr; grid-template-areas: "h p" "l p" "r p" "c p"; column-gap: 64px; align-items: start; }
+  .hero-grid > .portrait { margin-top: 0; align-self: center; }
   section.band { padding: 88px 0; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
@@ -271,8 +291,8 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
   STORY: A visitor holding a cold email sees a person, a town, and five facts
     they can check, and either hits reply or presses the button.
   FIRST VIEWPORT: Headline left with "from Ironwood." in sage; lede; the reply
-    callout; the button; the portrait right, unframed, with a name tag in its
-    corner. The facts strip runs full width beneath.
+    callout; the button; the portrait right, unframed. The facts strip runs full
+    width beneath, with the demo-line notice directly under it.
   FINISH: unreviewed and undocumented is unfinished; this build ends with the
     finish review, the verdict, DESIGN.md, and every shipping raster carrying its
     provenance.
@@ -296,7 +316,6 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
 <section class="hero">
   <div class="wrap">
     <div class="hero-grid">
-      <div>
         <!-- Copy chosen by Joey on 2026-08-28 from three drafts. The headline
              opens on the reader's business, not on 906 Digital; the full name and
              the town — the scam check the page exists for — lead the lede. "No
@@ -314,13 +333,13 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
              Joey's own outreach. PRODUCT.md ranks reply ABOVE the form. -->
         <p class="reply">
           <strong>Got an email or a text from me? That was me.</strong> Hitting reply
-          is the easiest way to reach me.
+          is the easiest way to reach me — or write me at
+          <a href="mailto:joey@906digital.com">joey@906digital.com</a>.
         </p>
         <div class="cta-row">
           <a href="#book" class="btn">Get in touch</a>
           <a href="#offer" class="btn-link">See what I build</a>
         </div>
-      </div>
 
       <!-- A real photograph of Joey. The rule that governed the empty slot governs
            every replacement: never an illustration, monogram, avatar, silhouette,
@@ -343,6 +362,45 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
       <div class="is-entity"><dt>Michigan LLC</dt><dd>900169562</dd></div>
       <div class="is-off"><dt>Demo line</dt><dd>Off right now</dd></div>
     </dl>
+
+    <!-- ============ DEMO LINE — OFFLINE MODE (currently active) ============
+         The demo line (906) 767-6901 is down and answers with a recorded outage
+         message. There is deliberately NO tel: link and NO phone number printed
+         anywhere on this page. Of every failure mode here, a published number
+         that rings nowhere is the one that most efficiently confirms a suspicious
+         visitor's original hypothesis.
+
+         MOVED TWICE on 2026-08-28. It began after the form, where it was the last
+         thing a visitor read. It went above the form, which re-raised the doubt at
+         the decision moment with an exit link attached. It now sits in the hero,
+         directly under the "Demo line: Off right now" fact that raises the
+         question — a doubt is resolved where it is raised. It states the standard
+         being upheld, which is the one sentence a scam would never write.
+
+         TO RESTORE WHEN THE LINE ANSWERS AGAIN — and only after someone dials it
+         from a phone that has never called it and hears the AI pick up:
+           1. Replace the <p> below with the live copy:
+              "Call it and hear it answer. This is a demonstration line — an AI
+               receptionist picks up and tells you straight off that it's AI.
+               It's not my desk phone. To reach me, use the form above."
+           2. Add the number back as a link directly under the <h3>:
+              <a class="demo-line" href="tel:+19067676901"
+                 aria-label="Call the AI receptionist demo line at 9 0 6, 7 6 7, 6 9 0 1">(906) 767-6901</a>
+           3. Add .notice .demo-line { font-size: 28px; margin: 6px 0; min-height: 48px; }
+           4. Change the <h3> back to "Want to hear it before you decide?"
+           5. In the facts strip, change the Demo line value to "On — call it"
+              and drop its is-off class so it prints in ink.
+         The AI-disclosure sentence is ethically load-bearing. It must travel with
+         the digits every single time they appear. Do not ship one without it.
+         ====================================================================== -->
+    <div class="notice">
+      <h3>I won't publish a number that rings nowhere</h3>
+      <p>
+        The demo line is off while I sort out billing limits on it, so there is
+        no phone number anywhere on this page — on purpose. Ask and I'll tell
+        you the day it's back.
+      </p>
+    </div>
   </div>
 </section>
 
@@ -374,9 +432,9 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
 </section>
 
 <!-- ============== WHAT I BUILD ============== -->
-<section class="band" id="offer" tabindex="-1">
+<section class="band">
   <div class="wrap">
-    <h2>Five things I build. Most people start with one.</h2>
+    <h2 id="offer" tabindex="-1">Five things I build. Most people start with one.</h2>
     <p class="intro">Local pricing. Flat fees. Built in weeks, not months.</p>
 
     <div class="group" role="group" aria-labelledby="g-priced">
@@ -481,7 +539,7 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
 
 <!-- ============== WHO RUNS THIS ============== -->
 <section class="band">
-  <div class="wrap">
+  <div class="wrap split">
     <h2>I'm Joey. I live in the U.P. I built this for businesses like yours.</h2>
     <div class="about-body">
       <p>
@@ -502,6 +560,11 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
         reason the prices work for U.P. businesses, and why I'm still here when
         something breaks.
       </p>
+      <p>
+        Before this I spent fourteen years building and fixing software for B2B
+        companies — support, implementation, engineering, and running the team
+        that did it. Now I do it here.
+      </p>
       <p>If you'd rather work than market yourself, we'll get along.</p>
     </div>
   </div>
@@ -511,52 +574,15 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
 <section class="band">
   <div class="wrap">
 
-    <!-- ============ DEMO LINE — OFFLINE MODE (currently active) ============
-         The demo line (906) 767-6901 is down and answers with a recorded outage
-         message. There is deliberately NO tel: link and NO phone number printed
-         anywhere on this page. Of every failure mode here, a published number
-         that rings nowhere is the one that most efficiently confirms a suspicious
-         visitor's original hypothesis.
-
-         MOVED ABOVE THE FORM on 2026-08-28. It used to sit after the form and was
-         therefore the last thing a visitor read before the footer — the page ended
-         on its own defect notice. It also apologised ("sorting out some plumbing"),
-         which is what a fake says. It now states the standard being upheld, which
-         is the one sentence on this page a scam would never write. Clear the doubt,
-         then convert.
-
-         TO RESTORE WHEN THE LINE ANSWERS AGAIN — and only after someone dials it
-         from a phone that has never called it and hears the AI pick up:
-           1. Replace the <p> below with the live copy:
-              "Call it and hear it answer. This is a demonstration line — an AI
-               receptionist picks up and tells you straight off that it's AI.
-               It's not my desk phone. To reach me, use the form above."
-           2. Add the number back as a link directly under the <h3>:
-              <a class="demo-line" href="tel:+19067676901"
-                 aria-label="Call the AI receptionist demo line at 9 0 6, 7 6 7, 6 9 0 1">(906) 767-6901</a>
-           3. Add .notice .demo-line { font-size: 28px; margin: 6px 0; min-height: 48px; }
-           4. Change the <h3> back to "Want to hear it before you decide?"
-           5. In the facts strip, change the Demo line value to "On — call it"
-              and drop its is-off class so it prints in ink.
-         The AI-disclosure sentence is ethically load-bearing. It must travel with
-         the digits every single time they appear. Do not ship one without it.
-         ====================================================================== -->
-    <div class="notice">
-      <h3>I won't publish a number that rings nowhere</h3>
-      <p>
-        The demo line is off while I sort out billing limits on it, so there is
-        no phone number anywhere on this page — on purpose. Email me and I'll
-        tell you the day it's back:
-        <a href="mailto:joey@906digital.com?subject=906%20Digital%20-%20hear%20the%20demo%20line">joey@906digital.com</a>.
-      </p>
-    </div>
 
     <!-- The anchor sits on the heading, not the section: scrollers meet the
          notice first, but the two contact links land on the invitation. -->
+    <div class="split">
+    <div>
     <h2 id="book" tabindex="-1">15 minutes. No pressure. Let's figure out if this fits.</h2>
     <p class="cta-lead">
-      Leave your name and number. I'll text you back within one business day —
-      usually a lot sooner.
+      Leave your name and the best way to reach you. I'll get back to you within
+      one business day — usually a lot sooner.
     </p>
 
     <!-- No novalidate in the markup: without JavaScript the browser's own
@@ -599,13 +625,15 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
         <label for="lead-name">Your name <span class="req">required</span></label>
         <input type="text" id="lead-name" name="name"
                autocomplete="name" enterkeyhint="next" required>
+        <p class="field-error" id="err-name"></p>
       </div>
 
       <div class="field">
-        <label for="lead-phone">Phone number <span class="req">required</span></label>
-        <input type="tel" id="lead-phone" name="phone"
-               inputmode="tel" autocomplete="tel" enterkeyhint="next"
-               placeholder="906-555-0199" required>
+        <label for="lead-phone">Phone or email — whichever you'd rather I use <span class="req">required</span></label>
+        <input type="text" id="lead-phone" name="contact"
+               autocomplete="on" enterkeyhint="next"
+               placeholder="906-555-0199 or you@example.com" required>
+        <p class="field-error" id="err-phone"></p>
       </div>
 
       <div class="field">
@@ -617,13 +645,19 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
       <button type="submit" class="btn lead-submit">Send it</button>
 
       <p class="form-status" id="lead-status" role="status" aria-live="polite"></p>
-      <p class="form-fineprint">No spam, no newsletter. I'll text you back, that's it.
+      <p class="form-fineprint">No spam, no newsletter. I'll get back to you myself, that's it.
         It also tells me which page you came from and how long you were on it — nothing else.</p>
     </form>
-
-    <p class="alt-contact">
-      Rather just email? <a href="mailto:joey@906digital.com?subject=906%20Digital%20-%2015%20min%20call">joey@906digital.com</a>
-    </p>
+    </div>
+    <aside class="next">
+      <h3>What happens next</h3>
+      <ol>
+        <li>I read it myself. There's no sequence and no sales team.</li>
+        <li>You hear back within one business day, by text or email — whichever you gave me.</li>
+        <li>Fifteen minutes on the phone. If it doesn't fit, I'll say so.</li>
+      </ol>
+    </aside>
+    </div>
   </div>
 </section>
 
@@ -635,9 +669,9 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
      prices, on purpose: no advisory rate has been set, and a number invented to
      fill the space would be one Joey has never charged. Payment on delivery is a
      real commitment, not a marketing line. -->
-<section class="band" id="advisory" tabindex="-1">
+<section class="band">
   <div class="wrap">
-    <h2>Technical advisory for B2B teams.</h2>
+    <h2 id="advisory" tabindex="-1">Technical advisory for B2B teams.</h2>
     <p class="intro">
       You need a technical person. You don't need a full-time one. Fourteen years
       across support, implementation engineering, software engineering, and
@@ -737,9 +771,13 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
     + ' · ' + window.innerWidth + 'px';
   document.getElementById('f-token').value = 'js-ok-' + loadedAt;
 
-  function fail(msg) {
+  function fail(msg, el) {
     statusEl.textContent = msg;
     statusEl.className = 'form-status is-error';
+    /* The same message beside the field it belongs to — the status line sits
+       below the submit button, which on a phone can be a whole screen away
+       from the cursor. */
+    if (el) { var fe = document.getElementById('err-' + (el === nameEl ? 'name' : 'phone')); if (fe) fe.textContent = msg; }
   }
 
   /* Clearing the error state has to remove aria-describedby as well. Leaving it
@@ -748,6 +786,8 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
   function clearField(el) {
     el.setAttribute('aria-invalid', 'false');
     el.removeAttribute('aria-describedby');
+    var fe = document.getElementById('err-' + (el === nameEl ? 'name' : 'phone'));
+    if (fe) fe.textContent = '';
   }
   nameEl.addEventListener('input', function () { clearField(nameEl); });
   phoneEl.addEventListener('input', function () { clearField(phoneEl); });
@@ -769,18 +809,19 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
     if (!name) {
       /* Focus first, then write. The reverse order drops the pending polite
          announcement — the message gets written but never heard. */
-      nameEl.setAttribute('aria-describedby', 'lead-status');
+      nameEl.setAttribute('aria-describedby', 'err-name');
       nameEl.focus();
-      fail('Just need a name to know who I\'m talking to.');
+      fail('Just need a name to know who I\'m talking to.', nameEl);
       return;
     }
 
-    var phoneOk = digits.length >= 10;
+    var isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(phone);
+    var phoneOk = isEmail || digits.length >= 10;
     phoneEl.setAttribute('aria-invalid', phoneOk ? 'false' : 'true');
     if (!phoneOk) {
-      phoneEl.setAttribute('aria-describedby', 'lead-status');
+      phoneEl.setAttribute('aria-describedby', 'err-phone');
       phoneEl.focus();
-      fail('That number looks short — 10 digits, any format is fine.');
+      fail(phone.indexOf('@') > -1 ? 'That email looks incomplete.' : 'That number looks short — 10 digits, any format is fine. Or an email works too.', phoneEl);
       return;
     }
 
@@ -807,11 +848,12 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
         var shown = phone.replace(/[<>&]/g, '');
         var fields = form.querySelectorAll('.field, .lead-submit, .hp-field, .form-fineprint');
         for (var i = 0; i < fields.length; i++) { fields[i].style.display = 'none'; }
+        var lead = document.querySelector('.cta-lead'); if (lead) lead.style.display = 'none';
         statusEl.className = 'form-status is-success';
         /* The echo used to be a dead end: if the number was wrong there was no way
            back, because every field had just been hidden. It now names the escape. */
         statusEl.textContent =
-          'Got it, ' + first + '. I\'ll text you at ' + shown +
+          'Got it, ' + first + '. I\'ll ' + (isEmail ? 'email' : 'text') + ' you at ' + shown +
           ' within one business day. Not right? Email joey@906digital.com.';
         statusEl.setAttribute('tabindex', '-1');
         statusEl.focus();
