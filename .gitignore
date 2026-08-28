@@ -2,3 +2,9 @@
 node_modules/
 .env
 .env.local
+
+# Impeccable design artifacts and Codex hooks — NOT for public serving.
+# This repo serves its entire root at 906digital.com (assets.directory ".").
+# A critique naming the weakest thing about the sales page must not be a URL on it.
+.impeccable/
+.codex/

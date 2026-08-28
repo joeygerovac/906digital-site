@@ -14,7 +14,7 @@ dependencies, no package manager.
 
 | File | |
 |---|---|
-| `index.html` | The small-business site — 1127 lines, 40 KB. Markup, CSS, and JS in one file. |
+| `index.html` | The small-business site — 1274 lines, 60 KB. Markup, CSS, and JS in one file. The weight is authored SVG instruments, not libraries: still zero dependencies and zero new network requests. |
 | `advisory.html` | The B2B technical advisory page — 1,153 lines, 37 KB. Same deal. |
 | `scripts/check-content.mjs` | Content checks. See "Checks" below. |
 | `.circleci/config.yml` | CI pipeline. |
@@ -53,15 +53,37 @@ was not. Never introduce "we" or "our team" on `index.html`. There is one person
 Every section is marked with a banner comment (`<!-- ====== HERO ====== -->`).
 Search for those rather than line numbers, which drift as you edit.
 
-In `index.html`, in order: JSON-LD → all CSS inline → header and skip link → hero
-(**photo slot deliberately empty**) → problem → offer → about → final CTA with
-lead form → demo-line callout → footer → form handling → analytics beacon.
+In `index.html`, in order: JSON-LD → all CSS inline → direction contract comment →
+skip link → header → hero (headline + the six-pack) → the leaks → what I build →
+who runs this → final CTA with the demo-line caution panel **above** the lead form
+→ footer → needle settle + form handling → analytics beacon.
 
-`--copper` is split into three roles in the CSS because one value cannot meet
-WCAG AA on both light and dark backgrounds. `--copper` is **non-text only**;
-`--copper-dark` is for text on light, `--copper-lite` for text on dark. Two
-regressions have already been caused by ignoring this — check the ratio before
-changing a colour, don't eyeball it.
+### The visual world was replaced on 2026-08-28
+
+The cream-and-copper page is gone. `index.html` is now a **night instrument
+panel**; `DESIGN.md` is the authority on it and this section is only the map.
+The old `--copper` / `--copper-dark` / `--copper-lite` split no longer exists —
+do not go looking for it.
+
+Three rules from that system survive because they were never really about copper:
+
+1. **Check contrast by computing it, not by eye.** Four regressions have now been
+   caused by ignoring this. The current build is at zero WCAG AA failures,
+   measured across every text node against its effective background.
+2. **A colour with a reserved job keeps it.** `--radium` is needles, lamps, and
+   links. `--caution` amber means exactly one thing — a system of Joey's that is
+   currently off — and appears only on the demo-line annunciator and the caution
+   panel. The "leaks" lamps are deliberately unlit rather than amber, because
+   those are the visitor's problems, not Joey's outage.
+3. **No web fonts, ever.** The display voice is built from weight, tracking,
+   tabular numerals, and a ground-dependent engraved shadow instead of a sourced
+   face. This knowingly overrides the usual "source a display face" advice; the
+   deviation is recorded in a comment in `<head>`.
+
+The hero photo slot is **still empty and still governed by the old rule**: no
+illustration, monogram, avatar, silhouette, stock photo, or AI-generated image.
+A placeholder person is a fabricated person. When a real photo exists it goes
+*above* the six-pack, not instead of it.
 
 ## How it deploys
 

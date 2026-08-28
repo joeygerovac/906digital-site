@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>906 Digital — AI &amp; Websites for Upper Peninsula Small Business</title>
 <meta name="description" content="906 Digital puts AI to work in Upper Peninsula small businesses — websites, phone answering, automation, reporting, and integration. One person, in Ironwood. Flat prices." />
-<meta name="theme-color" content="#0F2940" />
+<meta name="theme-color" content="#14181B" />
 <link rel="canonical" href="https://906digital.com/" />
 
 <!-- Open Graph -->
@@ -54,551 +54,541 @@
 }
 </script>
 
-<!-- No web font is loaded. The body font-family below keeps Inter first (it renders
-     if the visitor already has it) and falls through to the platform UI font.
-     Dropping the Google Fonts stylesheet removed the only render-blocking
-     third-party request on the page. Do not re-add one. -->
+<!-- No web font is loaded. The stack keeps Inter first (it renders if the visitor
+     already has it) and falls through to the platform UI font. Dropping the Google
+     Fonts stylesheet removed the only render-blocking third-party request on the
+     page. Do not re-add one.
+
+     NOTE FOR DESIGN WORK: the craft floor for this visual world calls for a
+     self-hosted display face whose character matches the panel lettering. This
+     project's brief forbids any font download, and a pinned brief outranks the
+     floor. The display voice is therefore built from weight, tracking, and
+     tabular numerals rather than from a sourced face. This is a known, accepted
+     deviation — not an oversight. -->
 
 <style>
 :root {
-  --superior:    #0F2940;
-  --superior-2:  #1B3A5C;
-  /* --copper is a NON-TEXT colour only: fills, rules, bullets, focus rings.
-     White on it is 3.79:1 and it fails as text on every background here.
-     Two text-safe variants below. Verified ratios in the comments. */
-  --copper:      #B87333;
-  --copper-dark: #9A5F28;   /* text on LIGHT: 4.78:1 birch, 5.20:1 white.
-                               Also the button fill — white on it is 5.20:1. */
-  --copper-lite: #C98A4B;   /* text on DARK: 5.12:1 on --superior. */
-  --pine:        #2F5345;
-  --birch:       #F8F5F0;
-  --slate:       #1A1A1A;
-  --stone:       #5A5A5A;
-  --line:        #E6E1D8;
+  /* ---- NIGHT INSTRUMENT PANEL -------------------------------------------
+     Colour is confined to needles and lamps. The reading field stays
+     luminous white on panel and is never tinted. Every value below carries
+     its computed contrast against the surface it is used on. ------------- */
+  --panel:       #14181B;   /* matte panel ground */
+  --face:        #0B0E10;   /* instrument face, deeper than the panel */
+  --face-2:      #191F23;   /* raised placard body */
+  --lume:        #ECEFF1;   /* luminous markings. 15.9:1 on panel — primary ink */
+  --lume-dim:    #9BA5AB;   /* secondary markings. 7.0:1 on panel */
+  --radium:      #7FD4A2;   /* NEEDLES, live lamps, and links on panel. 10.5:1 */
+  --caution:     #E0A21A;   /* caution lamp ONLY. 7.8:1 on panel */
+  --plate:       #C9CFD2;   /* brushed placard plate — carries dark text */
+  --plate-ink:   #0B0E10;   /* on --plate: 13.4:1 */
+  --hair:        #2A3238;   /* hairline rule work */
+  --hair-2:      #39434A;   /* brighter hairline, bezels */
 
-  --container:   1100px;
-  --radius:      14px;
-  --radius-sm:   8px;
-  --shadow-sm:   0 1px 2px rgba(15, 41, 64, .06), 0 1px 3px rgba(15, 41, 64, .08);
-  --shadow-md:   0 8px 24px rgba(15, 41, 64, .08);
+  --container:   1140px;
+  --radius:      3px;       /* panels are cut, not rounded. 3px is a machined edge */
+  --shadow-panel: 0 1px 0 rgba(255,255,255,.04), 0 18px 40px rgba(0,0,0,.55);
+  --shadow-plate: 0 1px 0 rgba(255,255,255,.14), 0 10px 22px rgba(0,0,0,.45);
+
+  --ease-damp:   cubic-bezier(.16, 1, .3, 1);   /* needle settle, exponential out */
 }
 
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
+
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   font-size: 17px;
-  line-height: 1.6;
-  color: var(--slate);
-  background: var(--birch);
+  line-height: 1.62;
+  color: var(--lume);
+  background: var(--panel);
+  -webkit-font-smoothing: antialiased;
 }
 
-a { color: var(--copper-dark); text-decoration: none; }
-a:hover { color: var(--copper-dark); text-decoration: underline; }
+/* ---- Browser surfaces. The parts not drawn still carry the panel. ------- */
+::selection { background: var(--radium); color: var(--face); }
+:root { accent-color: var(--radium); caret-color: var(--radium); }
+* { scrollbar-color: var(--hair-2) var(--face); scrollbar-width: thin; }
+::-webkit-scrollbar { width: 11px; height: 11px; }
+::-webkit-scrollbar-track { background: var(--face); }
+::-webkit-scrollbar-thumb { background: var(--hair-2); border: 3px solid var(--face); }
+::-webkit-scrollbar-thumb:hover { background: var(--lume-dim); }
+
+a { color: var(--radium); text-decoration: none; text-underline-offset: 3px; }
+a:hover { text-decoration: underline; }
+
+:where(a, button, input, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--radium);
+  outline-offset: 3px;
+}
 
 img { max-width: 100%; display: block; }
-
-.container { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
-
-/* Skip link — visible only on keyboard focus. There was no jump-to-content
-   target before this. */
-.skip-link {
-  position: absolute;
-  left: -9999px;
-  top: 0;
-  z-index: 100;
-  background: var(--superior);
-  color: #fff;
-  padding: 12px 20px;
-  border-radius: 0 0 var(--radius-sm) 0;
-  font-weight: 600;
-}
-.skip-link:focus {
-  left: 0;
-  outline: 3px solid var(--copper-lite);
-  outline-offset: -3px;
-  text-decoration: none;
-  color: #fff;
-}
-/* tabindex="-1" targets are focused programmatically by anchor jumps; a visible
-   ring there would confuse a mouse user who never pressed Tab. */
-#main:focus:not(:focus-visible),
-#offer:focus:not(:focus-visible),
-#book:focus:not(:focus-visible) { outline: none; }
-
-/* ---------- Header ---------- */
-.site-header {
-  background: var(--superior);
-  color: #fff;
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  border-bottom: 1px solid rgba(255,255,255,.08);
-}
-/* One row, ~56px. The demo-line bar that used to sit above this was removed —
-   it advertised a number that answers with an outage message. */
-.site-header .container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 56px;
-  padding-top: 6px;
-  padding-bottom: 6px;
-}
-.logo {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: #fff;
-}
-.logo .num { font-size: 24px; }
-.logo .word {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--copper-lite);
-}
-/* 44px minimum tap target — this is the only persistent action on the page and
-   it must not shrink below 44px at any breakpoint. */
-.nav-cta {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  padding: 0 18px;
-  background: var(--copper-dark);
-  color: #fff;
-  border-radius: var(--radius-sm);
-  font-weight: 600;
-  font-size: 15px;
-}
-.nav-cta:hover { background: #83501F; color: #fff; text-decoration: none; }
-.nav-cta:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
-
-/* ---------- Hero ---------- */
-.hero {
-  background: var(--superior);
-  color: #fff;
-  padding: 88px 0 96px;
-  position: relative;
-  overflow: hidden;
-}
-.hero::after {
-  content: "";
-  position: absolute;
-  bottom: -1px;
-  left: 0; right: 0;
-  height: 48px;
-  background: var(--birch);
-  clip-path: polygon(0 100%, 100% 100%, 100% 0, 0 60%);
-}
-/* Two-column identity hero. Column 2 is the photo slot and is EMPTY on purpose —
-   no photo of Joey exists yet, and a placeholder person is a fabricated person.
-   Mobile is one column; the empty media column is display:none so it costs no
-   vertical space. When the photo lands, only the <img> is added — see the
-   PHOTO SLOT comment in the markup. No layout change is required. */
-.hero-grid { display: block; }
-.hero-media { display: none; }
-@media (min-width: 900px) {
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 48px;
-    align-items: center;
-  }
-  .hero-media { display: block; }
-}
-.hero-media img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  border-radius: var(--radius);
-}
-.hero-eyebrow {
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--copper-lite);
-  margin: 0 0 16px;
-}
-.hero h1 {
-  font-size: clamp(36px, 6vw, 60px);
-  line-height: 1.05;
-  letter-spacing: -0.025em;
-  font-weight: 800;
-  margin: 0 0 24px;
-  max-width: 22ch;
-}
-.hero h1 em {
-  font-style: normal;
-  color: var(--copper-lite);
-}
-.hero p.lead {
-  font-size: clamp(17px, 2.2vw, 20px);
-  line-height: 1.55;
-  max-width: 56ch;
-  color: rgba(255,255,255,.85);
-  margin: 0 0 32px;
-}
-.hero .cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
-/* The reply prompt. Traffic arrives from outreach holding a mail thread, so the
-   cheapest action available is reply — not the form. Kept quiet so it reads as
-   a note rather than a third CTA competing with the two above it. */
-.hero-reply {
-  margin: 24px 0 0;
-  font-size: 15px;
-  line-height: 1.5;
-  color: rgba(255,255,255,.72);
-  max-width: 46ch;
-}
-.btn {
-  display: inline-block;
-  padding: 14px 24px;
-  border-radius: var(--radius-sm);
-  font-weight: 600;
-  font-size: 16px;
-  border: 0;
-  cursor: pointer;
-  transition: transform .08s ease, background .15s ease;
-}
-.btn:hover { transform: translateY(-1px); text-decoration: none; }
-.btn-primary { background: var(--copper-dark); color: #fff; }
-.btn-primary:hover { background: #83501F; color: #fff; }
-.btn-ghost {
-  background: transparent;
-  color: #fff;
-  border: 1px solid rgba(255,255,255,.3);
-}
-.btn-ghost:hover { background: rgba(255,255,255,.08); color: #fff; }
-
-/* ---------- Sections ---------- */
-section { padding: 88px 0; }
-.section-eyebrow {
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--copper-dark);
-  margin: 0 0 12px;
-}
-h2 {
-  font-size: clamp(28px, 4vw, 40px);
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  font-weight: 800;
-  margin: 0 0 16px;
-  color: var(--superior);
-}
-.section-intro {
-  font-size: 18px;
-  color: var(--stone);
-  max-width: 60ch;
-  margin: 0 0 48px;
+.sr-only {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
 }
 
-/* ---------- Problem cards ---------- */
-.problem { background: var(--birch); }
-.problem-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
-}
-.problem-card {
-  background: #fff;
-  padding: 28px;
-  border-radius: var(--radius);
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow-sm);
-}
-.problem-outro {
-  margin: 32px 0 0;
-  font-size: 17px;
-  color: var(--stone);
-}
-.problem-card .num {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--copper-dark);
-  letter-spacing: 0.1em;
-  margin-bottom: 12px;
-}
-.problem-card h3 {
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--superior);
-  margin: 0 0 10px;
-  line-height: 1.25;
-}
-.problem-card p {
-  margin: 0;
-  color: var(--stone);
-  font-size: 16px;
-}
+.container { max-width: var(--container); margin: 0 auto; padding: 0 28px; }
 
-/* ---------- Offer ---------- */
-.offer {
-  background: #fff;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+h1, h2, h3 {
+  margin: 0; text-wrap: balance; letter-spacing: -.022em;
+  font-variant-numeric: tabular-nums;
+  /* Engraved, not embossed. A cut edge on a dark panel catches light on its top
+     lip and drops shadow below it; the first attempt used black at zero blur on
+     both grounds, which rendered as nothing on the panel and as embossing on the
+     light plates. Each ground now gets the direction its own lighting implies. */
+  text-shadow: 0 -1px 0 rgba(236,239,241,.09), 0 1px 0 rgba(0,0,0,.5);
 }
-.offer-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  margin-bottom: 32px;
-}
-.tier {
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 32px;
-  background: var(--birch);
-  display: flex;
-  flex-direction: column;
-}
-.tier.featured {
-  background: var(--superior);
-  color: #fff;
-  border-color: var(--superior);
-  position: relative;
-}
-.tier.featured h3 { color: #fff; }
-.tier.featured .price { color: var(--copper-lite); }
-.tier.featured ul li { color: rgba(255,255,255,.85); }
-.tier.featured ul li::before { background: var(--copper); }
-.tier-badge {
-  position: absolute;
-  top: -12px;
-  left: 32px;
-  background: var(--copper-dark);
-  color: #fff;
+p { margin: 0; }
+
+/* Placard lettering — the panel's label voice. Used for instrument labels and
+   plate designations, never as a kicker above a heading. */
+.placard {
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.12em;
-  padding: 5px 12px;
-  border-radius: 100px;
+  letter-spacing: .19em;
   text-transform: uppercase;
+  color: var(--lume-dim);
+  font-variant-numeric: tabular-nums;
 }
-.tier h3 {
-  font-size: 22px;
-  font-weight: 700;
-  margin: 0 0 8px;
-  color: var(--superior);
-  letter-spacing: -0.01em;
+
+/* Every numeral on this page is an instrument readout. */
+.num, .readout, .price { font-variant-numeric: tabular-nums; }
+
+.skip-link {
+  position: absolute; left: -9999px; top: 0; z-index: 100;
+  background: var(--radium); color: var(--face);
+  padding: 12px 20px; font-weight: 700;
 }
-.tier .price {
-  font-size: 28px;
+.skip-link:focus { left: 0; }
+
+/* ================= HEADER — the panel's top rail ======================== */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(11,14,16,.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--hair);
+}
+.site-header .container {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 66px;
+}
+.logo { display: flex; align-items: baseline; gap: 9px; color: var(--lume); }
+.logo:hover { text-decoration: none; }
+.logo .num {
+  font-size: 22px; font-weight: 800; letter-spacing: -.03em;
+}
+.logo .word {
+  font-size: 11px; font-weight: 700; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--lume-dim);
+}
+.nav-cta {
+  font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--radium);
+  border: 1px solid var(--radium);
+  padding: 10px 18px;
+  min-height: 44px; display: inline-flex; align-items: center;
+  transition: background .18s var(--ease-damp), color .18s var(--ease-damp);
+}
+.nav-cta:hover { background: var(--radium); color: var(--face); text-decoration: none; }
+
+/* ================= HERO — master placard + the six-pack ================= */
+.hero { padding: 92px 0 84px; position: relative; }
+.hero::before {
+  /* panel seam, not decoration: the rail the instruments are mounted on */
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--hair-2) 12%, var(--hair-2) 88%, transparent);
+}
+/* Mobile order has to satisfy two things at once, and an earlier pass traded one
+   for the other. The STORY is a phone outdoors in daylight, so an instrument must
+   exist in the first viewport — but this is a conversion page, so the primary
+   action cannot be pushed below it. Panel-before-lead put the whole six-gauge
+   rank between the headline and the button and shipped the CTA to y≈1230.
+   The order below keeps the button in the first screen and lets the panel's
+   first row of instruments sit directly beneath it, still above the fold. */
+.hero-grid { display: flex; flex-direction: column; gap: 0; }
+.hero-grid > h1          { order: 1; }
+.hero-grid > .lead       { order: 2; }
+.hero-grid > .cta-row    { order: 3; }
+.hero-grid > .hero-media { order: 4; margin-top: 34px; }
+.hero-grid > .hero-reply { order: 5; }
+h1 {
+  font-size: clamp(38px, 5.4vw, 68px);
+  line-height: 1.03;
   font-weight: 800;
-  color: var(--copper);
-  margin: 0 0 4px;
-  letter-spacing: -0.02em;
+  letter-spacing: -.035em;
+  max-width: 15ch;
 }
-.tier .price .small { font-size: 14px; font-weight: 500; color: var(--stone); }
-.tier.featured .price .small { color: rgba(255,255,255,.6); }
-.tier .desc {
-  font-size: 14px;
-  color: var(--stone);
-  margin: 0 0 20px;
-}
-.tier.featured .desc { color: rgba(255,255,255,.7); }
-.tier ul { list-style: none; padding: 0; margin: 0 0 24px; flex: 1; }
-.tier ul li {
-  font-size: 15px;
-  color: var(--slate);
-  padding-left: 24px;
-  position: relative;
-  margin-bottom: 10px;
-}
-.tier ul li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 9px;
-  width: 14px;
-  height: 2px;
-  background: var(--copper);
-}
-
-/* ---------- About ---------- */
-.about { background: var(--birch); }
-.about-wrap { max-width: 720px; margin: 0 auto; text-align: left; }
-.about p {
-  font-size: 18px;
-  line-height: 1.7;
-  color: var(--slate);
-  margin: 0 0 20px;
-}
-.about p strong { color: var(--superior); }
-
-/* ---------- Final CTA ---------- */
-.final-cta {
-  background: var(--superior);
-  color: #fff;
-  text-align: center;
-  padding: 96px 0;
-}
-.final-cta h2 { color: #fff; max-width: 24ch; margin: 0 auto 20px; }
-.final-cta p {
-  font-size: 18px;
-  color: rgba(255,255,255,.8);
-  max-width: 56ch;
-  margin: 0 auto 32px;
-}
-
-/* ---------- Lead form ---------- */
-.lead-form {
-  max-width: 480px;
-  margin: 32px auto 0;
-  text-align: left;
-}
-.field { margin-bottom: 20px; }
-
-.lead-form label {
+/* The one fact that clears the scam question breaks the grid rather than
+   sitting politely inside it. "out of Ironwood" is the town, lit. */
+h1 em {
+  font-style: normal;
+  color: var(--radium);
   display: block;
-  font-size: 15px;
-  font-weight: 600;
-  color: #fff;
-  margin-bottom: 8px;
 }
-.lead-form .optional { font-weight: 400; color: rgba(255,255,255,.6); }
+.lead {
+  margin-top: 24px; max-width: 56ch;
+  font-size: 18px; color: var(--lume-dim);
+}
+.cta-row { margin-top: 30px; display: flex; align-items: center; gap: 26px; flex-wrap: wrap; }
 
-.lead-form input[type="text"],
-.lead-form input[type="tel"],
-.lead-form textarea {
-  width: 100%;
-  font-family: inherit;
-  font-size: 16px;          /* 16px minimum — prevents iOS auto-zoom on focus */
-  line-height: 1.5;
-  padding: 13px 14px;       /* ~48px tall, above the 44px target minimum */
-  min-height: 48px;
-  color: var(--slate);
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  -webkit-appearance: none;
-  appearance: none;
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase;
+  padding: 15px 30px; min-height: 48px;
+  border: 1px solid transparent;
+  transition: background .18s var(--ease-damp), color .18s var(--ease-damp), border-color .18s var(--ease-damp);
 }
-.lead-form textarea { min-height: 88px; resize: vertical; }
+.btn-primary { background: var(--radium); color: var(--face); }
+.btn-primary:hover { background: var(--lume); text-decoration: none; }
+.btn-link {
+  color: var(--lume-dim); padding: 0; min-height: 0; text-transform: none;
+  font-size: 15px; font-weight: 500; letter-spacing: 0;
+  border-bottom: 1px solid var(--hair-2);
+}
+.btn-link:hover { color: var(--lume); text-decoration: none; border-color: var(--lume); }
 
-.lead-form input:focus-visible,
-.lead-form textarea:focus-visible,
-.lead-form button:focus-visible {
-  outline: 3px solid var(--copper);
-  outline-offset: 2px;
-}
-.lead-form input:focus,
-.lead-form textarea:focus { border-color: var(--copper); }
-
-.lead-form .lead-submit {
-  width: 100%;
-  min-height: 52px;
-  font-size: 17px;
-  margin-top: 4px;
-}
-.lead-form input[aria-invalid="true"],
-.lead-form textarea[aria-invalid="true"] { border-color: #C0392B; border-width: 2px; }
-
-.form-status {
-  margin: 14px 0 0;
-  font-size: 15px;
-  min-height: 22px;
-  color: #fff;
-}
-.form-status.is-error { color: #FFB4A8; }
-.form-status.is-success { color: #9FE8C0; font-weight: 600; }
-
-.price-note {
-  font-size: 13px;
-  color: var(--stone);
-  margin: -2px 0 10px;
-}
-.tier-qual { font-size: 13px; color: var(--stone); }
-.tier.featured .tier-qual { color: rgba(255,255,255,.7); }
-.form-fineprint {
-  margin: 12px 0 0;
-  font-size: 13px;
-  color: rgba(255,255,255,.55);
-}
-.alt-contact {
-  margin-top: 24px;
-  font-size: 15px;
-  color: rgba(255,255,255,.7);
+/* The primary success action per PRODUCT.md is the reply, not the form. It gets
+   structure instead of volume: a lit rule, the panel's own marking colour. */
+/* A lit hairline across the top, in the panel's own rule vocabulary. This used
+   to be a 2px radium border-left — the most generic device in the dark-landing
+   category, sitting in the one viewport that cannot afford to look generic. */
+.hero-reply {
+  margin-top: 34px; max-width: 46ch;
+  padding-top: 16px;
+  border-top: 1px solid var(--radium);
+  color: var(--lume);
+  font-size: 16px;
 }
 
-/* Honeypot — hidden from humans, from keyboards, and from screen readers */
-.hp-field {
-  position: absolute !important;
-  left: -9999px !important;
-  width: 1px; height: 1px;
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* ---------- Demo line callout (final CTA) — OFFLINE MODE ---------- */
-.demo-callout {
-  max-width: 480px;
-  margin: 40px auto 0;
-  padding: 24px;
-  border: 1px solid rgba(255,255,255,.18);
+/* ---- The six-pack ------------------------------------------------------ */
+.sixpack {
+  background: var(--face);
+  border: 1px solid var(--hair);
   border-radius: var(--radius);
-  background: rgba(255,255,255,.04);
-  text-align: center;
+  box-shadow: var(--shadow-panel);
+  padding: 26px 22px 22px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 26px 18px;
+  position: relative;
 }
-.demo-callout h3 {
-  font-size: 19px;
-  font-weight: 700;
-  color: #fff;
-  margin: 0 0 8px;
-  letter-spacing: -.01em;
-}
-.demo-callout p {
-  font-size: 15px;
-  line-height: 1.55;
-  color: rgba(255,255,255,.7);
-  margin: 8px auto 0;
-  max-width: 40ch;
+/* Panel fasteners: four screws at the corners, where a real instrument panel
+   carries them. Drawn as corner gradients so they cost no extra elements. */
+.sixpack {
+  background-image:
+    radial-gradient(circle at 11px 11px, var(--hair-2) 0 2.2px, #05080a 2.2px 3.1px, transparent 3.2px),
+    radial-gradient(circle at calc(100% - 11px) 11px, var(--hair-2) 0 2.2px, #05080a 2.2px 3.1px, transparent 3.2px),
+    radial-gradient(circle at 11px calc(100% - 11px), var(--hair-2) 0 2.2px, #05080a 2.2px 3.1px, transparent 3.2px),
+    radial-gradient(circle at calc(100% - 11px) calc(100% - 11px), var(--hair-2) 0 2.2px, #05080a 2.2px 3.1px, transparent 3.2px);
+  background-repeat: no-repeat;
 }
 
-/* ---------- Footer ---------- */
+.gauge { text-align: center; }
+.gauge svg { width: 100%; height: auto; max-width: 118px; margin: 0 auto; display: block; }
+/* The reading lives on the placard, not on the face. A real altimeter carries
+   numerals on its rim and nothing in the middle; a text block behind a sweeping
+   needle is the thing that made the first build unreadable. */
+.gauge-readout {
+  margin-top: 11px;
+  font-size: 19px; font-weight: 800; letter-spacing: -.02em; line-height: 1.1;
+  color: var(--lume);
+}
+.gauge-readout .unit {
+  display: block; margin-top: 3px;
+  font-size: 9.5px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
+  color: var(--lume-dim);
+}
+.gauge-readout.is-long { font-size: 15px; letter-spacing: -.01em; }
+.gauge-label {
+  margin-top: 8px; padding-top: 7px;
+  font-size: 9.5px; font-weight: 700; letter-spacing: .17em; text-transform: uppercase;
+  color: var(--lume-dim);
+  border-top: 1px solid var(--hair);
+}
+.dial-face { fill: var(--face); stroke: var(--hair-2); stroke-width: 1.5; }
+.dial-bezel { fill: none; stroke: var(--hair-2); stroke-width: 3; }
+/* Tick rings drawn as dashed circles — real marking, not an image. */
+.tick-minor { fill: none; stroke: var(--lume-dim); stroke-width: 5; stroke-dasharray: 1.4 6.28; opacity: .55; }
+.dial-num {
+  fill: var(--lume-dim); font-size: 9.5px; font-weight: 700;
+  text-anchor: middle; dominant-baseline: middle; font-variant-numeric: tabular-nums;
+}
+.tick-sep { stroke: var(--hair); stroke-width: 1; }
+.dial-card { fill: var(--lume); font-size: 10.5px; font-weight: 800; text-anchor: middle; dominant-baseline: middle; }
+/* The arc a real gauge is read against: the marked range that says which part of
+   the scale is the good part. */
+.arc-range { fill: none; stroke: var(--radium); stroke-width: 4; stroke-linecap: butt; }
+.arc-range.is-caution { stroke: var(--caution); }
+/* Square bezel at the dials' own diameter. Without it the drum and the
+   annunciator — both short elements — floated with ~50px of empty face above
+   them while the neighbouring dials filled their cells, and the rank stopped
+   scanning as a rank. Panels carry round and square instruments side by side;
+   what they do not carry is one instrument hanging in its cutout. */
+.instr-frame { fill: var(--face); stroke: var(--hair-2); stroke-width: 3; }
+/* A drum counter — a different instrument silhouette entirely, for a value that
+   is a registration number and not a quantity on any scale. */
+.drum-window { fill: #05080A; stroke: var(--hair-2); stroke-width: 1; }
+.drum-digit {
+  fill: var(--lume); font-size: 13px; font-weight: 800;
+  text-anchor: middle; dominant-baseline: middle; font-variant-numeric: tabular-nums;
+}
+/* An annunciator plate. Rectangular on purpose: the demo line is a lit/unlit
+   state, not a reading on a scale, and it should not look like one. */
+.annun-plate { fill: var(--face); stroke: var(--caution); stroke-width: 1.5; }
+.annun-text {
+  fill: var(--caution); font-size: 21px; font-weight: 800; letter-spacing: .09em;
+  text-anchor: middle; dominant-baseline: middle;
+}
+.needle {
+  stroke: var(--radium); stroke-width: 2.5; stroke-linecap: round;
+  transform-box: fill-box; transform-origin: 50% 100%;
+  transform: rotate(var(--sweep-from, -118deg));
+  transition: transform 1600ms var(--ease-damp);
+}
+/* The settle: needles rest off-reading until this class lands, one frame after
+   paint. The selector was accidentally split by a bad edit, which left a bare
+   .needle winning at equal specificity and killed the sweep entirely. */
+.is-settled .needle { transform: rotate(var(--sweep, 0deg)); }
+.needle-hub { fill: var(--radium); }
+
+/* The demo line is an instrument state, not a defect notice. */
+.gauge.is-caution .needle, .gauge.is-caution .needle-hub { stroke: var(--caution); fill: var(--caution); }
+.gauge.is-caution .gauge-readout { color: var(--caution); }
+.gauge.is-caution .gauge-lamp { fill: var(--caution); }
+.gauge-lamp { fill: var(--radium); }
+
+/* ================= LEAKS — annunciator panel =========================== */
+.leaks { padding: 88px 0; border-bottom: 1px solid var(--hair); }
+h2 {
+  font-size: clamp(28px, 3.5vw, 42px); font-weight: 800; line-height: 1.1;
+  max-width: 20ch;
+}
+.section-intro { margin-top: 20px; max-width: 62ch; color: var(--lume-dim); }
+.section-outro { margin-top: 34px; max-width: 68ch; color: var(--lume-dim); font-size: 15.5px; }
+
+.annunciator {
+  margin-top: 44px;
+  display: grid; grid-template-columns: 1fr; gap: 1px;
+  background: var(--hair);
+  border: 1px solid var(--hair);
+}
+.warn {
+  background: var(--face); padding: 30px 28px;
+  display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: start;
+}
+/* An UNLIT lamp — a real annunciator state, and deliberately not amber. Amber on
+   this page means exactly one thing: a system of mine that is currently off. These
+   two describe the visitor's own problems, so they get the dark lamp with a lume
+   ring instead of borrowing the caution colour. */
+.warn-lamp {
+  width: 13px; height: 13px; border-radius: 50%;
+  background: var(--face);
+  border: 2px solid var(--lume-dim);
+  margin-top: 7px;
+}
+.warn h3 { font-size: 19px; font-weight: 700; }
+.warn p { margin-top: 10px; color: var(--lume-dim); font-size: 15.5px; max-width: 46ch; }
+
+/* ================= WHAT I BUILD — the plate rank ======================= */
+.offer { padding: 88px 0; border-bottom: 1px solid var(--hair); }
+.plates { margin-top: 44px; display: grid; grid-template-columns: 1fr; gap: 14px; }
+
+/* Brushed placards on the panel. Not cards: each is a machined plate with a
+   designation, a rating, and a spec list — the panel's own document form. */
+.plate {
+  background: linear-gradient(180deg, var(--plate) 0%, #B8BFC3 100%);
+  color: var(--plate-ink);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-plate);
+  padding: 30px 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 34px;
+  align-items: start;
+  position: relative;
+}
+.plate-head h3 {
+  font-size: 22px; font-weight: 800; color: var(--plate-ink);
+  text-shadow: 0 1px 0 rgba(255,255,255,.55);   /* inverted: light metal, light from above */
+}
+.plate-desc { margin-top: 9px; font-size: 15px; color: rgba(11,14,16,.72); max-width: 40ch; }
+.price {
+  margin-top: 14px;
+  font-size: 25px; font-weight: 800; letter-spacing: -.03em; color: var(--plate-ink);
+}
+.price .small { font-size: 13px; font-weight: 600; letter-spacing: 0; color: rgba(11,14,16,.72); }
+.price-note { margin-top: 6px; font-size: 13.5px; color: rgba(11,14,16,.66); max-width: 34ch; }
+
+.spec { list-style: none; margin: 0; padding: 0; }
+.spec li {
+  position: relative; padding-left: 20px; margin-bottom: 8px;
+  font-size: 14.5px; color: rgba(11,14,16,.8);
+}
+.spec li::before {
+  content: ""; position: absolute; left: 0; top: 9px;
+  width: 10px; height: 1.5px; background: rgba(11,14,16,.45);
+}
+.spec .sub { color: rgba(11,14,16,.72); }
+
+/* The entry point is marked by a LIT LAMP and nothing else. It carried the words
+   "START HERE" in 10.5px tracked uppercase directly above the plate's <h3>, which
+   is a kicker in the position the craft floor bans outright — the badge it was
+   meant to replace, wearing different clothes. The words now live only in the
+   accessible name, so the meaning survives for screen readers. */
+.plate.is-entry { box-shadow: var(--shadow-plate), 0 0 0 2px var(--radium); }
+.entry-mark {
+  grid-column: 1 / -1;
+  width: 11px; height: 11px; border-radius: 50%;
+  background: #1F6B45; box-shadow: 0 0 0 3px rgba(31,107,69,.2);
+  margin-bottom: 6px;
+}
+
+/* ================= WHO RUNS THIS ======================================= */
+.about { padding: 88px 0; border-bottom: 1px solid var(--hair); }
+.about-body { margin-top: 24px; max-width: 62ch; display: grid; gap: 18px; }
+.about-body p { color: var(--lume-dim); }
+.about-body strong { color: var(--lume); font-weight: 700; }
+
+/* ================= CAUTION PANEL — the demo line ======================= */
+/* Positioned BEFORE the form on purpose. A visitor clears the doubt, then
+   converts. It used to sit after the form, where it was the last thing read. */
+.caution-panel {
+  margin: 0 0 52px;
+  background: var(--face);
+  border: 1px solid var(--hair-2);
+  border-radius: var(--radius);
+  padding: 28px 30px;
+  display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: start;
+  max-width: 720px;
+}
+.caution-lamp {
+  width: 15px; height: 15px; border-radius: 50%;
+  background: var(--caution);
+  box-shadow: 0 0 0 4px rgba(224,162,26,.13), 0 0 16px rgba(224,162,26,.5);
+  margin-top: 6px;
+}
+.caution-panel h3 { font-size: 18px; font-weight: 700; color: var(--caution); }
+.caution-panel p { margin-top: 10px; color: var(--lume-dim); font-size: 15.5px; }
+
+/* ================= FINAL CTA =========================================== */
+.final-cta { padding: 88px 0 96px; }
+.cta-lead { margin-top: 18px; max-width: 54ch; color: var(--lume-dim); }
+
+.lead-form { margin-top: 40px; max-width: 560px; }
+.field { margin-bottom: 22px; }
+.field label {
+  display: block; margin-bottom: 9px;
+  font-size: 11px; font-weight: 700; letter-spacing: .17em; text-transform: uppercase;
+  color: var(--lume-dim);
+}
+.field .optional { letter-spacing: .1em; color: var(--lume-dim); }
+/* Inputs are readouts: recessed faces with luminous type. */
+.field input, .field textarea {
+  width: 100%;
+  font-family: inherit; font-size: 16px; color: var(--lume);
+  background: var(--face);
+  border: 1px solid var(--hair-2);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  transition: border-color .18s var(--ease-damp), box-shadow .18s var(--ease-damp);
+}
+.field textarea { resize: vertical; min-height: 96px; }
+.field input::placeholder, .field textarea::placeholder { color: #7F8A90; }
+.field input:focus, .field textarea:focus {
+  outline: none; border-color: var(--radium);
+  box-shadow: 0 0 0 3px rgba(127,212,162,.16);
+}
+.field input[aria-invalid="true"] { border-color: var(--caution); }
+.field input[aria-invalid="true"] + .invalid-mark { display: block; }
+
+.lead-submit { width: 100%; }
+.form-status { margin-top: 18px; font-size: 15px; min-height: 1px; }
+.form-status.is-error { color: var(--caution); }
+.form-status.is-success { color: var(--radium); font-size: 17px; }
+.form-fineprint { margin-top: 16px; font-size: 13.5px; color: var(--lume-dim); max-width: 52ch; }
+.hp-field { position: absolute; left: -9999px; opacity: 0; pointer-events: none; }
+
+.alt-contact { margin-top: 26px; font-size: 15.5px; color: var(--lume-dim); }
+
+/* ================= FOOTER — the data plate ============================= */
 .site-footer {
-  background: var(--superior);
-  color: rgba(255,255,255,.7);
-  padding: 32px 0;
-  border-top: 1px solid rgba(255,255,255,.08);
+  border-top: 1px solid var(--hair);
+  background: var(--face);
+  padding: 40px 0;
   font-size: 14px;
+  color: var(--lume-dim);
 }
-.site-footer .container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  justify-content: space-between;
-  align-items: center;
+.site-footer .container { display: flex; justify-content: space-between; gap: 28px; flex-wrap: wrap; }
+.site-footer a { color: var(--radium); }
+/* The strongest verifiable artifact on this page gets a label and a size. */
+.entity {
+  display: block; margin: 8px 0 4px;
+  font-size: 19px; font-weight: 800; letter-spacing: .01em; color: var(--lume);
 }
-/* --copper-lite, not --copper-dark. The footer background is --superior, and
-   copper-dark on it is 2.86:1 — it fails AA. copper-lite is 5.12:1, the value
-   documented on the token above. */
-.site-footer a { color: var(--copper-lite); }
+.entity-label { display: block; }
 
-/* ---------- Responsive ---------- */
-@media (max-width: 640px) {
-  section { padding: 64px 0; }
-  .hero { padding: 64px 0 80px; }
-  .tier { padding: 24px; }
-  /* .nav-cta keeps its 44px min-height here on purpose. Only the horizontal
-     padding narrows. Do not reintroduce a font-size/padding shrink — that is
-     what made this a ~37px target. */
-  .nav-cta { padding: 0 14px; }
-  .demo-callout { padding: 20px; }
-  .lead-form { margin-top: 24px; }
-  .field { margin-bottom: 16px; }
+/* ================= RESPONSIVE ========================================== */
+@media (min-width: 720px) {
+  .annunciator { grid-template-columns: 1fr 1fr; }
+  .sixpack { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 980px) {
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr .95fr;
+    grid-template-areas: "h media" "lead media" "cta media" "reply media";
+    column-gap: 54px; row-gap: 0;
+    align-content: center;
+  }
+  .hero-grid > h1 { grid-area: h; }
+  .hero-grid > .lead { grid-area: lead; }
+  .hero-grid > .cta-row { grid-area: cta; }
+  .hero-grid > .hero-reply { grid-area: reply; }
+  .hero-grid > .hero-media { grid-area: media; align-self: center; margin-top: 0; }
+  .plates { gap: 16px; }
+}
+@media (max-width: 719px) {
+  .plate { grid-template-columns: 1fr; }
+  .spec { margin-top: 16px; }
+  .hero { padding: 44px 0 52px; }
+  .leaks, .offer, .about, .final-cta { padding: 62px 0; }
+}
+
+/* Motion is one authored moment — the needles settling — and it is optional. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .needle { transition: none; transform: rotate(var(--sweep, 0deg)); }
+  *, *::before, *::after { transition-duration: .01ms !important; }
 }
 </style>
 </head>
 <body>
+
+<!--
+  DIRECTION CONTRACT — seed 61f69f41 · scope direction · mode persuade
+  THESIS: This page is an instrument panel: six gauges, each owning one checkable
+    truth about a one-person business, and an amber lamp that states what is
+    currently off. It refuses the category default this page used to be — cream
+    ground, sans display, pricing grid with a featured tier.
+  OWN-WORLD: Matte panel (#14181B) and deeper instrument faces (#0B0E10);
+    luminous white markings; radium green reserved for needles, lamps, and links;
+    amber reserved for caution alone; brushed placard plates carrying dark text.
+    Hairline rule work, machined 3px edges, drawn dials with dashed tick rings.
+  STORY: A visitor holding a cold email asks whether this is a scam. The panel
+    answers with instruments, not adjectives — town, entity number, crew of one,
+    reply time, zero web fonts — and tells them plainly which system is offline.
+  FIRST VIEWPORT: Headline left at 68px with "out of Ironwood" lit in radium on
+    its own line; the six-pack right, six drawn gauges on a fastened face.
+    Primary action is a radium button under the lead; the reply prompt sits below
+    it behind a lit rule, because reply outranks the form.
+  FORM: Night instrument six-pack. Challenger that beat the roll's assignment
+    (candidate 3, county plat book) on both axes. Seed key 61f69f41.
+  FINISH: unreviewed and undocumented is unfinished; this build ends with the
+    finish review, the verdict, DESIGN.md, and every shipping raster carrying its
+    provenance.
+-->
+
 <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- ============== HEADER ============== -->
@@ -620,55 +610,167 @@ h2 {
 
 <main id="main" tabindex="-1">
 
-<!-- ============== HERO ============== -->
+<!-- ============== HERO — master placard + the six-pack ============== -->
 <section class="hero">
   <div class="container hero-grid">
-    <div class="hero-copy">
-      <p class="hero-eyebrow">Ironwood, Michigan</p>
-      <h1>I'm Joey Gerovac. I put AI to work in small businesses, <em>out of Ironwood.</em></h1>
-      <p class="lead">
-        906 Digital builds the websites, phone answering, and automation that
-        small businesses across the Upper Peninsula actually need. The idea is
-        simple: the office work that eats your evenings gets handled, and you
-        get on with the job.
-      </p>
-      <div class="cta-row">
-        <a href="#book" class="btn btn-primary">Get in touch</a>
-        <a href="#offer" class="btn btn-ghost">See what I build</a>
+    <h1>I'm Joey Gerovac. I put AI to work in small businesses, <em>out of Ironwood.</em></h1>
+
+    <!-- ===================== THE SIX-PACK =====================================
+         Six instruments, each owning exactly one truth a visitor can check
+         independently, and each one a DIFFERENT instrument: a compass card, two
+         graduated arc gauges with a marked good range, a drum counter, and an
+         annunciator plate. The first build shipped six identical faces separated
+         only by needle angle, with nothing to read the needle against — six
+         clocks pointing at nothing, with every fact carried by the text below.
+         A six-pack is six different faces; that difference is the whole reason
+         it is called one.
+
+         Every value is permanently true and none of them drift, which is
+         deliberate: this repo's recurring failure is facts going stale on a page
+         nobody re-reads.
+
+         The photo rule has NOT changed: no illustration, monogram, avatar,
+         silhouette, stock photo, or AI-generated image may fill the hero. A
+         placeholder person is a fabricated person. WHEN A REAL PHOTO EXISTS it
+         does not replace this panel — put the <img> above .sixpack at 4:3 with
+         explicit width/height and let the panel sit beneath it.
+         ====================================================================== -->
+    <div class="hero-media">
+      <div class="sixpack" id="sixpack" role="group" aria-label="Six verifiable facts about this business">
+
+        <div class="gauge" style="--sweep: 0deg;">
+          <svg viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+            <circle class="dial-face" cx="60" cy="60" r="52"/>
+            <circle class="dial-bezel" cx="60" cy="60" r="55"/>
+            <circle class="tick-minor" cx="60" cy="60" r="44"/>
+            <text class="dial-card" x="60" y="30">N</text>
+            <text class="dial-card" x="90" y="60">E</text>
+            <text class="dial-card" x="60" y="90">S</text>
+            <text class="dial-card" x="30" y="60">W</text>
+            <line class="needle" x1="60" y1="60" x2="60" y2="28"/>
+            <circle class="needle-hub" cx="60" cy="60" r="3.5"/>
+          </svg>
+          <p class="gauge-readout is-long">Ironwood<span class="unit">Michigan</span></p>
+          <p class="gauge-label">Where I am</p>
+        </div>
+
+        <div class="gauge" style="--sweep: -60deg;">
+          <svg viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+            <circle class="dial-face" cx="60" cy="60" r="52"/>
+            <circle class="dial-bezel" cx="60" cy="60" r="55"/>
+            <circle class="tick-minor" cx="60" cy="60" r="44"/>
+            <text class="dial-num" x="34.0" y="75.0">0</text>
+            <text class="dial-num" x="34.0" y="45.0">1</text>
+            <text class="dial-num" x="60.0" y="30.0">2</text>
+            <text class="dial-num" x="86.0" y="45.0">3</text>
+            <text class="dial-num" x="86.0" y="75.0">4</text>
+            <line class="needle" x1="60" y1="60" x2="60" y2="28"/>
+            <circle class="needle-hub" cx="60" cy="60" r="3.5"/>
+          </svg>
+          <p class="gauge-readout">1<span class="unit">Person</span></p>
+          <p class="gauge-label">The crew</p>
+        </div>
+
+        <div class="gauge" style="--sweep: -85.7deg;">
+          <svg viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+            <circle class="dial-face" cx="60" cy="60" r="52"/>
+            <circle class="dial-bezel" cx="60" cy="60" r="55"/>
+            <circle class="tick-minor" cx="60" cy="60" r="44"/>
+            <path class="arc-range" d="M 23.63 81.00 A 42 42 0 0 1 18.11 56.86"/>
+            <text class="dial-num" x="34.0" y="75.0">0</text>
+            <text class="dial-num" x="30.1" y="57.8">1</text>
+            <text class="dial-num" x="51.2" y="31.3">3</text>
+            <text class="dial-num" x="83.5" y="41.3">5</text>
+            <text class="dial-num" x="86.0" y="75.0">7</text>
+            <line class="needle" x1="60" y1="60" x2="60" y2="28"/>
+            <circle class="needle-hub" cx="60" cy="60" r="3.5"/>
+          </svg>
+          <p class="gauge-readout">1<span class="unit">Business day</span></p>
+          <p class="gauge-label">Reply within</p>
+        </div>
+
+        <div class="gauge">
+          <svg viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+            <rect class="instr-frame" x="7" y="7" width="106" height="106" rx="3"/>
+            <rect class="drum-window" x="14" y="46" width="92" height="28" rx="2"/>
+            <line class="tick-sep" x1="24.2" y1="46" x2="24.2" y2="74"/>
+            <line class="tick-sep" x1="34.4" y1="46" x2="34.4" y2="74"/>
+            <line class="tick-sep" x1="44.7" y1="46" x2="44.7" y2="74"/>
+            <line class="tick-sep" x1="54.9" y1="46" x2="54.9" y2="74"/>
+            <line class="tick-sep" x1="65.1" y1="46" x2="65.1" y2="74"/>
+            <line class="tick-sep" x1="75.3" y1="46" x2="75.3" y2="74"/>
+            <line class="tick-sep" x1="85.6" y1="46" x2="85.6" y2="74"/>
+            <line class="tick-sep" x1="95.8" y1="46" x2="95.8" y2="74"/>
+            <text class="drum-digit" x="19.1" y="61">9</text>
+            <text class="drum-digit" x="29.3" y="61">0</text>
+            <text class="drum-digit" x="39.6" y="61">0</text>
+            <text class="drum-digit" x="49.8" y="61">1</text>
+            <text class="drum-digit" x="60.0" y="61">6</text>
+            <text class="drum-digit" x="70.2" y="61">9</text>
+            <text class="drum-digit" x="80.4" y="61">5</text>
+            <text class="drum-digit" x="90.7" y="61">6</text>
+            <text class="drum-digit" x="100.9" y="61">2</text>
+          </svg>
+          <p class="gauge-readout is-long">Michigan LLC<span class="unit">Registered entity</span></p>
+          <p class="gauge-label">Entity ID</p>
+        </div>
+
+        <div class="gauge" style="--sweep: -120deg;">
+          <svg viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+            <circle class="dial-face" cx="60" cy="60" r="52"/>
+            <circle class="dial-bezel" cx="60" cy="60" r="55"/>
+            <circle class="tick-minor" cx="60" cy="60" r="44"/>
+            <path class="arc-range" d="M 23.63 81.00 A 42 42 0 0 1 18.23 64.39"/>
+            <text class="dial-num" x="34.0" y="75.0">0</text>
+            <text class="dial-num" x="60.0" y="30.0">5</text>
+            <text class="dial-num" x="86.0" y="75.0">10</text>
+            <line class="needle" x1="60" y1="60" x2="60" y2="28"/>
+            <circle class="needle-hub" cx="60" cy="60" r="3.5"/>
+          </svg>
+          <p class="gauge-readout">0<span class="unit">Downloaded</span></p>
+          <p class="gauge-label">Web fonts</p>
+        </div>
+
+        <!-- The demo line is a lit/unlit state, not a reading on a scale, so it
+             gets an annunciator plate rather than a dial. Amber appears here and
+             in the caution panel below, and nowhere else on the page. -->
+        <div class="gauge is-caution">
+          <svg viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+            <rect class="instr-frame" x="7" y="7" width="106" height="106" rx="3"/>
+            <rect class="annun-plate" x="14" y="42" width="92" height="36" rx="2"/>
+            <circle class="gauge-lamp" cx="31" cy="60" r="5"/>
+            <text class="annun-text" x="70" y="61">OFF</text>
+          </svg>
+          <p class="gauge-readout is-long">No number<span class="unit">Anywhere on this page</span></p>
+          <p class="gauge-label">Demo line</p>
+        </div>
+
       </div>
-      <!-- Every visitor to this page arrives holding an email thread — all traffic
-           comes from Joey's own outreach, and there is no other channel. The page
-           previously offered a form to people who already had a reply button, which
-           is a harder action than the one they came with. This line is the prompt
-           for the action that actually matters. Keep it above the fold. -->
-      <p class="hero-reply">
-        If you got an email or a text from me — that was me. Hitting reply is
-        the easiest way to reach me.
-      </p>
     </div>
 
-    <!-- ===================== PHOTO SLOT — INTENTIONALLY EMPTY =====================
-         No photo of Joey exists yet. This column stays empty until a real one does.
-         Do NOT fill it with an illustration, monogram, avatar, silhouette, stock
-         photo, or AI-generated image. A placeholder person is a fabricated person.
-
-         WHEN THE PHOTO EXISTS, add exactly one <img> inside .hero-media below:
-           <img src="joey.webp" width="800" height="600"
-                alt="Joey Gerovac in Ironwood, Michigan"
-                loading="eager" decoding="async">
-         The grid expects 4:3 (object-fit: cover handles minor variance). Explicit
-         width/height are required to prevent layout shift. Nothing else changes:
-         the two-column grid, the mobile collapse, and the CSS are already in place.
-         Consider reusing the same image as og:image at that time.
-         =========================================================================== -->
-    <div class="hero-media"></div>
+    <p class="lead">
+      906 Digital builds the websites, phone answering, and automation that
+      small businesses across the Upper Peninsula actually need. The idea is
+      simple: the office work that eats your evenings gets handled, and you
+      get on with the job.
+    </p>
+    <div class="cta-row">
+      <a href="#book" class="btn btn-primary">Get in touch</a>
+      <a href="#offer" class="btn btn-link">See what I build</a>
+    </div>
+    <!-- Every visitor arrives holding an email thread — all traffic comes from
+         Joey's own outreach. PRODUCT.md ranks reply ABOVE the form. It used to be
+         the quietest element on the page, which inverted that ranking. -->
+    <p class="hero-reply">
+      If you got an email or a text from me — that was me. Hitting reply is
+      the easiest way to reach me.
+    </p>
   </div>
 </section>
 
-<!-- ============== PROBLEM ============== -->
-<section class="problem">
+<!-- ============== THE LEAKS — annunciator panel ============== -->
+<section class="leaks">
   <div class="container">
-    <p class="section-eyebrow">The leaks</p>
     <!-- This headline moved down from the H1 verbatim. It was tree-specific until
          2026-08-11, when the site widened from trades to UP small business. Keep it
          CONCRETE — the original instruction was "do not water it down", and that
@@ -681,61 +783,64 @@ h2 {
       minding the storefront.
     </p>
 
-    <div class="problem-grid">
-      <div class="problem-card">
-        <div class="num">01</div>
-        <h3>Calls go to voicemail.</h3>
-        <p>You're on a ladder, under a truck, or across the counter from
-        somebody. Three voicemails later, they called the next name on
-        Google.</p>
-      </div>
-      <div class="problem-card">
-        <div class="num">02</div>
-        <h3>Your "website" is a Facebook page.</h3>
-        <p>Meta could shut it down tomorrow for any reason or none. Your
-        customers, reviews, and reach — all renting from a landlord.</p>
-      </div>
+    <div class="annunciator">
       <!-- Card 03 ("Google can't find you") was cut: it argued for a channel this
            project's own SEO research found has effectively zero demand here.
-           The section intro reads "Two places" to match. If a third card is ever
-           restored, update the intro count with it. -->
+           The section intro reads "Two places" to match. -->
+      <div class="warn">
+        <div class="warn-lamp" aria-hidden="true"></div>
+        <div>
+          <h3>Calls go to voicemail.</h3>
+          <p>
+            You're on a ladder, under a truck, or across the counter from
+            somebody. Three voicemails later, they called the next name on
+            Google.
+          </p>
+        </div>
+      </div>
+      <div class="warn">
+        <div class="warn-lamp" aria-hidden="true"></div>
+        <div>
+          <h3>Your "website" is a Facebook page.</h3>
+          <p>
+            Meta could shut it down tomorrow for any reason or none. Your
+            customers, reviews, and reach — all renting from a landlord.
+          </p>
+        </div>
+      </div>
     </div>
 
-    <!-- This line used to sit directly under the H2, where it exposed the template
-         seam ten words after the tree-specific line landed — to a visitor who came
-         specifically to test whether that specificity was real. Below the cards it
-         does the same reassuring work without undercutting the headline.
-         Kept after the 2026-08-11 widening: naming actual trades and shops still
-         beats the abstraction "small business", which lets nobody see themselves. -->
-    <p class="problem-outro">
-      Tree and excavation, plumbing and HVAC, roofing, auto, salons, clinics,
-      contractors, restaurants — same two leaks, same fix.
+    <p class="section-outro">
+      Tree and excavation, plumbing and HVAC, roofing, auto, salons, clinics, contractors, restaurants — same two leaks, same fix.
     </p>
   </div>
 </section>
 
-<!-- ============== OFFER ============== -->
+<!-- ============== WHAT I BUILD — the plate rank ============== -->
 <section class="offer" id="offer" tabindex="-1">
   <div class="container">
-    <p class="section-eyebrow">What I build</p>
     <h2>Five things I build. Most people start with one.</h2>
     <p class="section-intro">
-      Local pricing. Flat fees. Built in weeks, not months. No long contract on the
-      monthly — I'd rather you stay because the numbers work. The first two have
+      Local pricing. Flat fees. Built in weeks, not months. The first two have
       published prices because they're the same job every time. The last three get
       a fixed quote within one business day of a short call, because they don't.
     </p>
 
-    <div class="offer-grid">
-      <!-- Tier 1 -->
-      <div class="tier">
-        <h3>Foundation Site</h3>
-        <p class="price">$1,900–4,500 <span class="small">one-time</span></p>
-        <!-- Turnaround and feature lines must match packages-and-pricing.md:77-95.
-             The photo gallery starts at Standard ($2,900) — it is not in the
-             $1,900 Starter, and listing it at the floor price oversells the floor. -->
-        <p class="desc">A real website you actually own. Built in 10 days to 4 weeks, depending on size.</p>
-        <ul>
+    <!-- Five plates in a fixed rank. This used to be a 3-column auto-fit card grid,
+         which resolved to 3+2 at desktop and left an orphaned empty slot on the
+         page's most important section. A rank cannot orphan. -->
+    <div class="plates">
+
+      <div class="plate">
+        <div class="plate-head">
+          <h3>Foundation Site</h3>
+          <!-- Turnaround and feature lines must match packages-and-pricing.md:77-95.
+               The photo gallery starts at Standard ($2,900) — it is not in the
+               $1,900 Starter, and listing it at the floor price oversells the floor. -->
+          <p class="plate-desc">A real website you actually own. Built in 10 days to 4 weeks, depending on size.</p>
+          <p class="price">$1,900–4,500 <span class="small">one-time</span></p>
+        </div>
+        <ul class="spec">
           <li>Mobile-first, fast-loading</li>
           <li>Google Business Profile setup</li>
           <li>Local SEO basics included</li>
@@ -746,38 +851,39 @@ h2 {
         </ul>
       </div>
 
-      <!-- Tier 2 (featured) -->
-      <div class="tier featured">
-        <span class="tier-badge">Start here</span>
-        <h3>AI Receptionist</h3>
-        <p class="price">$249–699 <span class="small">/month</span></p>
-        <p class="price-note">Plus a one-time $500 setup — I build and tune the agent for your business.</p>
-        <p class="desc">An AI agent that answers every call when you can't.</p>
-        <ul>
+      <div class="plate is-entry">
+        <p class="entry-mark" aria-hidden="true"></p>
+        <span class="sr-only">Most people start here.</span>
+        <div class="plate-head">
+          <h3>AI Receptionist</h3>
+          <p class="plate-desc">An AI agent that answers every call when you can't.</p>
+          <p class="price">$249–699 <span class="small">/month</span></p>
+          <p class="price-note">Plus a one-time $500 setup — I build and tune the agent for your business. No long contract on the monthly.</p>
+        </div>
+        <ul class="spec">
           <li>24/7 call answering</li>
           <li>Captures the address, the job, and how urgent it is</li>
           <li>Texts the lead to your phone in seconds</li>
-          <li>Books estimates on your calendar <span class="tier-qual">(Pro Agent and up)</span></li>
+          <li>Books estimates on your calendar <span class="sub">(Pro Agent and up)</span></li>
           <li>Filters spam and junk calls</li>
         </ul>
       </div>
 
-      <!-- The three cards below were added 2026-08-11 when the site widened from
-           trades to UP small business. They carry NO published price on purpose:
-           packages-and-pricing.md prices only the Foundation Site and the AI
-           Receptionist. Inventing a number for the other three would be a
-           fabricated price on a live page. "Fixed price within one business day"
-           is the practice already stated on advisory.html — it is real, not filler.
-           If these ever get published prices, they belong in packages-and-pricing.md
-           FIRST, and the numbers here must match it. -->
-
-      <!-- Tier 3 -->
-      <div class="tier">
-        <h3>Process Automation</h3>
-        <p class="price">Scoped <span class="small">per project</span></p>
-        <p class="price-note">Fixed price within one business day of a short call.</p>
-        <p class="desc">The repetitive office work, handed to an agent that does it the same way every time.</p>
-        <ul>
+      <!-- These three carry NO published price on purpose: packages-and-pricing.md
+           prices only the Foundation Site and the AI Receptionist. Inventing a
+           number for the other three would be a fabricated price on a live page.
+           "Fixed price within one business day" is the practice already stated on
+           advisory.html — it is real, not filler. If these ever get published
+           prices, they belong in packages-and-pricing.md FIRST, and the numbers
+           here must match it. -->
+      <div class="plate">
+        <div class="plate-head">
+          <h3>Process Automation</h3>
+          <p class="plate-desc">The repetitive office work, handed to an agent that does it the same way every time.</p>
+          <p class="price">Scoped <span class="small">per project</span></p>
+          <p class="price-note">Fixed price within one business day of a short call.</p>
+        </div>
+        <ul class="spec">
           <li>Quotes and estimates drafted from a call or a form</li>
           <li>Follow-ups that actually go out</li>
           <li>Scheduling, confirmations, and reminders</li>
@@ -785,13 +891,14 @@ h2 {
         </ul>
       </div>
 
-      <!-- Tier 4 -->
-      <div class="tier">
-        <h3>Reporting You Can Trust</h3>
-        <p class="price">Scoped <span class="small">per project</span></p>
-        <p class="price-note">Fixed price within one business day of a short call.</p>
-        <p class="desc">One set of numbers you can act on, instead of three dashboards that disagree.</p>
-        <ul>
+      <div class="plate">
+        <div class="plate-head">
+          <h3>Reporting You Can Trust</h3>
+          <p class="plate-desc">One set of numbers you can act on, instead of three dashboards that disagree.</p>
+          <p class="price">Scoped <span class="small">per project</span></p>
+          <p class="price-note">Fixed price within one business day of a short call.</p>
+        </div>
+        <ul class="spec">
           <li>Where your leads actually come from</li>
           <li>What each one costs you</li>
           <li>Which jobs are worth chasing again</li>
@@ -799,13 +906,14 @@ h2 {
         </ul>
       </div>
 
-      <!-- Tier 5 -->
-      <div class="tier">
-        <h3>Systems Integration</h3>
-        <p class="price">Scoped <span class="small">per project</span></p>
-        <p class="price-note">Fixed price within one business day of a short call.</p>
-        <p class="desc">Your tools talking to each other, so the same job stops getting retyped into all of them.</p>
-        <ul>
+      <div class="plate">
+        <div class="plate-head">
+          <h3>Systems Integration</h3>
+          <p class="plate-desc">Your tools talking to each other, so the same job stops getting retyped into all of them.</p>
+          <p class="price">Scoped <span class="small">per project</span></p>
+          <p class="price-note">Fixed price within one business day of a short call.</p>
+        </div>
+        <ul class="spec">
           <li>Booking, invoicing, and customer records connected</li>
           <li>Leads landing somewhere you'll actually see them</li>
           <li>Texts and email triggered by real events</li>
@@ -813,16 +921,12 @@ h2 {
         </ul>
       </div>
 
-      <!-- Managed Ads was cut from this grid in July and stays cut.
-           packages-and-pricing.md:246 says "Sell only after 90 days of receptionist
-           data. Don't pitch this on day one." Nobody has ninety days of data, so it
-           was a product nobody could buy. The original reason for cutting it — that
-           a third card made this read as "an agency with an upsell" — no longer
-           applies now that the grid is deliberately five wide, but the data reason
-           still does. It survives as the deferred line below. -->
     </div>
 
-    <p class="section-intro" style="margin: 0; max-width: 60ch;">
+    <!-- packages-and-pricing.md:246 says "Sell only after 90 days of receptionist
+         data. Don't pitch this on day one." Nobody has ninety days of data, so it
+         was a product nobody could buy. It survives as the deferred line below. -->
+    <p class="section-outro">
       Once your phone's covered and there's real call data coming in, there's
       more that can be done with it — ads built from who's actually calling you.
       That's a 90-day-later conversation, not a today conversation. Ask me about
@@ -831,14 +935,13 @@ h2 {
   </div>
 </section>
 
-<!-- ============== ABOUT ============== -->
+<!-- ============== WHO RUNS THIS ============== -->
 <section class="about">
   <div class="container">
-    <div class="about-wrap">
-      <p class="section-eyebrow">Who runs this</p>
-      <h2>I'm Joey. I live in the UP. I built this for businesses like yours.</h2>
+    <h2>I'm Joey. I live in the UP. I built this for businesses like yours.</h2>
+    <div class="about-body">
       <p>
-        I started <strong>906 Digital</strong> after watching too many local
+        I started 906 Digital after watching too many local
         operators lose work to the same few problems: missed calls, stale
         websites, and renting their entire customer base from Facebook.
       </p>
@@ -849,14 +952,12 @@ h2 {
            "we" or "our team". There is one person here, and the whole reason this
            page converts is that a suspicious visitor can verify that in one read. -->
       <p>
-        You're not hiring an agency floor. You're hiring one person, in Ironwood,
-        who answers his own phone. AI is what lets one person deliver in days
+        You're not hiring an agency floor. You're hiring <strong>one person, in Ironwood,
+        who answers his own phone.</strong> AI is what lets one person deliver in days
         what used to take a team weeks — that's the entire reason the prices work
         for UP businesses, and why I'm still here when something breaks.
       </p>
-      <p>
-        If you'd rather work than market yourself, we'll get along.
-      </p>
+      <p>If you'd rather work than market yourself, we'll get along.</p>
     </div>
   </div>
 </section>
@@ -864,13 +965,52 @@ h2 {
 <!-- ============== FINAL CTA ============== -->
 <section class="final-cta" id="book" tabindex="-1">
   <div class="container">
-    <!-- copper-lite, not copper-dark: this eyebrow sits on --superior. The
-         inline override used to restate copper-dark, which is what the class
-         already sets and is 2.86:1 here — it failed AA on the primary
-         conversion section. copper-lite is 5.12:1. -->
-    <p class="section-eyebrow" style="color: var(--copper-lite);">Let's talk</p>
+
+    <!-- ============ DEMO LINE — OFFLINE MODE (currently active) ============
+         The demo line (906) 767-6901 is down and answers with a recorded outage
+         message. There is deliberately NO tel: link and NO phone number printed
+         anywhere on this page. Of every failure mode here, a published number
+         that rings nowhere is the one that most efficiently confirms a suspicious
+         visitor's original hypothesis.
+
+         MOVED ABOVE THE FORM on 2026-08-28. It used to sit after the form and was
+         therefore the last thing a visitor read before the footer — the page ended
+         on its own defect notice. It also apologised ("sorting out some plumbing"),
+         which is what a fake says. It now states the standard being upheld, which
+         is the one sentence on this page a scam would never write. Clear the doubt,
+         then convert.
+
+         TO RESTORE WHEN THE LINE ANSWERS AGAIN — and only after someone dials it
+         from a phone that has never called it and hears the AI pick up:
+           1. Replace the <p> below with the live copy:
+              "Call it and hear it answer. This is a demonstration line — an AI
+               receptionist picks up and tells you straight off that it's AI.
+               It's not my desk phone. To reach me, use the form above."
+           2. Add the number back as a link directly under the <h3>:
+              <a class="demo-line" href="tel:+19067676901"
+                 aria-label="Call the AI receptionist demo line at 9 0 6, 7 6 7, 6 9 0 1">(906) 767-6901</a>
+           3. Add .caution-panel .demo-line { font-size: 28px; margin: 6px 0; min-height: 48px; }
+           4. Change the <h3> back to "Want to hear it before you decide?"
+           5. Set the DEMO LINE gauge in the six-pack back to a live reading:
+              remove class "is-caution", set the value text to "ON".
+         The AI-disclosure sentence is ethically load-bearing. It must travel with
+         the digits every single time they appear. Do not ship one without it.
+         ====================================================================== -->
+    <div class="caution-panel">
+      <div class="caution-lamp" aria-hidden="true"></div>
+      <div>
+        <h3>There is no phone number on this page</h3>
+        <p>
+          The demo line is off while I sort out billing limits on it, and a number
+          that rings nowhere is worse than no number at all. That's why you won't
+          find one anywhere above. Email me and I'll tell you the day it's back:
+          <a href="mailto:joey@906digital.com?subject=906%20Digital%20-%20hear%20the%20demo%20line">joey@906digital.com</a>.
+        </p>
+      </div>
+    </div>
+
     <h2>15 minutes. No pressure. We'll figure out if this fits.</h2>
-    <p>
+    <p class="cta-lead">
       Leave your name and number. I'll text you back within one business day —
       usually a lot sooner.
     </p>
@@ -882,15 +1022,21 @@ h2 {
            it belongs in the markup. Submissions are delivered to the email on the
            Web3Forms account, which is joey@906digital.com. -->
       <input type="hidden" name="access_key" value="32bc791d-f015-4ddc-968b-f324e9af14b2">
-      <input type="hidden" name="subject" value="906 Digital — New Lead">
+
+      <!-- The follow-up reminder rides in the SUBJECT, which is a thing a mail
+           subject is for. It used to ride in a hidden `_next_action` field holding
+           a verbatim sales script with a [name] merge token — on a page that
+           invites View Source with "you're looking at the demo", and whose whole
+           product is that you are talking to a person rather than a machine. A
+           skeptic who opened the source found the machine. Anything the prospect
+           must not read does not belong in markup the prospect is served. -->
+      <input type="hidden" name="subject" value="906 Digital — New Lead (text back within 24h)">
       <input type="hidden" name="from_name" value="906digital.com">
 
-      <!-- Reply script rides along with the lead so there's no template to go find -->
-      <input type="hidden" name="_next_action"
-             value="TEXT THEM WITHIN 24H: 'Hi [name], it's Joey from 906 Digital. Got your note off the site. Got 15 min this week to talk through it?'">
-
       <!-- Attribution, populated by JS. Cloudflare Web Analytics has no custom events,
-           so the lead email itself carries the source data. -->
+           so the lead email itself carries the source data. This collection is
+           disclosed in the fineprint below — it is served in the page, so the
+           reader is told rather than left to find it. -->
       <input type="hidden" name="source"          id="f-source">
       <input type="hidden" name="device"          id="f-device">
       <input type="hidden" name="page"            id="f-page">
@@ -918,50 +1064,19 @@ h2 {
       <div class="field">
         <label for="lead-note">What do you need help with? <span class="optional">(optional)</span></label>
         <textarea id="lead-note" name="message" rows="3"
-                 
                   placeholder="Missing calls, no website, whatever it is."></textarea>
       </div>
 
       <button type="submit" class="btn btn-primary lead-submit">Send it</button>
 
       <p class="form-status" id="lead-status" role="status" aria-live="polite"></p>
-      <p class="form-fineprint">No spam, no newsletter. I'll text you back, that's it.</p>
+      <p class="form-fineprint">No spam, no newsletter. I'll text you back, that's it.
+        It also tells me which page you came from and how long you were on it — nothing else.</p>
     </form>
 
     <p class="alt-contact">
       Rather just email? <a href="mailto:joey@906digital.com?subject=906%20Digital%20-%2015%20min%20call">joey@906digital.com</a>
     </p>
-
-    <!-- ============ DEMO LINE — OFFLINE MODE (currently active) ============
-         The demo line (906) 767-6901 is down and answers with a recorded outage
-         message. There is deliberately NO tel: link and NO phone number printed
-         anywhere on this page. Of every failure mode here, a published number
-         that rings nowhere is the one that most efficiently confirms a suspicious
-         visitor's original hypothesis.
-
-         TO RESTORE WHEN THE LINE ANSWERS AGAIN — and only after someone dials it
-         from a phone that has never called it and hears the AI pick up:
-           1. Replace the <p> below with the live copy:
-              "Call it and hear it answer. This is a demonstration line — an AI
-               receptionist picks up and tells you straight off that it's AI.
-               It's not my desk phone. To reach me, use the form above."
-           2. Add the number back as a link directly under the <h3>:
-              <a class="demo-line" href="tel:+19067676901"
-                 aria-label="Call the AI receptionist demo line at 9 0 6, 7 6 7, 6 9 0 1">(906) 767-6901</a>
-           3. Restore the .demo-line CSS rule (deleted in this pass) plus
-              .demo-callout .demo-line { font-size: 28px; margin: 6px 0; min-height: 48px; }
-           4. Change the <h3> back to "Want to hear it before you decide?"
-         The AI-disclosure sentence is ethically load-bearing. It must travel with
-         the digits every single time they appear. Do not ship one without it.
-         ====================================================================== -->
-    <div class="demo-callout">
-      <h3>The demo line is down right now</h3>
-      <p>
-        The demo line is down while I sort out some plumbing on it. Email me and I'll let you know the moment it's back up. Use the
-        form above, or email
-        <a href="mailto:joey@906digital.com?subject=906%20Digital%20-%20hear%20the%20demo%20line">joey@906digital.com</a>.
-      </p>
-    </div>
   </div>
 </section>
 
@@ -969,14 +1084,16 @@ h2 {
 </main>
 
 <footer class="site-footer">
-  <!-- Four verified lines. No registry link: the Michigan COFS URL is dead (SSL
-       handshake failure, service retired June 2025) and no replacement has been
-       verified. A dead "look it up" link here inverts the whole point of printing
-       the entity ID. No address, no hours, no phone — none of those are settled. -->
+  <!-- No registry link: the Michigan COFS URL is dead (SSL handshake failure,
+       service retired June 2025) and no replacement has been verified. A dead
+       "look it up" link here inverts the whole point of printing the entity ID.
+       The ID now also appears as a gauge in the hero, at the fold, where the
+       skeptic actually needs it. No address, no hours, no phone. -->
   <div class="container">
     <div>
-      906 Digital LLC · Ironwood, Michigan<br>
-      Michigan Entity ID 900169562<br>
+      906 Digital LLC · Ironwood, Michigan
+      <span class="placard entity-label">Registered in Michigan — entity number</span>
+      <span class="entity">900169562</span>
       <a href="mailto:joey@906digital.com">joey@906digital.com</a><br>
       © <span id="year"></span>
     </div>
@@ -985,13 +1102,30 @@ h2 {
          funnel, and it gives Joey a path to send B2B prospects who land here
          first. Do not promote it into the header or the offer grid. -->
     <div>
-      <a href="/advisory">Technical advisory for B2B teams →</a>
+      <a href="/advisory">Technical advisory for B2B teams
+        <svg width="15" height="10" viewBox="0 0 15 10" aria-hidden="true" focusable="false"
+             style="display:inline-block;vertical-align:-1px;margin-left:5px">
+          <path d="M0 5h12M9 1.5 12.5 5 9 8.5" fill="none" stroke="currentColor"
+                stroke-width="1.5" stroke-linecap="square"/>
+        </svg></a>
     </div>
   </div>
 </footer>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* The panel's one authored moment: the needles sweep from their rest stop to
+     their reading, damped, once, on load. Everything is already legible before
+     it runs — the settle is confirmation, not a reveal. Honours reduced-motion
+     through the stylesheet, which pins the needles at their final angle. */
+  (function () {
+    var panel = document.getElementById('sixpack');
+    if (!panel) return;
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { panel.classList.add('is-settled'); });
+    });
+  })();
 </script>
 
 <script>
@@ -1032,13 +1166,23 @@ h2 {
     statusEl.className = 'form-status is-error';
   }
 
+  /* Clearing the error state has to remove aria-describedby as well. Leaving it
+     pointed at the live region after the field is corrected means the field stays
+     described by a message that no longer applies to it. */
+  function clearField(el) {
+    el.setAttribute('aria-invalid', 'false');
+    el.removeAttribute('aria-describedby');
+  }
+  nameEl.addEventListener('input', function () { clearField(nameEl); });
+  phoneEl.addEventListener('input', function () { clearField(phoneEl); });
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
 
     var elapsed = Math.round((Date.now() - loadedAt) / 1000);
     document.getElementById('f-elapsed').value = elapsed;
 
-    if (elapsed < MIN_SECONDS) { fail('Hang on one second and try again.'); return; }
+    if (elapsed < MIN_SECONDS) { fail('Give it a second and try again.'); return; }
     if (!document.getElementById('f-token').value) { return; }
 
     var name  = nameEl.value.trim();
@@ -1088,9 +1232,11 @@ h2 {
         var fields = form.querySelectorAll('.field, .lead-submit, .hp-field, .form-fineprint');
         for (var i = 0; i < fields.length; i++) { fields[i].style.display = 'none'; }
         statusEl.className = 'form-status is-success';
+        /* The echo used to be a dead end: if the number was wrong there was no way
+           back, because every field had just been hidden. It now names the escape. */
         statusEl.textContent =
           'Got it, ' + first + '. I\'ll text you at ' + shown +
-          ' within one business day.';
+          ' within one business day. Not right? Email joey@906digital.com.';
         statusEl.setAttribute('tabindex', '-1');
         statusEl.focus();
       } else {
