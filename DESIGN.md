@@ -15,6 +15,9 @@ colors:
   plate-ink: "#0B0E10"
   hair: "#2A3238"
   hair-2: "#39434A"
+  entry-green: "#1F6B45"
+  entry-green-ring: "rgba(31,107,69,.2)"
+  placeholder: "#7F8A90"
 typography:
   display:
     fontFamily: "Inter, -apple-system, BlinkMacSystemFont, system-ui, sans-serif"
@@ -67,6 +70,32 @@ typography:
     fontSize: "9.5px"
     fontWeight: 700
     letterSpacing: "0.17em"
+  # Supporting steps, recorded as built. The 14-16px cluster is drift, not a
+  # system: six near-duplicate steps authored per component. See the prose note
+  # under Typography > Hierarchy for the consolidation this needs.
+  supporting-lg:
+    fontSize: "16px"
+    fontWeight: 400
+  supporting:
+    fontSize: "15.5px"
+    fontWeight: 400
+  supporting-sm:
+    fontSize: "15px"
+    fontWeight: 400
+  spec:
+    fontSize: "14.5px"
+    fontWeight: 400
+  fine:
+    fontSize: "14px"
+    fontWeight: 400
+  action-sm:
+    fontSize: "12px"
+    fontWeight: 700
+    letterSpacing: "0.14em"
+  annunciator:
+    fontSize: "21px"
+    fontWeight: 800
+    letterSpacing: "0.09em"
 rounded:
   machined: "3px"
   lamp: "50%"
@@ -175,6 +204,8 @@ A near-monochrome night panel with two signal colours that are rationed to the p
 - **Drum Void** (`#05080A`): the deepest cut on the page — the drum counter's window and the shadow ring inside each panel fastener. A literal in the build, not a custom property.
 - **Brushed Plate** (`#C9CFD2`) and **Plate Shade** (`#B8BFC3`): the light metal placard, drawn as a top-to-bottom gradient between them. The only light surfaces on the page.
 - **Plate Ink** (`#0B0E10`): text on the brushed plate. 13.4:1 on plate. Supporting copy on plates is the same ink at 66–80% alpha rather than a separate grey token.
+- **Entry Green** (`#1F6B45`, with `rgba(31,107,69,.2)` as its glow ring): the lit lamp marking the entry-point plate. A *separate* green from radium on purpose — radium is calibrated for the dark panel and fails contrast on the light brushed plate, so the plate gets its own darker green. The entry marker is a lamp only; it carries no text.
+- **Placeholder Grey** (`#7F8A90`): input placeholder text on the instrument-face inputs. 5.3:1 on face — chosen by measurement, because the first value used was 4.29:1 and failed.
 - **Hairline** (`#2A3238`) and **Bright Hairline** (`#39434A`): all rule work. The dim hairline draws section dividers, the panel border, and the rule above a gauge label; the bright one draws bezels, tick separators, input borders, the scrollbar thumb, and the hero's mounting seam.
 
 ### Named Rules
@@ -201,6 +232,9 @@ A near-monochrome night panel with two signal colours that are rationed to the p
 - **Action** (700, 13px, 0.13em, uppercase): buttons. The header CTA is 12px/0.14em; the logo wordmark 11px/0.22em.
 - **Placard** (700, 11px, 0.19em, uppercase, dim lume): instrument and plate designations, form labels.
 - **Micro-placard** (700, 9.5px, 0.15–0.17em, uppercase, dim lume): gauge labels and readout units — the smallest lettering on the panel, always a label and never a sentence.
+- **Supporting** (400, 14–16px): the sizes that carry secondary copy — 16px hero reply and inputs, 15.5px annunciator and caution copy and the alt-contact line, 15px plate descriptions and form status, 14.5px plate spec items, 14px footer. 21px is the annunciator's `OFF` lettering; 12px the header CTA.
+
+  **These six near-duplicate steps between 14px and 16px are drift, not a system.** They were authored per-component rather than from a ramp, and 14/14.5/15/15.5/16 are not meaningfully distinguishable to a reader. A future pass should collapse them to two steps (15px supporting, 13.5px fine print) and re-verify contrast at the new sizes. Recorded here as what is built, flagged as what should change.
 
 ### Named Rules
 **The No Downloaded Face Rule.** No `@font-face`, no font CDN link, no `<link rel="preconnect">` to a font host — ever. If the display voice needs more force, it comes from weight, tracking, size, or engraving. This is the page's performance thesis and it is also one of the six gauge readings: *0 web fonts downloaded*. Adding a font makes the page lie about itself.
@@ -317,7 +351,7 @@ Every other transition on the page is the same 0.18s `--ease-damp` state change 
 
 **The Different Face Rule.** No two instruments in a rank share a silhouette when they carry different *kinds* of fact. A state gets a plate, an identifier gets a drum, a quantity gets a graduated dial, a direction gets a compass card. Six identical faces at six angles is not a six-pack.
 
-**The Empty Slot Rule.** The hero photo slot stays empty until a real photograph of Joey exists. It may never be filled with an illustration, monogram, avatar, silhouette, stock photo, or AI-generated image — a placeholder person is a fabricated person. When a real photo lands it goes **above** the six-pack (4:3, explicit width and height), not instead of it.
+**The Real Photograph Rule.** *(The slot was empty when this file was first written; a real photograph landed 2026-08-28 and now sits above the six-pack at 5:4, `joey.webp`, 780x624, explicit width and height, `loading="eager"`.)* The rule that governed the empty slot governs every future replacement: it may only ever hold a real photograph of Joey. Never an illustration, monogram, avatar, silhouette, stock photo, or AI-generated image — a placeholder person is a fabricated person. A photo goes **above** the six-pack, never instead of it: the panel carries the checkable facts and the photograph carries the person, and the page needs both. The same frame language applies — hairline border, 3px machined corner, panel elevation — so the photograph reads as mounted on the panel rather than floating above it.
 
 ## Do's and Don'ts
 
@@ -339,7 +373,7 @@ Every other transition on the page is the same 0.18s `--ease-damp` state change 
 - **Don't** put a kicker, eyebrow, tracked label, or badge above any heading. Mark an entry point with a lamp and screen-reader text.
 - **Don't** tint the reading field. No coloured backgrounds behind copy, no gradient washes, no accent-coloured paragraphs.
 - **Don't** borrow amber for the visitor's problems, for emphasis, or for any second meaning.
-- **Don't** fill the hero photo slot with an illustration, monogram, avatar, silhouette, stock photo, or AI-generated image — and don't let a real photo replace the six-pack.
+- **Don't** replace the hero photograph with an illustration, monogram, avatar, silhouette, stock photo, or AI-generated image — and don't let a photo replace the six-pack.
 - **Don't** put a number, a text block, or a logo inside a dial face behind the needle.
 - **Don't** ship two instruments with the same silhouette for different kinds of fact.
 - **Don't** add a second animation. The needle settle is the whole motion budget; state changes get 0.18s and nothing else.

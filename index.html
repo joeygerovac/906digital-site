@@ -15,12 +15,16 @@
 <meta property="og:url" content="https://906digital.com/" />
 <meta property="og:site_name" content="906 Digital" />
 <meta property="og:locale" content="en_US" />
-<!-- og:image intentionally omitted: no share image asset exists yet. Referencing a
-     nonexistent file is worse than having none. When a 1200x630 image is created,
-     add it here plus twitter:card="summary_large_image". -->
+<!-- A real share image exists as of 2026-08-28, so the tag that was deliberately
+     omitted is now filled. It is a crop of the same photograph used in the hero —
+     not a generated graphic, not a logo card. -->
+<meta property="og:image" content="https://906digital.com/joey-og.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Joey Gerovac, 906 Digital, Ironwood Michigan" />
 
 <!-- Twitter -->
-<meta name="twitter:card" content="summary" />
+<meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="906 Digital — AI That Does the Office Work" />
 <meta name="twitter:description" content="AI, websites, and automation for Upper Peninsula small business." />
 
@@ -262,6 +266,17 @@ h1 em {
 }
 
 /* ---- The six-pack ------------------------------------------------------ */
+/* Mounted on the panel in the instruments' own frame language: same hairline,
+   same machined corner, same elevation. It is a photograph on a panel, not a
+   card floating above one. */
+.hero-photo {
+  width: 100%; height: auto; display: block;
+  margin-bottom: 16px;
+  border: 1px solid var(--hair-2);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-panel);
+}
+
 .sixpack {
   background: var(--face);
   border: 1px solid var(--hair);
@@ -629,13 +644,22 @@ h2 {
          deliberate: this repo's recurring failure is facts going stale on a page
          nobody re-reads.
 
-         The photo rule has NOT changed: no illustration, monogram, avatar,
-         silhouette, stock photo, or AI-generated image may fill the hero. A
-         placeholder person is a fabricated person. WHEN A REAL PHOTO EXISTS it
-         does not replace this panel — put the <img> above .sixpack at 4:3 with
-         explicit width/height and let the panel sit beneath it.
+         THE PHOTO NOW EXISTS (2026-08-28) and sits above the panel, which is
+         what the slot always specified. It is a real photograph of Joey, graded
+         and cropped — not generated, not stock, not a stand-in. The rule that
+         governed the empty slot still governs any replacement: no illustration,
+         monogram, avatar, silhouette, stock photo, or AI-generated image may
+         ever occupy this space. A placeholder person is a fabricated person.
+
+         Source: joey-headshot-2025-09-30.jpg (800x980). The grade lifted the
+         subject ~7L while holding the background, using a focus-derived subject
+         mask — the shot was backlit, with the background nearly twice as bright
+         as the face. width/height are explicit to prevent layout shift.
          ====================================================================== -->
     <div class="hero-media">
+      <img class="hero-photo" src="joey.webp" width="780" height="624"
+           alt="Joey Gerovac, who runs 906 Digital, outdoors in Ironwood, Michigan"
+           loading="eager" decoding="async">
       <div class="sixpack" id="sixpack" role="group" aria-label="Six verifiable facts about this business">
 
         <div class="gauge" style="--sweep: 0deg;">
