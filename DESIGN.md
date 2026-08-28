@@ -233,7 +233,7 @@ there is no alternating background, no card, and no container-within-container.
 Three breakpoints do all the responsive work:
 
 - **Base (single column).** Everything stacks. The facts strip is one column of full-width rows. The portrait is capped at 520px so it never dominates a phone screen. The lede is 17px.
-- **≥720px.** The facts strip becomes three columns; leaks become two; the spec list inside a service becomes two columns; each service row splits into `minmax(0, 1.1fr) / minmax(0, .9fr)` with the copy stack in column one and the spec list spanning four rows in column two; the lede grows to 20px.
+- **≥720px.** The facts strip becomes three columns; every service row snaps to the same three tracks `minmax(0, 1.05fr) / minmax(0, 1fr) / 210px` — what it is, what it includes, what it costs — so the feature column sits at one x from the first row to the last, and unpriced rows simply leave the third track empty; the lede grows to 20px. At ≥900px the leaks section becomes headline-left / two stacked items right.
 - **≥980px.** The hero becomes `1.05fr .95fr` with a 64px gap — copy left, portrait right, vertically centred — and the portrait's max-width cap is released. The facts strip opens to all five columns. Bands grow to 88px.
 
 The sticky header is 68px tall and the document carries `scroll-padding-top: 84px`
@@ -325,12 +325,12 @@ permanently true and none of them drift — that is the point of the component, 
 it is why it carries no counters, no badges, and no icons.
 
 ### Service Row (signature)
-A plain hairline-separated row, never a card. A flex `.svc-head` puts the 22px
-service name on the left and the 20px tabular price hard right (with its unit in
-14px ink-2), wrapping rather than shrinking. Below it an optional 14px sage pill
-("Most people start here"), the ink-2 description, an optional ink price note, and
-a spec list whose items are marked by an 8×2px sage dash rather than a bullet or a
-glyph icon. At ≥720px the spec list moves to a second column spanning the row.
+A plain hairline-separated row, never a card. Three tracks at ≥720px: the name (22px, with the
+optional `.start` pill inline beside it) over a one-line description in `--ink-2`; a single-column
+spec list, one line per item, marked by an 8×2px sage dash rather than a bullet or a glyph icon;
+and, for priced rows only, a right-aligned `.svc-price` carrying the 20px price, its 14px unit,
+and one 14px qualifier. Nothing in a row repeats what the group title already says: the three
+scoped services carry no price cell at all. Below 720px the tracks stack in that order.
 Rows are grouped under a `.group-title` — 16px/600 ink-2 over a full-strength 1px
 ink rule — which is the page's only underlined label.
 

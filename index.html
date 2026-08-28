@@ -141,25 +141,35 @@ section.band + section.band { border-top: 1px solid var(--hair); }
 h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
 .intro { margin-top: 16px; max-width: var(--measure); color: var(--ink-2); }
 .outro { margin-top: 28px; max-width: var(--measure); color: var(--ink-2); }
-.leaks-grid { margin-top: 36px; display: grid; grid-template-columns: 1fr; gap: 28px; }
-.leak h3 { font-size: 22px; }
-.leak p { margin-top: 8px; max-width: var(--measure); color: var(--ink-2); }
 
-/* Services: two groups, plain rows, no cards. */
-.group { margin-top: 36px; }
-.group + .group { margin-top: 64px; }
-.group-title { font-size: 16px; font-weight: 600; color: var(--ink-2); padding-bottom: 12px; border-bottom: 1px solid var(--ink); max-width: var(--measure); }
-.svc { padding: 26px 0; border-bottom: 1px solid var(--hair); display: grid; grid-template-columns: 1fr; gap: 6px 40px; }
-.svc-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+/* The leaks: headline and intro on one side, the two leaks stacked on the other,
+   separated by one hairline. Two columns that share a baseline, not four blocks
+   at four widths. */
+.leaks-grid { margin-top: 0; display: grid; grid-template-columns: 1fr; gap: 40px; }
+.leaks-list { display: grid; gap: 0; }
+.leak { padding: 22px 0; border-top: 1px solid var(--hair); }
+.leak:last-child { border-bottom: 1px solid var(--hair); }
+.leak h3 { font-size: 22px; }
+.leak p { margin-top: 6px; max-width: var(--measure); color: var(--ink-2); }
+.leaks-note { margin-top: 20px; font-size: 14px; color: var(--ink-2); max-width: var(--measure); }
+
+/* Services: every row snaps to one grid — what it is, what it includes, what it
+   costs. One line per feature. Nothing repeated. */
+.group { margin-top: 40px; }
+.group + .group { margin-top: 56px; }
+.group-title { font-size: 16px; font-weight: 600; color: var(--ink-2); margin-bottom: 6px; }
+.svc { display: grid; grid-template-columns: 1fr; gap: 14px 40px; padding: 26px 0; border-top: 1px solid var(--hair); }
+.group .svc:last-child { border-bottom: 1px solid var(--hair); }
+.svc-name { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .svc h3 { font-size: 22px; }
-.price { font-size: 20px; font-weight: 700; letter-spacing: -.01em; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.price span { font-size: 14px; font-weight: 500; color: var(--ink-2); margin-left: 4px; }
-.start { display: inline-block; justify-self: start; margin-top: 6px; background: var(--sage-soft); color: var(--sage); border-radius: 999px; padding: 4px 11px; font-size: 14px; font-weight: 600; }
-.svc-desc { margin-top: 6px; max-width: var(--measure); color: var(--ink-2); }
-.price-note { margin-top: 6px; max-width: var(--measure); color: var(--ink); }
-.spec { list-style: none; margin: 12px 0 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: 6px 28px; }
+.start { display: inline-block; background: var(--sage-soft); color: var(--sage); border-radius: 999px; padding: 3px 10px; font-size: 14px; font-weight: 600; }
+.svc-desc { margin-top: 6px; max-width: 40ch; color: var(--ink-2); }
+.spec { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; align-content: start; }
 .spec li { position: relative; padding-left: 18px; }
 .spec li::before { content: ""; position: absolute; left: 0; top: 12px; width: 8px; height: 2px; border-radius: 1px; background: var(--sage); }
+.price { font-size: 20px; font-weight: 700; letter-spacing: -.01em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.price span { font-size: 14px; font-weight: 500; color: var(--ink-2); margin-left: 4px; }
+.price-note { margin-top: 4px; font-size: 14px; color: var(--ink-2); }
 .about-body { margin-top: 20px; max-width: var(--measure); display: grid; gap: 16px; color: var(--ink-2); }
 .about-body strong { color: var(--ink); font-weight: 700; }
 
@@ -195,11 +205,14 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
 
 @media (min-width: 720px) {
   .facts { grid-template-columns: repeat(3, 1fr); }
-  .leaks-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
-  .spec { grid-template-columns: 1fr 1fr; }
-  .svc { grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); }
-  .svc > .svc-head, .svc > .start, .svc > .svc-desc, .svc > .price-note { grid-column: 1; }
-  .svc > .spec { grid-column: 2; grid-row: 1 / span 4; margin-top: 4px; }
+  /* Every row, priced or not, uses the same three tracks, so the feature column
+     sits at one x from the first row to the last. Unpriced rows leave the third
+     track empty rather than shifting the middle one. */
+  .svc { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr) 210px; align-items: start; }
+  .svc-price { grid-column: 3; text-align: right; }
+}
+@media (min-width: 900px) {
+  .leaks-grid { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 64px; align-items: start; }
 }
 @media (min-width: 980px) {
   .hero { padding: 44px 0 44px; }
@@ -306,15 +319,19 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
 
 <!-- ============== THE LEAKS ============== -->
 <section class="band">
-  <div class="wrap">
-    <!-- Keep it CONCRETE — the standing instruction is "do not water it down". -->
-    <h2>Stop losing work while you're busy doing the work.</h2>
-    <p class="intro">
-      Two places a small outfit loses work without ever seeing it happen. This is
-      just what happens when you're the one doing the work and there's nobody
-      minding the storefront.
-    </p>
-    <div class="leaks-grid">
+  <div class="wrap leaks-grid">
+    <div>
+      <!-- Keep it CONCRETE — the standing instruction is "do not water it down". -->
+      <h2>Stop losing work while you're busy doing the work.</h2>
+      <p class="intro">
+        Two places a small outfit loses work without ever seeing it happen —
+        because you're the one doing the work, and nobody's minding the storefront.
+      </p>
+      <p class="leaks-note">Tree work, plumbing, roofing, auto, salons, clinics, restaurants — same two leaks.</p>
+    </div>
+    <!-- Card 03 ("Google can't find you") was cut: it argued for a channel this
+         project's own SEO research found has effectively zero demand here. -->
+    <div class="leaks-list">
       <div class="leak">
         <h3>Calls go to voicemail.</h3>
         <p>You're on a ladder, under a truck, or across the counter from somebody. Three voicemails later, they called the next name on Google.</p>
@@ -324,7 +341,6 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
         <p>Meta could shut it down tomorrow for any reason or none. Your customers, reviews, and reach — all renting from a landlord.</p>
       </div>
     </div>
-    <p class="outro">Tree and excavation, plumbing and HVAC, roofing, auto, salons, clinics, contractors, restaurants — same two leaks, same fix.</p>
   </div>
 </section>
 
@@ -332,62 +348,75 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
 <section class="band" id="offer" tabindex="-1">
   <div class="wrap">
     <h2>Five things I build. Most people start with one.</h2>
-    <p class="intro">
-      Local pricing. Flat fees. Built in weeks, not months. The first two have
-      published prices because they're the same job every time. The last three get
-      a fixed quote within one business day of a short call, because they don't.
-    </p>
+    <p class="intro">Local pricing. Flat fees. Built in weeks, not months.</p>
 
     <div class="group" role="group" aria-labelledby="g-priced">
       <p class="group-title" id="g-priced">Published prices</p>
-      <div class="svc">
-        <div class="svc-head"><h3>Foundation Site</h3><p class="price">$1,900–4,500 <span>one-time</span></p></div>
-        <!-- Turnaround and feature lines must match packages-and-pricing.md:77-95.
-             The photo gallery starts at Standard ($2,900). -->
-        <p class="svc-desc">A real website you actually own. Built in 10 days to 4 weeks, depending on size.</p>
+
+      <div class="svc has-price">
+        <div>
+          <div class="svc-name"><h3>Foundation Site</h3></div>
+          <p class="svc-desc">A real website you own. Built in 10 days to 4 weeks, depending on size.</p>
+        </div>
+        <!-- Feature lines must match packages-and-pricing.md:77-95. The photo
+             gallery starts at Standard ($2,900) and is priced in the note, not
+             listed at the floor price. -->
         <ul class="spec">
-          <li>Mobile-first, fast-loading</li>
-          <li>Google Business Profile setup</li>
-          <li>Local SEO basics included</li>
-          <li>Lead capture form on every build</li>
-          <li>Photo gallery and service-area map from $2,900 up</li>
-          <li>You own the domain forever</li>
-          <li>Hand-written, no page-builder bloat — you're looking at the demo</li>
+          <li>Mobile-first and fast</li>
+          <li>Google Business Profile set up</li>
+          <li>Local SEO basics</li>
+          <li>Lead form on every build</li>
+          <li>You own the domain, forever</li>
         </ul>
+        <div class="svc-price">
+          <p class="price">$1,900–4,500 <span>one-time</span></p>
+          <p class="price-note">Gallery and service-area map from $2,900</p>
+        </div>
       </div>
-      <div class="svc">
-        <div class="svc-head"><h3>AI Receptionist</h3><p class="price">$249–699 <span>/month</span></p></div>
-        <p class="start">Most people start here</p>
-        <p class="svc-desc">An AI agent that answers every call when you can't.</p>
-        <p class="price-note">Plus a one-time $500 setup — I build and tune the agent for your business. No long contract on the monthly.</p>
+
+      <div class="svc has-price">
+        <div>
+          <div class="svc-name"><h3>AI Receptionist</h3><span class="start">Most people start here</span></div>
+          <p class="svc-desc">Answers every call when you can't, and texts you the lead.</p>
+        </div>
         <ul class="spec">
-          <li>24/7 call answering</li>
-          <li>Captures the address, the job, and how urgent it is</li>
-          <li>Texts the lead to your phone in seconds</li>
-          <li>Books estimates on your calendar (Pro Agent and up)</li>
-          <li>Filters spam and junk calls</li>
+          <li>Answers 24/7</li>
+          <li>Gets the address, the job, the urgency</li>
+          <li>Texts you the lead in seconds</li>
+          <li>Books estimates on your calendar</li>
+          <li>Screens out spam</li>
         </ul>
+        <div class="svc-price">
+          <p class="price">$249–699 <span>/month</span></p>
+          <p class="price-note">$500 one-time setup · no long contract</p>
+        </div>
       </div>
     </div>
 
     <!-- These three carry NO published price on purpose: packages-and-pricing.md
-         prices only the Foundation Site and the AI Receptionist. Inventing a
-         number for the other three would be a fabricated price on a live page. -->
+         prices only the Foundation Site and the AI Receptionist. The group title
+         says once what the old layout repeated three times. -->
     <div class="group" role="group" aria-labelledby="g-scoped">
       <p class="group-title" id="g-scoped">Scoped per project — fixed price within one business day of a short call</p>
+
       <div class="svc">
-        <div class="svc-head"><h3>Process Automation</h3><p class="price">Quoted <span>per project</span></p></div>
-        <p class="svc-desc">The repetitive office work, handed to an agent that does it the same way every time.</p>
+        <div>
+          <div class="svc-name"><h3>Process Automation</h3></div>
+          <p class="svc-desc">The repetitive office work, handed to an agent that does it the same way every time.</p>
+        </div>
         <ul class="spec">
-          <li>Quotes and estimates drafted from a call or a form</li>
+          <li>Quotes drafted from a call or a form</li>
           <li>Follow-ups that actually go out</li>
-          <li>Scheduling, confirmations, and reminders</li>
+          <li>Scheduling, confirmations, reminders</li>
           <li>Job details typed once, not four times</li>
         </ul>
       </div>
+
       <div class="svc">
-        <div class="svc-head"><h3>Reporting You Can Trust</h3><p class="price">Quoted <span>per project</span></p></div>
-        <p class="svc-desc">One set of numbers you can act on, instead of three dashboards that disagree.</p>
+        <div>
+          <div class="svc-name"><h3>Reporting You Can Trust</h3></div>
+          <p class="svc-desc">One set of numbers you can act on, instead of three dashboards that disagree.</p>
+        </div>
         <ul class="spec">
           <li>Where your leads actually come from</li>
           <li>What each one costs you</li>
@@ -395,13 +424,16 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
           <li>A monthly summary in plain language</li>
         </ul>
       </div>
+
       <div class="svc">
-        <div class="svc-head"><h3>Systems Integration</h3><p class="price">Quoted <span>per project</span></p></div>
-        <p class="svc-desc">Your tools talking to each other, so the same job stops getting retyped into all of them.</p>
+        <div>
+          <div class="svc-name"><h3>Systems Integration</h3></div>
+          <p class="svc-desc">Your tools talking to each other, so the same job stops getting retyped into all of them.</p>
+        </div>
         <ul class="spec">
-          <li>Booking, invoicing, and customer records connected</li>
-          <li>Leads landing somewhere you'll actually see them</li>
-          <li>Texts and email triggered by real events</li>
+          <li>Booking, invoicing, and customers connected</li>
+          <li>Leads land where you'll actually see them</li>
+          <li>Texts and email from real events</li>
           <li>No more copy-paste between tabs</li>
         </ul>
       </div>

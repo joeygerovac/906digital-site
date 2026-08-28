@@ -14,7 +14,7 @@ dependencies, no package manager.
 
 | File | |
 |---|---|
-| `index.html` | The small-business site — 734 lines, 38 KB. Markup, CSS, and JS in one file. Still zero dependencies and zero new network requests; the only asset is the hero photograph. |
+| `index.html` | The small-business site — 766 lines, 38 KB. Markup, CSS, and JS in one file. Still zero dependencies and zero new network requests; the only asset is the hero photograph. |
 | `advisory.html` | The B2B technical advisory page — 1,153 lines, 37 KB. Same deal. |
 | `scripts/check-content.mjs` | Content checks. See "Checks" below. |
 | `.circleci/config.yml` | CI pipeline. |
