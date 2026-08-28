@@ -18,7 +18,7 @@
 <!-- A real share image exists as of 2026-08-28, so the tag that was deliberately
      omitted is now filled. It is a crop of the same photograph used in the hero —
      not a generated graphic, not a logo card. -->
-<meta property="og:image" content="https://906digital.com/joey-og.jpg" />
+<meta property="og:image" content="https://906digital.com/joey-og-9006f6ca.jpg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content="Joey Gerovac, 906 Digital, Ironwood Michigan" />
@@ -77,6 +77,12 @@
   --ink-2:     #4A453F;   /* secondary copy. 9.2:1 on bg — never below 7 */
   --hair:      #E6E2DB;   /* dividers only */
   --sage:      #4F6B56;   /* accent. 5.6:1 on bg as text; white on it 5.9:1 */
+  --sage-deep: #435C4A;   /* the accent, pressed: button hover */
+  --field:     #FFFFFF;   /* input ground */
+  --field-line:#CFC9C0;   /* input border at rest */
+  --placeholder:#6B655D;  /* 5.8:1 on field */
+  --error:     #A12A18;   /* error text and invalid border. 6.7:1 on bg */
+  --scroll:    #B8B2A8;   /* scrollbar thumb */
   --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, "Helvetica Neue", Arial, sans-serif;
   --container: 1120px;
   --r: 12px;
@@ -84,11 +90,12 @@
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
+:root { color-scheme: light; }
 html { scroll-behavior: smooth; scroll-padding-top: 84px; }
 body { font-family: var(--sans); font-size: 17px; line-height: 1.6; color: var(--ink); background: var(--bg); -webkit-font-smoothing: antialiased; }
-::selection { background: var(--sage); color: #fff; }
+::selection { background: var(--sage); color: var(--field); }
 :root { accent-color: var(--sage); caret-color: var(--sage); }
-* { scrollbar-color: #B8B2A8 var(--bg); scrollbar-width: thin; }
+* { scrollbar-color: var(--scroll) var(--bg); scrollbar-width: thin; }
 a { color: var(--sage); text-decoration: none; }
 a:hover { text-decoration: underline; text-underline-offset: 3px; }
 :where(a, button, input, textarea, [tabindex]):focus-visible { outline: 2px solid var(--sage); outline-offset: 3px; }
@@ -96,16 +103,16 @@ img { max-width: 100%; display: block; }
 p { margin: 0; }
 h1, h2, h3 { margin: 0; font-weight: 700; letter-spacing: -.02em; text-wrap: balance; }
 .wrap { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
-.skip-link { position: absolute; left: -9999px; top: 0; z-index: 100; background: var(--ink); color: #fff; padding: 12px 20px; font-weight: 600; }
+.skip-link { position: absolute; left: -9999px; top: 0; z-index: 100; background: var(--ink); color: var(--field); padding: 12px 20px; font-weight: 600; }
 .skip-link:focus { left: 0; }
 
 /* ================= HEADER ================= */
-.site-header { position: sticky; top: 0; z-index: 50; background: rgba(252,251,249,.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--hair); }
+.site-header { position: sticky; top: 0; z-index: 50; background: rgba(252,251,249,.96); border-bottom: 1px solid var(--hair); }
 .site-header .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; }
 .logo { font-weight: 700; font-size: 20px; letter-spacing: -.02em; color: var(--ink); }
 .logo span { color: var(--sage); }
 .logo:hover { text-decoration: none; }
-.nav-cta { font-size: 16px; font-weight: 600; color: var(--ink); border: 1px solid var(--hair); border-radius: 999px; padding: 0 18px; min-height: 42px; display: inline-flex; align-items: center; }
+.nav-cta { font-size: 16px; font-weight: 600; color: var(--ink); border: 1px solid var(--hair); border-radius: 999px; padding: 0 18px; min-height: 44px; display: inline-flex; align-items: center; }
 .nav-cta:hover { border-color: var(--ink); text-decoration: none; }
 
 /* ================= HERO ================= */
@@ -120,9 +127,9 @@ h1 em { font-style: normal; color: var(--sage); }
 .reply { margin-top: 22px; padding: 16px 18px; background: var(--sage-soft); border-radius: var(--r); max-width: var(--measure); }
 .reply strong { font-weight: 700; }
 .cta-row { margin-top: 24px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 0 26px; border-radius: var(--r); font-weight: 600; font-size: 16px; background: var(--sage); color: #fff; border: 1px solid var(--sage); }
-.btn:hover { background: #435C4A; text-decoration: none; }
-.btn-link { font-size: 16px; font-weight: 600; color: var(--sage); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1.5px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 0 26px; border-radius: var(--r); font-weight: 600; font-size: 16px; background: var(--sage); color: var(--field); border: 1px solid var(--sage); }
+.btn:hover { background: var(--sage-deep); text-decoration: none; }
+.btn-link { display: inline-flex; align-items: center; min-height: 44px; font-size: 16px; font-weight: 600; color: var(--sage); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1.5px; }
 .btn-link:hover { text-decoration-thickness: 2.5px; }
 .portrait { margin: 0; position: relative; max-width: 520px; }
 .portrait img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--r); }
@@ -137,7 +144,7 @@ h1 em { font-style: normal; color: var(--sage); }
 
 /* ================= SECTIONS ================= */
 section.band { padding: 72px 0; }
-section.band + section.band { border-top: 1px solid var(--hair); }
+section.band + section.band, main > section.band:last-child { border-top: 1px solid var(--hair); }
 h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
 .intro { margin-top: 16px; max-width: var(--measure); color: var(--ink-2); }
 .outro { margin-top: 28px; max-width: var(--measure); color: var(--ink-2); }
@@ -183,15 +190,15 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
 .lead-form { margin-top: 28px; max-width: 520px; }
 .field { margin-bottom: 18px; }
 .field label { display: block; margin-bottom: 7px; font-size: 16px; font-weight: 600; }
-.field .optional { font-weight: 400; color: var(--ink-2); }
-.field input, .field textarea { width: 100%; font-family: inherit; font-size: 16px; color: var(--ink); background: #fff; border: 1px solid #CFC9C0; border-radius: var(--r); padding: 13px 14px; }
+.field .optional, .field .req { font-weight: 400; color: var(--ink-2); }
+.field input, .field textarea { width: 100%; font-family: inherit; font-size: 16px; color: var(--ink); background: var(--field); border: 1px solid var(--field-line); border-radius: var(--r); padding: 13px 14px; }
 .field textarea { resize: vertical; min-height: 92px; }
-.field input::placeholder, .field textarea::placeholder { color: #6B655D; }
+.field input::placeholder, .field textarea::placeholder { color: var(--placeholder); }
 .field input:focus-visible, .field textarea:focus-visible { border-color: var(--sage); outline: 2px solid var(--sage); outline-offset: 2px; }
-.field input[aria-invalid="true"] { border-color: #B8321E; }
+.field input[aria-invalid="true"] { border-color: var(--error); }
 .lead-submit { width: 100%; }
 .form-status { margin-top: 14px; font-size: 16px; min-height: 1px; }
-.form-status.is-error { color: #A12A18; }
+.form-status.is-error { color: var(--error); }
 .form-status.is-success { font-weight: 600; }
 .form-fineprint { margin-top: 14px; font-size: 14px; color: var(--ink-2); max-width: var(--measure); }
 .hp-field { position: absolute; left: -9999px; opacity: 0; pointer-events: none; }
@@ -213,7 +220,7 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
 .steps span { display: block; margin-top: 4px; color: var(--ink-2); max-width: 40ch; }
 .adv-cta { margin-top: 28px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
 .adv-links { font-size: 16px; color: var(--ink-2); }
-.adv-links a { margin-right: 14px; }
+.adv-links a { display: inline-flex; align-items: center; min-height: 44px; margin-right: 18px; }
 
 /* ================= FOOTER ================= */
 .site-footer { border-top: 1px solid var(--hair); padding: 36px 0 44px; font-size: 14px; color: var(--ink-2); }
@@ -230,7 +237,7 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
   /* Every row, priced or not, uses the same three tracks, so the feature column
      sits at one x from the first row to the last. Unpriced rows leave the third
      track empty rather than shifting the middle one. */
-  .svc { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr) 210px; align-items: start; }
+  .svc { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr) minmax(150px, 210px); align-items: start; }
   .svc-price { grid-column: 3; text-align: right; }
 }
 @media (min-width: 900px) {
@@ -321,7 +328,7 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
            joey-headshot-2025-09-30.jpg, photographer's framing, cropped 4:5 by
            object-fit; explicit width/height prevent layout shift. -->
       <figure class="portrait">
-        <img src="joey.webp" width="800" height="980"
+        <img src="joey-99628b37.webp" width="800" height="980"
              alt="Joey Gerovac, who runs 906 Digital"
              loading="eager" fetchpriority="high" decoding="async">
       </figure>
@@ -552,8 +559,11 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
       usually a lot sooner.
     </p>
 
-    <form id="lead-form" class="lead-form"
-          action="https://api.web3forms.com/submit" method="POST" novalidate>
+    <!-- No novalidate in the markup: without JavaScript the browser's own
+           validation is the floor. The script adds novalidate at runtime and
+           takes over with the page's own messages. -->
+      <form id="lead-form" class="lead-form"
+          action="https://api.web3forms.com/submit" method="POST">
 
       <!-- Web3Forms config. The access key is a public identifier, not a secret —
            it belongs in the markup. Submissions are delivered to the email on the
@@ -586,13 +596,13 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
              tabindex="-1" aria-hidden="true">
 
       <div class="field">
-        <label for="lead-name">Your name</label>
+        <label for="lead-name">Your name <span class="req">required</span></label>
         <input type="text" id="lead-name" name="name"
                autocomplete="name" enterkeyhint="next" required>
       </div>
 
       <div class="field">
-        <label for="lead-phone">Phone number</label>
+        <label for="lead-phone">Phone number <span class="req">required</span></label>
         <input type="tel" id="lead-phone" name="phone"
                inputmode="tel" autocomplete="tel" enterkeyhint="next"
                placeholder="906-555-0199" required>
@@ -625,7 +635,7 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
      prices, on purpose: no advisory rate has been set, and a number invented to
      fill the space would be one Joey has never charged. Payment on delivery is a
      real commitment, not a marketing line. -->
-<section class="band" id="advisory" tabindex="-1" style="border-top: 1px solid var(--hair);">
+<section class="band" id="advisory" tabindex="-1">
   <div class="wrap">
     <h2>Technical advisory for B2B teams.</h2>
     <p class="intro">
@@ -700,6 +710,7 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
 (function () {
   var form = document.getElementById('lead-form');
   if (!form) return;
+  form.setAttribute('novalidate', '');   // JS is here, so the page's own messages take over
 
   /* NOTE: do NOT use form.name — HTMLFormElement.name is a reflected attribute and
      shadows the named input lookup, so form.name is a string, not the field. */

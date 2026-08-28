@@ -10,13 +10,12 @@ colors:
   hair: "#E6E2DB"
   sage: "#4F6B56"
   sage-deep: "#435C4A"
-  paper-white: "#FFFFFF"
-  field-border: "#CFC9C0"
+  field: "#FFFFFF"
+  field-line: "#CFC9C0"
   placeholder: "#6B655D"
-  error-border: "#B8321E"
-  error-text: "#A12A18"
-  scrollbar-thumb: "#B8B2A8"
-  header-veil: "rgba(252,251,249,.92)"
+  error: "#A12A18"
+  scroll: "#B8B2A8"
+  header-veil: "rgba(252,251,249,.96)"
 typography:
   scale:
     small-print: "14px"
@@ -84,25 +83,26 @@ spacing:
 components:
   button-primary:
     backgroundColor: "{colors.sage}"
-    textColor: "{colors.paper-white}"
+    textColor: "{colors.field}"
     typography: "{typography.label}"
     rounded: "{rounded.md}"
     padding: "0 26px"
     height: "50px"
   button-primary-hover:
     backgroundColor: "{colors.sage-deep}"
-    textColor: "{colors.paper-white}"
+    textColor: "{colors.field}"
   button-link:
     textColor: "{colors.sage}"
     typography: "{typography.label}"
+    height: "44px"
   nav-cta:
     textColor: "{colors.ink}"
     typography: "{typography.label}"
     rounded: "{rounded.pill}"
     padding: "0 18px"
-    height: "42px"
+    height: "44px"
   input:
-    backgroundColor: "{colors.paper-white}"
+    backgroundColor: "{colors.field}"
     textColor: "{colors.ink}"
     typography: "{typography.label}"
     rounded: "{rounded.md}"
@@ -165,13 +165,16 @@ is the only image, and it is the only place the page raises its voice.
 - Platform UI type stack, nothing downloaded, no web font ever
 - Flat by construction: zero `box-shadow` declarations in the file
 - Motionless: no transition, animation, or transform; only smooth scroll, disabled under `prefers-reduced-motion`
+- Declared light-only (`color-scheme: light`); no dark theme, no `prefers-color-scheme` branch
 - Hairlines divide; they never colour text
 - Contrast verified by computation, not by eye
 
 ## Colors
 
 A warm, low-chroma neutral field sampled from a single photograph, carrying one
-desaturated forest-sage accent and nothing else.
+desaturated forest-sage accent and nothing else. The document declares
+`color-scheme: light`, so there is one theme and the browser's own controls,
+scrollbars, and form chrome render light rather than guess.
 
 ### Primary
 - **Work-Shirt Sage** (#4F6B56): the only accent, and it has one job — marking what belongs to Joey or what the reader should press. It appears on the primary button, on links, on the word "Digital" in the logo, on the headline phrase *"from Ironwood."*, on the "Off right now" demo-line value, on the "Most people start here" pill text, on the 8×2px dash before every spec line, on focus rings, on the text selection highlight, and as `accent-color` / `caret-color`. It clears 5.69:1 as text on the ground and carries white at 5.88:1.
@@ -179,21 +182,24 @@ desaturated forest-sage accent and nothing else.
 - **Sage Wash** (#E8EEE8): the one tinted surface. It carries the reply callout in the hero and the "start here" pill. Ink on it computes 14.85:1; sage text on it computes 4.99:1.
 
 ### Neutral
-- **Warm Paper** (#FCFBF9): the page ground. Warmer than white, cleaner than cream. The sticky header floats a 92%-opaque veil of this same colour over blurred content.
+- **Warm Paper** (#FCFBF9): the page ground. Warmer than white, cleaner than cream. The sticky header is a flat 96%-opaque veil of this same colour — opaque enough to read against, with no blur behind it.
 - **Quiet Surface** (#F3F4F0): a single untinted panel colour, used once — the demo-line notice above the contact form.
 - **Beard Ink** (#1C1917): all primary text, the logo, the skip link's ground, the emphasis inside body copy, and the single full-strength rule under each service group title. 16.91:1 on the ground.
 - **Second Ink** (#4A453F): secondary copy — ledes, section intros, service descriptions, fineprint, footer, facts labels. 9.17:1 on the ground, so "secondary" never means "faint."
 - **Hairline** (#E6E2DB): dividers only — header underline, band separators, facts rows, service rows, footer top edge, and the resting nav-pill border.
-- **Field Edge** (#CFC9C0) and **Placeholder** (#6B655D): input chrome. Placeholders sit at 5.76:1 on white, above AA for body text rather than at the customary grey.
-- **Scrollbar Thumb** (#B8B2A8): the thin scrollbar, tinted warm so the chrome matches the page.
+- **Field White** (#FFFFFF): not a ground. It is the interior of a form field, the label on the sage button, the text inside the selection highlight, and the text of the skip link.
+- **Field Line** (#CFC9C0) and **Placeholder** (#6B655D): input chrome. Placeholders sit at 5.76:1 on white, above AA for body text rather than at the customary grey.
+- **Scroll Thumb** (#B8B2A8): the thin scrollbar, tinted warm so the chrome matches the page.
 
 ### Tertiary
-- **Alert Red** (#A12A18) for form error text (7.10:1 on the ground) and **Error Edge** (#B8321E) for the invalid input border. These are the only hues on the page besides sage, they only ever appear in response to a failed submit, and they never decorate.
+- **Alert Red** (#A12A18): one error colour doing both jobs — the status line under the form and the border of an invalid input. It is the only hue on the page besides sage, it appears only in response to a failed submit, and it never decorates. 7.10:1 on the ground.
 
 ### Named Rules
 **The One Job Rule.** Sage means *mine, or press here.* If a new element is neither authored-by-Joey nor an action, it is ink or ink-2. Never introduce a second accent, and never use sage to add interest to a heading, a rule, an icon, or a background panel.
 
-**The No-Pure-White-Ground Rule.** #FFFFFF is legal in exactly two places: inside a form field, and as text on sage. The page's ground is #FCFBF9, and a white block dropped onto it reads as a foreign element.
+**The No-Pure-White-Ground Rule.** #FFFFFF is never a ground except inside a form field. Everywhere else it is text on a dark or saturated field — the button label, the selection highlight, the skip link. The page's ground is #FCFBF9, and a white block dropped onto it reads as a foreign element.
+
+**The Token-Only Rule.** Every colour in the stylesheet is a `var(--…)`. The one hex-free exception is the header's `rgba(252,251,249,.96)` veil, which needs an alpha the token cannot carry. A literal anywhere else means a colour has escaped the system: put it in `:root` or don't ship it.
 
 **The Computed Contrast Rule.** No colour pairing ships on the strength of how it looks. Compute the ratio; body text stays at or above 7:1, and nothing on this page has ever been allowed to sit merely at 4.5:1 by accident. Four contrast regressions here were caused by skipping this step.
 
@@ -233,7 +239,7 @@ there is no alternating background, no card, and no container-within-container.
 Three breakpoints do all the responsive work:
 
 - **Base (single column).** Everything stacks. The facts strip is one column of full-width rows. The portrait is capped at 520px so it never dominates a phone screen. The lede is 17px.
-- **≥720px.** The facts strip becomes three columns; every service row snaps to the same three tracks `minmax(0, 1.05fr) / minmax(0, 1fr) / 210px` — what it is, what it includes, what it costs — so the feature column sits at one x from the first row to the last, and unpriced rows simply leave the third track empty; the lede grows to 20px. At ≥900px the leaks section becomes headline-left / two stacked items right.
+- **≥720px.** The facts strip becomes three columns; every service row snaps to the same three tracks `minmax(0, 1.05fr) minmax(0, 1fr) minmax(150px, 210px)` — what it is, what it includes, what it costs — so the feature column sits at one x from the first row to the last, and unpriced rows simply leave the third track empty; the lede grows to 20px. The advisory band's four areas become two columns (48px gutter) and its three steps become three columns. At ≥900px the leaks section becomes headline-left / two stacked items right.
 - **≥980px.** The hero becomes `1.05fr .95fr` with a 64px gap — copy left, portrait right, vertically centred — and the portrait's max-width cap is released. The facts strip opens to all five columns. Bands grow to 88px.
 
 The sticky header is 68px tall and the document carries `scroll-padding-top: 84px`
@@ -246,6 +252,8 @@ a standard stack (hero gap, leaks grid, group start), 64px between the two servi
 groups, 44px above the facts strip and below the notice.
 
 ### Named Rules
+**The Thumb-Target Rule.** Every standalone link and control stands at least 44px tall, declared rather than inherited: the primary button at 50px, and `min-height: 44px` with `display: inline-flex` on the link button, the header's Contact pill, and the profile links under the advisory band. The only exemption is a link running inline inside a sentence, which takes the line's own height.
+
 **The One Column Rule.** The page is a single column that occasionally splits in two. It never nests a grid inside a grid, and it never uses a third column at any width except the facts strip, whose five cells are five short facts and nothing else.
 
 ## Elevation & Depth
@@ -255,8 +263,10 @@ nothing, and that is a load-bearing property rather than an oversight. Depth is
 communicated three ways and only three ways: a tint (`--surface` or `--sage-soft`
 behind a panel), a hairline (`--hair` between bands and rows), and whitespace.
 The sticky header is the only element that layers over content, and it does so
-with a 92%-opaque veil of the page's own ground plus a 10px backdrop blur — a
-translucency, not a lift.
+with a flat 96%-opaque veil of the page's own ground. There is no
+`backdrop-filter` in the file: the veil is opaque enough that a blur bought
+nothing but a compositing cost and a differently-rendered header on browsers
+that lack it.
 
 Motion is likewise absent: no `transition`, no `animation`, no `transform`, no
 `@keyframes`. The only movement declared anywhere is `scroll-behavior: smooth`,
@@ -280,9 +290,12 @@ header from the page. The only full-strength rule on the page is the 1px ink lin
 under each service group title, which is doing the work a heading underline does.
 The portrait is a plain 4:5 crop with the shared 12px radius, no frame, no border,
 no overlay, and no caption — every fact a caption could carry is already on screen.
+It ships as a 74 KB WebP at quality 75, sized 800×980 in the markup so nothing shifts.
 
 ### Named Rules
 **The One Radius Rule.** Panels, fields, images, and buttons all take `--r`. Pills are reserved for tag-shaped labels. Do not introduce a third panel radius.
+
+**The Hashed-Asset Rule.** Image filenames carry a content hash (`joey-99628b37.webp`, `joey-og-9006f6ca.jpg`) and are never overwritten under the same name. A recrop or a recompression gets a new filename. `_headers` marks the hashed files `immutable` for a year and deliberately does not list the HTML, and that cache promise only holds if the name changes whenever the bytes do.
 
 **The Hairlines-Divide-Only Rule.** `--hair` is a border colour. It is never a text colour, never a background, and never used to draw a box around prose.
 
@@ -293,7 +306,7 @@ no overlay, and no caption — every fact a caption could carry is already on sc
 - **Primary:** sage ground, white label, 1px sage border, 50px minimum height, 26px horizontal padding, 16px/600 label. Full width when it is the form's submit.
 - **Hover / Focus:** ground darkens to #435C4A with no transition; focus draws a 2px sage outline at 3px offset.
 - **Disabled (submitting):** the label is swapped to "Sending…" and the button is disabled; no spinner, no dimming.
-- **Link button:** sage 16px/600 with a 1.5px underline at 4px offset, thickening to 2.5px on hover. This is the secondary action beside the primary button, and it is the page's only "ghost" affordance.
+- **Link button:** sage 16px/600 with a 1.5px underline at 4px offset, thickening to 2.5px on hover. It is `inline-flex` at a 44px minimum height so the target matches the button beside it. This is the secondary action beside the primary button, and it is the page's only "ghost" affordance.
 
 ### Cards / Containers
 There are no cards. Prose is never boxed. Two tinted panels exist and both are
@@ -303,16 +316,18 @@ announcements rather than content containers: the **reply callout** (sage wash,
 leaks are plain rows separated by hairlines, not tiles.
 
 ### Inputs / Fields
-- **Style:** white ground, 1px #CFC9C0 edge, 12px radius, 13×14px padding, 16px text (which also prevents iOS zoom-on-focus), full width, label above at 16px/600 with an "(optional)" span in ink-2/400.
+- **Style:** white ground, 1px #CFC9C0 edge, 12px radius, 13×14px padding, 16px text (which also prevents iOS zoom-on-focus), full width, label above at 16px/600. Every required field's label carries a visible `required` span in ink-2/400; the one optional field carries "(optional)" in the same treatment.
 - **Focus:** border turns sage *and* a 2px sage outline is drawn at 2px offset — the border shift alone was not enough of a signal.
-- **Error:** `aria-invalid="true"` turns the border #B8321E and the status line under the form turns #A12A18; the message is plain language, not a validation string.
+- **Error:** `aria-invalid="true"` turns the border to the error red, and the status line under the form takes the same colour; the message is plain language, not a validation string.
 - **Success:** the fields hide, and the existing live region fills with a confirmation naming the number back to the reader plus an escape route.
 
+**The Native-Floor Rule.** The markup carries no `novalidate`; the script adds it at runtime once it has loaded. With JavaScript off, the browser's own validation is the floor, so the form never silently accepts an empty required field. Requiredness is stated in the label in words before it is ever enforced.
+
 ### Navigation
-One row, 68px tall, sticky, with a 92% page-coloured veil and a 10px blur over a
-hairline bottom edge. Left: the wordmark at 20px/700 with "Digital" in sage.
-Right: a single pill-shaped "Contact" link, 16px/600 ink on a hairline border,
-whose border darkens to full ink on hover. There is no menu, no hamburger, and no
+One row, 68px tall, sticky, with a flat 96% page-coloured veil over a hairline
+bottom edge. Left: the wordmark at 20px/700 with "Digital" in sage.
+Right: a single pill-shaped "Contact" link, 16px/600 ink on a hairline border at a
+44px minimum height, whose border darkens to full ink on hover. There is no menu, no hamburger, and no
 second link at any width.
 
 ### Facts Strip (signature)
@@ -334,10 +349,22 @@ scoped services carry no price cell at all. Below 720px the tracks stack in that
 Rows are grouped under a `.group-title` — 16px/600 ink-2 over a full-strength 1px
 ink rule — which is the page's only underlined label.
 
+### Advisory Band (signature)
+The last section of `<main>`, folded in from a former standalone page and reachable at
+`#advisory` (the old `/advisory` URL redirects there). Its discipline is that it introduces
+nothing: four `.area` blocks in a hairline-topped grid — one column, two at ≥720px with a
+48px gutter — each a 20px h3 over a description and a 14px ink-2 tools line; a three-step
+`.steps` list that is a stack of hairline-separated rows below 720px and three columns
+inside a single top-and-bottom hairline pair above it; and an `.adv-cta` row pairing the
+standard primary button with two 44px-tall profile links in ink-2. No colour, radius, or
+type size appears here that the rest of the page does not already use, which is what stops
+a folded-in page from reading as one. It carries no inline style; `main > section.band:last-child`
+supplies its top hairline.
+
 ## Do's and Don'ts
 
 ### Do:
-- **Do** keep every colour inside the fifteen documented values, and compute the contrast ratio before shipping any new pairing.
+- **Do** keep every colour inside the documented tokens, declare it in `:root`, and reference it as a `var(--…)`; compute the contrast ratio before shipping any new pairing.
 - **Do** hold the three-tier ramp: prose 17px, controls 16px, small print 14px.
 - **Do** use sage for exactly one thing — what is Joey's, or what the reader should press.
 - **Do** keep the reply callout ahead of the primary button in DOM order; PRODUCT.md ranks a reply above a form submission, and the layout has to agree.
@@ -345,6 +372,9 @@ ink rule — which is the page's only underlined label.
 - **Do** separate sections with a single hairline and generous band padding.
 - **Do** keep the five facts static and checkable; if a value would need updating, it does not belong in that strip.
 - **Do** put the anchor on the heading rather than the section, and keep `scroll-padding-top` in sync with the 68px header.
+- **Do** give every standalone link and control a declared 44px minimum height.
+- **Do** hash image filenames and let `_headers` cache them for a year; never overwrite an image under a name that has already shipped.
+- **Do** leave native validation as the no-JS floor and say "required" in the label.
 
 ### Don't:
 - **Don't** load a web font. Ever. The platform stack is the design, and a font request is the single easiest way to undo the page's load time.
@@ -353,7 +383,10 @@ ink rule — which is the page's only underlined label.
 - **Don't** put a kicker, eyebrow, or all-caps label above a heading.
 - **Don't** wrap prose in a card, a bordered box, or a nested container.
 - **Don't** introduce a second accent colour, or use sage on anything that is neither authored-by-Joey nor an action.
-- **Don't** use #FFFFFF as a page or panel ground; it is for field interiors and text on sage only.
+- **Don't** use #FFFFFF as a page or panel ground; it is for field interiors and for text sitting on ink or sage.
+- **Don't** write a hex literal outside `:root` — the header veil's `rgba()` is the only exception, and it exists because it needs alpha.
+- **Don't** add `backdrop-filter` back to the header, or anywhere else.
+- **Don't** put `novalidate` in the markup.
 - **Don't** use a hairline as a text colour or a heading rule — the group-title rule is full ink on purpose.
 - **Don't** add a third panel radius; 12px for panels, 999px for tag-shaped pills.
 - **Don't** print a phone number anywhere while the demo line is off, and never separate the digits from the AI-disclosure sentence when they return.

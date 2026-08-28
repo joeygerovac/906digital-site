@@ -14,7 +14,7 @@ dependencies, no package manager.
 
 | File | |
 |---|---|
-| `index.html` | The small-business site — 838 lines, 42 KB. Markup, CSS, and JS in one file. Still zero dependencies and zero new network requests; the only asset is the hero photograph. |
+| `index.html` | The small-business site — 849 lines, 43 KB. Markup, CSS, and JS in one file. Still zero dependencies and zero new network requests; the only asset is the hero photograph. |
 | `advisory.html` | Redirect stub to `/#advisory`. The advisory content lives in `index.html`. |
 | `scripts/check-content.mjs` | Content checks. See "Checks" below. |
 | `.circleci/config.yml` | CI pipeline. |
@@ -182,6 +182,16 @@ Edit the HTML, commit, push. Nothing to build, nothing to install.
 
 To preview locally, open the file directly in a browser — `file://` works. The
 form will not submit from `file://`, but everything else renders.
+
+## Assets are content-hashed and cached for a year
+
+`_headers` marks the hero photo and the share image `immutable, max-age=31536000`,
+and their filenames carry a content hash (`joey-<hash>.webp`). **Never overwrite
+one of these files under the same name** — a visitor who has it cached will keep
+the old one for a year. A new photo gets a new hash, a new filename, a new
+`_headers` entry, and the old file is deleted. The HTML is deliberately not
+listed in `_headers`: it always revalidates, which is how a push goes live in
+under a minute.
 
 ## Everything at the repo root is served publicly
 
