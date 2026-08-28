@@ -15,8 +15,9 @@ web
 
 ## Users
 
-Two distinct readers, one per surface. They do not overlap and the pages are
-deliberately not merged.
+Two distinct readers on one page, as of 2026-08-28. They were two pages;
+Joey chose to fold advisory in as a section, accepting that a B2B reader
+scrolls past the small-business content to reach it.
 
 **`index.html` — the owner-operator.** One person who does the work, answers the
 phone, and runs a small business somewhere in Michigan's Upper Peninsula. They
@@ -25,13 +26,13 @@ sender is a real person in Ironwood or a scam. They are on a ladder, under a
 truck, or across a counter when the decision gets made. They are not shopping;
 they are verifying.
 
-**`advisory.html` — the B2B team.** A team that already has systems and knows
+**`#advisory` (the last section of `index.html`) — the B2B team.** A team that already has systems and knows
 they don't work — marketing stacks with broken seams, data they can't trust, ops
 tooling nobody owns. They have budget authority, technical vocabulary, and no
 scam question to clear. They need a technical person and don't need a full-time
 one.
 
-All traffic to both pages arrives from Joey's own outreach. There is no other
+All traffic arrives from Joey's own outreach. There is no other
 channel — no ads, no organic search strategy, no referral flow. Joey controls
 which link each prospect receives, which is why one page can be written for one
 reader without hedging.
@@ -43,12 +44,12 @@ technical advisory to B2B teams remotely.
 
 The website's job is narrower than the business's job. `index.html` moves a
 visitor from "is this a scam?" to "this is a real guy in Ironwood." It is a
-credibility check, not an acquisition funnel. `advisory.html` does the same job
+credibility check, not an acquisition funnel. The `#advisory` section does the same job
 for a reader who has no scam question but does have a competence question.
 
-Success on either page is a reply to the email thread the visitor is already
+Success is a reply to the email thread the visitor is already
 holding, or a form submission — in that order. Reply is the cheaper action and is
-prompted above the fold on both pages.
+prompted above the fold.
 
 ## Positioning
 
@@ -73,7 +74,7 @@ The offering widened on 2026-08-11 from "websites + AI phone answering for UP
 trades" to "AI for Upper Peninsula small business." Copy written before that date
 may still be trades-specific.
 
-Two pages ship from one Cloudflare Worker at `906digital.com`. Every push to
+One page ships from one Cloudflare Worker at `906digital.com`. Every push to
 `main` deploys in roughly 20–60 seconds. CI runs markup validation and content
 invariant checks on every push; there is no build step and no deploy step in CI.
 
@@ -99,7 +100,7 @@ a short call: **Process Automation**, **Reporting You Can Trust**, **Systems
 Integration**. These carry no published price on purpose — inventing one would
 put a fabricated number on a live page.
 
-`advisory.html` publishes **no prices at all**, deliberately. No rate has been
+The advisory section publishes **no prices at all**, deliberately. No rate has been
 established for advisory work, and a number invented to fill a visual gap would
 be one Joey has never charged.
 
@@ -115,7 +116,7 @@ deferred "ask me in 90 days" line.
   downloaded. A font request is the single easiest way to undo the page's load
   time (~0.13–0.16s).
 - Exactly three external requests, by design: the Web3Forms lead POST on submit,
-  the Cloudflare analytics beacon, and outbound profile links on `advisory.html`.
+  the Cloudflare analytics beacon, and outbound profile links in the advisory section.
 - Colour roles are documented in `DESIGN.md` and enforced by computed contrast,
   not by eye. Four contrast regressions have been caused by ignoring this.
 - Sections are marked with banner comments. Search for those, not line numbers.
@@ -148,7 +149,7 @@ superlatives, no urgency tricks, no invented social proof.
 **Real, and on the pages now:** fourteen years across technical support,
 implementation engineering, software engineering, and engineering management,
 most of it in B2B SaaS and marketing technology. Every line in the advisory
-background section traces to a specific employer, role, and date. The companies
+section traces to a specific employer, role, and date. The companies
 listed were employers, not clients, and the page says so.
 
 **Present:** a real photograph of Joey exists and ships in the hero (`joey.webp`, from

@@ -357,4 +357,3 @@ ink rule — which is the page's only underlined label.
 - **Don't** use a hairline as a text colour or a heading rule — the group-title rule is full ink on purpose.
 - **Don't** add a third panel radius; 12px for panels, 999px for tag-shaped pills.
 - **Don't** print a phone number anywhere while the demo line is off, and never separate the digits from the AI-disclosure sentence when they return.
-- **Don't** import anything from `advisory.html`, which still runs an older copper-and-birch system. The two must not be mixed or averaged.

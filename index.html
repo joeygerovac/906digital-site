@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>906 Digital — AI &amp; Websites for Upper Peninsula Small Business</title>
-<meta name="description" content="Websites, phone answering, and automation for small businesses across the Upper Peninsula. One person, in Ironwood, who does the work himself. Flat prices." />
+<meta name="description" content="Websites, phone answering, and automation for small businesses across the Upper Peninsula — and technical advisory for B2B teams. One person, in Ironwood, who does the work himself." />
 <meta name="theme-color" content="#FCFBF9" />
 <link rel="canonical" href="https://906digital.com/" />
 
@@ -197,6 +197,24 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
 .hp-field { position: absolute; left: -9999px; opacity: 0; pointer-events: none; }
 .alt-contact { margin-top: 22px; color: var(--ink-2); }
 
+/* ================= ADVISORY ================= */
+/* Folded in from advisory.html on 2026-08-28 at Joey's decision, over the
+   two-page rule README used to carry. It sits after the contact form so it
+   cannot pull an owner-operator out of the funnel; a B2B reader scrolls to it
+   or arrives at #advisory from the old URL. */
+.areas { margin-top: 32px; display: grid; grid-template-columns: 1fr; gap: 0; }
+.area { padding: 20px 0; border-top: 1px solid var(--hair); }
+.area h3 { font-size: 20px; }
+.area p { margin-top: 6px; max-width: var(--measure); color: var(--ink-2); }
+.area .tools { margin-top: 8px; font-size: 14px; color: var(--ink-2); }
+.steps { list-style: none; margin: 32px 0 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: 0; border-top: 1px solid var(--hair); }
+.steps li { padding: 18px 0; border-bottom: 1px solid var(--hair); }
+.steps strong { display: block; font-weight: 700; }
+.steps span { display: block; margin-top: 4px; color: var(--ink-2); max-width: 40ch; }
+.adv-cta { margin-top: 28px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.adv-links { font-size: 16px; color: var(--ink-2); }
+.adv-links a { margin-right: 14px; }
+
 /* ================= FOOTER ================= */
 .site-footer { border-top: 1px solid var(--hair); padding: 36px 0 44px; font-size: 14px; color: var(--ink-2); }
 .site-footer .wrap { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
@@ -205,6 +223,10 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
 
 @media (min-width: 720px) {
   .facts { grid-template-columns: repeat(3, 1fr); }
+  .areas { grid-template-columns: 1fr 1fr; gap: 0 48px; }
+  .steps { grid-template-columns: repeat(3, 1fr); gap: 0 32px; }
+  .steps li { border-bottom: 0; }
+  .steps { border-bottom: 1px solid var(--hair); }
   /* Every row, priced or not, uses the same three tracks, so the feature column
      sits at one x from the first row to the last. Unpriced rows leave the third
      track empty rather than shifting the middle one. */
@@ -595,6 +617,60 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
   </div>
 </section>
 
+<!-- ============== ADVISORY — for B2B teams ============== -->
+<!-- This used to be its own page, advisory.html, written for a reader with no
+     scam question and a technical vocabulary. Joey chose on 2026-08-28 to fold
+     it in as one section; /advisory now redirects here. Every line below is
+     employment history, not client history — the companies were employers. No
+     prices, on purpose: no advisory rate has been set, and a number invented to
+     fill the space would be one Joey has never charged. Payment on delivery is a
+     real commitment, not a marketing line. -->
+<section class="band" id="advisory" tabindex="-1" style="border-top: 1px solid var(--hair);">
+  <div class="wrap">
+    <h2>Technical advisory for B2B teams.</h2>
+    <p class="intro">
+      You need a technical person. You don't need a full-time one. Fourteen years
+      across support, implementation engineering, software engineering, and
+      engineering management — most of it in B2B SaaS, a lot of it in marketing
+      technology. Four places I've spent most of that time:
+    </p>
+
+    <div class="areas">
+      <div class="area">
+        <h3>Marketing stack integration</h3>
+        <p>Getting the pieces to actually talk to each other — event capture, identity, the handoff into whatever sends the email. The failures are in the seams, not the tools.</p>
+        <p class="tools">Salesforce Marketing Cloud, Klaviyo, Sailthru, Listrak · REST, webhooks, JSON</p>
+      </div>
+      <div class="area">
+        <h3>Data you can't trust</h3>
+        <p>When the dashboard and the database disagree, someone has to find out which one is lying. That was most of my job as an escalation engineer.</p>
+        <p class="tools">SQL, MySQL, Looker, Grafana, Splunk · log analysis</p>
+      </div>
+      <div class="area">
+        <h3>AI process automation</h3>
+        <p>Finding the repetitive judgment call in your process and building something that handles the first pass. I built this for a support organization: triage, drafted resolutions, semantic search across tickets and docs.</p>
+        <p class="tools">Claude API, tool-calling, retrieval, agent design, evaluation harnesses</p>
+      </div>
+      <div class="area">
+        <h3>Support and ops tooling</h3>
+        <p>Intake and triage design, runbooks, and the internal tools that stop the same ticket arriving a fourth time. Run as an IC, and managed a team doing it.</p>
+        <p class="tools">Zendesk, JIRA, Confluence, Notion · runbook and KB authoring</p>
+      </div>
+    </div>
+
+    <ol class="steps">
+      <li><strong>Tell me what's wrong.</strong><span>A few sentences by email is enough. No eleven-field form, no qualification call before the qualification call.</span></li>
+      <li><strong>Fixed price within one business day.</strong><span>If a scoped audit is the right first step, you get a scope and a number. If it isn't, I'll say so — that's the more common answer.</span></li>
+      <li><strong>You read it, then you pay.</strong><span>The document arrives before the invoice does. That order is deliberate.</span></li>
+    </ol>
+
+    <div class="adv-cta">
+      <a href="mailto:joey@906digital.com?subject=906%20Digital%20-%20advisory" class="btn">Email me about advisory work</a>
+      <p class="adv-links"><a href="https://www.linkedin.com/in/joeygerovac">LinkedIn</a><a href="https://github.com/joeygerovac">GitHub</a></p>
+    </div>
+  </div>
+</section>
+
 </main>
 
 <!-- ============== FOOTER ============== -->
@@ -608,10 +684,6 @@ h2 { font-size: clamp(28px, 3.2vw, 38px); line-height: 1.12; max-width: 22ch; }
       <span class="entity">900169562</span>
       <a href="mailto:joey@906digital.com">joey@906digital.com</a><br>
       © <span id="year"></span>
-    </div>
-    <!-- The B2B advisory link stays in the footer, after the conversion point. -->
-    <div>
-      <a href="/advisory">Technical advisory for B2B teams<svg width="15" height="10" viewBox="0 0 15 10" aria-hidden="true" focusable="false"><path d="M0 5h12M9 1.5 12.5 5 9 8.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg></a>
     </div>
   </div>
 </footer>

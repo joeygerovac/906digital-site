@@ -1,6 +1,6 @@
 # 906 Digital — Website
 
-Source for `906digital.com`. Two pages, no build step, no framework, no
+Source for `906digital.com`. One page, no build step, no framework, no
 dependencies, no package manager.
 
 > **Rewritten 2026-08-07.** The May version was wrong on nearly every point: it
@@ -14,39 +14,30 @@ dependencies, no package manager.
 
 | File | |
 |---|---|
-| `index.html` | The small-business site — 766 lines, 38 KB. Markup, CSS, and JS in one file. Still zero dependencies and zero new network requests; the only asset is the hero photograph. |
-| `advisory.html` | The B2B technical advisory page — 1,153 lines, 37 KB. Same deal. |
+| `index.html` | The small-business site — 838 lines, 42 KB. Markup, CSS, and JS in one file. Still zero dependencies and zero new network requests; the only asset is the hero photograph. |
+| `advisory.html` | Redirect stub to `/#advisory`. The advisory content lives in `index.html`. |
 | `scripts/check-content.mjs` | Content checks. See "Checks" below. |
 | `.circleci/config.yml` | CI pipeline. |
 | `.htmlvalidate.json` | Validator config. |
 
-### Two pages, two readers — keep them apart
+### One page — decided 2026-08-28
 
-*Rewritten 2026-08-11. The old rule said to keep the pages apart because they sold
-different services. After the home page widened from trades to UP small business,
-that is no longer true — both now sell AI work. The separation still holds, but
-for a different and more durable reason, so the reasoning is restated rather than
-left standing on a premise that expired.*
+The site used to be two pages for two readers: `index.html` for the
+owner-operator clearing a scam question, `advisory.html` for a B2B team with
+budget authority and no scam question. The rule said *do not merge them*, on
+the reasoning that a B2B buyer who lands on "your name on the truck" sees
+someone too small to bet on.
 
-`index.html` sells to an **owner-operator**: one person who does the work, answers
-the phone, and is deciding whether a stranger who emailed them is a real person in
-Ironwood. Five services, two with published prices.
+Joey heard that reasoning and chose one page anyway. Advisory is now a section
+at the bottom of `index.html` (`#advisory`), after the contact form so it cannot
+pull an owner-operator out of the funnel. `/advisory` redirects there via
+`_redirects`; `advisory.html` is a meta-refresh stub kept as a fallback. The
+cost is known and accepted: a B2B prospect Joey emails scrolls past five trades
+services to reach their pitch. Revisit if advisory becomes a real line of
+business rather than a side one.
 
-`advisory.html` sells to a **team** that already has systems and knows they don't
-work — marketing stacks, untrustworthy data, ops tooling. That reader has budget
-authority, technical vocabulary, and no scam question to clear.
-
-**Do not merge them.** The overlap is in the services, not the readers, and the
-reader is what the page is written for. An owner-operator who lands on advisory
-copy sees a consultant and leaves; a B2B buyer who lands on "I answer my own
-phone" sees someone too small to bet on. All traffic arrives from Joey's own
-outreach, so he controls which link each prospect gets. The only cross-link is in
-each footer, after the conversion point.
-
-**The home page is where the scam question gets cleared.** Keep it a person, not a
-firm. It says "one person, in Ironwood, who answers his own email" and not "I'm
-not an agency" — the denial was retired when the offering widened, the substance
-was not. Never introduce "we" or "our team" on `index.html`. There is one person.
+**The home page is where the scam question gets cleared.** Keep it a person, not
+a firm. Never introduce "we" or "our team". There is one person.
 
 ## Structure of the HTML files
 
@@ -225,7 +216,7 @@ Three, by design:
 
 - `api.web3forms.com/submit` — lead form POST, on submit only
 - `static.cloudflareinsights.com/beacon.min.js` — analytics
-- `linkedin.com` / `github.com` — outbound profile links on `advisory.html` only,
+- `linkedin.com` / `github.com` — outbound profile links in the advisory section only,
   not requests
 
 **No web fonts.** The stack starts with `'Inter'` so it's used where already
@@ -236,7 +227,7 @@ way — a font request is the single easiest way to undo this page's load time.
 
 `index.html` does one job: get a UP business owner who just received an email from
 "is this a scam?" to "this is a real guy in Ironwood." It is a credibility check,
-not an acquisition funnel. `advisory.html` does the same job for a B2B reader.
+not an acquisition funnel. The `#advisory` section does the same job for a B2B reader.
 
 Reconsider the stack when there are 3+ paying clients, real photos, and
 testimonials — i.e. when there is enough genuine proof that a single page can't
