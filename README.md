@@ -193,6 +193,18 @@ the old one for a year. A new photo gets a new hash, a new filename, a new
 listed in `_headers`: it always revalidates, which is how a push goes live in
 under a minute.
 
+## robots.txt, sitemap.xml, and HSTS
+
+`robots.txt` deliberately allows AI crawlers (search, user-triggered, and
+training) — the policy and its reasoning live in `site-audit/aeo-strategy.md`
+in the business repo. **It is inert until Cloudflare's managed robots.txt /
+AI-bot blocking is switched off in the dashboard** (Security → Bots / AI Crawl
+Control); until then the managed file is served instead. `sitemap.xml` lists
+the one page and exists because robots.txt references it. `_headers` sends
+`Strict-Transport-Security` on every response; the zone-level "Always Use
+HTTPS" toggle is the other half of that fix and lives in the dashboard, not
+this repo.
+
 ## Everything at the repo root is served publicly
 
 `assets.directory` is `"."`, so every file here is fetchable on the live domain.

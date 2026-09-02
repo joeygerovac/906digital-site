@@ -1,0 +1,61 @@
+# Deliberate policy (see site-audit/aeo-strategy.md in the business repo):
+# allow AI search, user-triggered fetchers, and training crawlers. This file
+# only takes effect once Cloudflare's managed robots.txt / AI-bot blocking is
+# switched OFF in the dashboard (Security -> Bots / AI Crawl Control).
+User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=yes, use=full
+Allow: /
+
+# --- AI search / retrieval crawlers ---
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+# --- User-triggered fetchers (live browsing on behalf of a person) ---
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+# --- Model training crawlers ---
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+# --- Conventional search ---
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://906digital.com/sitemap.xml

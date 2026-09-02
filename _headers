@@ -8,3 +8,9 @@
   Cache-Control: public, max-age=31536000, immutable
 /touch-208d2637.png
   Cache-Control: public, max-age=31536000, immutable
+
+# HSTS: after one https visit, browsers refuse plain http for a year. This is
+# the in-repo half of the http->https fix; the zone-level "Always Use HTTPS"
+# toggle in the Cloudflare dashboard is the other half.
+/*
+  Strict-Transport-Security: max-age=31536000
